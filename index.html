@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1565c0">
+<link rel="manifest" href="data:application/manifest+json,{%22name%22:%22Site Inspection%22,%22short_name%22:%22Inspection%22,%22start_url%22:%22.%22,%22display%22:%22standalone%22,%22background_color%22:%22#f4f7fb%22,%22theme_color%22:%22#1565c0%22}">
+<title>Site Inspection</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Tahoma,sans-serif;background:#f4f7fb;color:#17202a}
+header{background:#1565c0;color:white;padding:18px 16px;position:sticky;top:0;z-index:5}
+h1{margin:0;font-size:23px}.wrap{max-width:760px;margin:auto;padding:14px}
+.card{background:white;border-radius:16px;padding:15px;margin-bottom:14px;box-shadow:0 2px 10px #00000010}
+label{display:block;font-weight:700;margin:9px 0 6px}input,textarea,button{font:inherit}input,textarea{width:100%;border:1px solid #ccd5df;border-radius:11px;padding:12px;background:#fff}textarea{min-height:100px;resize:vertical}
+.row{display:flex;gap:9px}.row>*{flex:1}button{border:0;border-radius:12px;padding:13px 12px;font-weight:800;cursor:pointer}.primary{background:#1565c0;color:#fff}.outline{background:#fff;border:1px solid #1565c0;color:#1565c0}.danger{background:#fff0f0;color:#b00020}.muted{color:#667085;font-size:13px}
+.preview{width:100%;max-height:420px;object-fit:contain;border-radius:12px;background:#111;margin-top:10px}
+.rec{display:flex;gap:10px;align-items:flex-start}.thumb{width:72px;height:72px;object-fit:cover;border-radius:10px;background:#eee;flex:none}
+.rec h3{margin:0 0 4px;font-size:16px}.rec p{margin:0;white-space:pre-wrap}.empty{text-align:center;padding:25px;color:#777}
+#camera{width:100%;border-radius:12px;background:#111;display:none}
+#canvas{display:none}
+.small{font-size:12px}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>📋 Site Inspection</h1></div></header>
+<main class="wrap">
+<section class="card">
+<label>اسم المشروع</label><input id="project" placeholder="مثال: Villa 12">
+<label>رقم الوحدة</label><input id="unit" placeholder="مثال: B-204">
+<label>المهندس</label><input id="engineer" placeholder="Eng. George Youssef">
+<div class="row" style="margin-top:12px">
+<button class="primary" id="photoBtn">📷 Photo Inspection</button>
+<button class="outline" id="noteBtn">📝 Note Only</button>
+</div>
+</section>
+
+<section class="card" id="editor" style="display:none">
+<video id="camera" autoplay playsinline></video>
+<canvas id="canvas"></canvas>
+<img id="preview" class="preview" alt="preview">
+<label>الملاحظة</label>
+<textarea id="note" placeholder="اكتب الملاحظة التي ستظهر على الصورة..."></textarea>
+<div class="row">
+<button class="primary" id="saveBtn">💾 حفظ</button>
+<button class="outline" id="cancelBtn">إلغاء</button>
+</div>
+<div class="muted" id="photoHint">في حالة الصورة، سيتم حفظ نسخة عليها الملاحظة.</div>
+</section>
+
+<section class="card">
+<div class="row">
+<button class="outline" id="exportBtn">📤 Export CSV</button><button class="outline" id="reportBtn">🖼️ Report</button>
+<button class="outline" id="clearBtn">🗑️ مسح الكل</button>
+</div>
+<p class="muted">الـCSV يفتح مباشرة في Excel. الصور المحفوظة تظل على الجهاز داخل التطبيق.</p>
+</section>
+
+<section class="card">
+<h2 style="margin-top:0">السجلات <span id="count">(0)</span></h2>
+<div id="records"></div>
+</section>
+</main>
+
+<script>
+const DB='siteInspectionDB', STORE='records';
+let db, stream=null, mode='note', rawImage=null;
+
+function openDB(){
+ return new Promise((res,rej)=>{
+  const r=indexedDB.open(DB,1);
+  r.onupgradeneeded=()=>r.result.createObjectStore(STORE,{keyPath:'id',autoIncrement:true});
+  r.onsuccess=()=>{db=r.result;res()};
+  r.onerror=()=>rej(r.error);
+ });
+}
+function tx(mode){return db.transaction(STORE,mode).objectStore(STORE)}
+function add(rec){return new Promise((res,rej)=>{const r=tx('readwrite').add(rec);r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
+function all(){return new Promise((res,rej)=>{const r=tx('readonly').getAll();r.onsuccess=()=>res(r.result.reverse());r.onerror=()=>rej(r.error)})}
+function clearAll(){return new Promise((res,rej)=>{const r=tx('readwrite').clear();r.onsuccess=()=>res();r.onerror=()=>rej(r.error)})}
+
+const $=id=>document.getElementById(id);
+function dataURLToBlob(data){const [h,b]=data.split(',');const m=h.match(/:(.*?);/)[1];const bin=atob(b);const arr=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)arr[i]=bin.charCodeAt(i);return new Blob([arr],{type:m})}
+function escapeCSV(s){s=String(s??'').replace(/"/g,'""');return `"${s}"`}
+
+async function startPhoto(){
+ mode='photo'; $('editor').style.display='block'; $('preview').style.display='none'; $('photoHint').textContent='صوّر، ثم اكتب الملاحظة، وسيتم دمجها على الصورة قبل الحفظ.';
+ try{
+  stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});
+  $('camera').srcObject=stream;$('camera').style.display='block';
+  $('note').value='';
+  const btn=document.createElement('button');btn.className='primary';btn.id='snapBtn';btn.textContent='📸 التقاط الصورة';
+  btn.onclick=capture; $('editor').insertBefore(btn,$('canvas'));
+ }catch(e){alert('لم يتم فتح الكاميرا. اسمح للتطبيق باستخدام الكاميرا ثم جرّب مرة أخرى.')}
+}
+function capture(){
+ const v=$('camera'),c=$('canvas');c.width=v.videoWidth;c.height=v.videoHeight;
+ c.getContext('2d').drawImage(v,0,0,c.width,c.height);rawImage=c.toDataURL('image/jpeg',.9);
+ $('preview').src=rawImage;$('preview').style.display='block';$('camera').style.display='none';
+ if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}
+ const b=$('snapBtn');if(b)b.remove();
+}
+function startNote(){mode='note';$('editor').style.display='block';$('preview').style.display='none';$('camera').style.display='none';$('note').value='';$('photoHint').textContent='ملاحظة عادية بدون صورة.';rawImage=null}
+async function save(){
+ const project=$('project').value.trim(),unit=$('unit').value.trim(),engineer=$('engineer').value.trim(),note=$('note').value.trim();
+ if(!project||!unit||!engineer||!note){alert('اكتب المشروع والوحدة والمهندس والملاحظة.');return}
+ if(mode==='photo'&&!rawImage){alert('التقط الصورة أولاً.');return}
+ let finalImage='';
+ if(mode==='photo'){
+  const c=$('canvas'),ctx=c.getContext('2d');
+  const img=new Image();img.src=rawImage;await new Promise(r=>img.onload=r);
+  c.width=img.naturalWidth;c.height=img.naturalHeight;ctx.drawImage(img,0,0);
+  const boxH=Math.max(90,c.height*.18);ctx.fillStyle='rgba(0,0,0,.65)';ctx.fillRect(0,c.height-boxH,c.width,boxH);
+  ctx.fillStyle='white';ctx.font=`bold ${Math.max(26,c.width/28)}px Arial`;ctx.textAlign='center';ctx.textBaseline='middle';
+  const words=note.split(/\s+/), lines=[];let line='';
+  const max=c.width-50;
+  for(const w of words){const test=line?line+' '+w:w;if(ctx.measureText(test).width>max&&line){lines.push(line);line=w}else line=test}
+  if(line)lines.push(line);let y=c.height-boxH+boxH/2-(lines.length-1)*32;
+  lines.forEach(l=>{ctx.fillText(l,c.width/2,y);y+=Math.max(36,c.width/32)});
+  finalImage=c.toDataURL('image/jpeg',.92);
+ }
+ await add({project,unit,engineer,note,photo:finalImage,date:new Date().toISOString(),kind:mode});
+ $('editor').style.display='none';rawImage=null;render();
+}
+async function render(){
+ const rs=await all();$('count').textContent=`(${rs.length})`;const box=$('records');box.innerHTML='';
+ if(!rs.length){box.innerHTML='<div class="empty">لا توجد Inspections حتى الآن.</div>';return}
+ rs.forEach(r=>{
+  const d=new Date(r.date).toLocaleString('ar-EG');const el=document.createElement('div');el.className='rec card';
+  el.innerHTML=(r.photo?`<img class="thumb" src="${r.photo}">`:'<div class="thumb" style="display:grid;place-items:center">📝</div>')+
+   `<div><h3>${r.project} • ${r.unit}</h3><div class="muted">${r.engineer} — ${d}</div><p>${r.note}</p></div>`;
+  box.appendChild(el);
+ })
+}
+async function exportCSV(){
+ const rs=await all();if(!rs.length){alert('لا توجد سجلات للتصدير.');return}
+ const rows=[['Project','Unit','Engineer','Date','Type','Inspection Note','Photo (data)']];
+ rs.forEach(r=>rows.push([r.project,r.unit,r.engineer,new Date(r.date).toLocaleString('en-GB'),r.kind==='photo'?'Photo Inspection':'Note Only',r.note,r.photo?'Saved in app':'']));
+ const csv='\ufeff'+rows.map(row=>row.map(escapeCSV).join(',')).join('\r\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='site_inspections.csv';a.click();URL.revokeObjectURL(a.href);
+}
+
+async function exportReport(){
+ const rs=await all(); if(!rs.length){alert('لا توجد سجلات للتقرير.');return}
+ let rows='';
+ for(const r of rs){
+   rows += `<article><h2>${escapeHtml(r.project)} • ${escapeHtml(r.unit)}</h2>
+   <div><b>Engineer:</b> ${escapeHtml(r.engineer)} &nbsp; <b>Date:</b> ${new Date(r.date).toLocaleString('ar-EG')}</div>
+   ${r.photo?`<img src="${r.photo}">`:''}<p>${escapeHtml(r.note)}</p></article>`;
+ }
+ const htmlReport=`<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><title>Site Inspection Report</title>
+ <style>body{font-family:Arial,sans-serif;padding:20px}article{page-break-inside:avoid;border-bottom:1px solid #ddd;padding:15px 0}img{max-width:100%;max-height:650px;display:block;margin:12px 0;border-radius:8px}h1{text-align:center}p{font-size:18px;white-space:pre-wrap}</style>
+ <h1>Site Inspection Report</h1>${rows}</html>`;
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([htmlReport],{type:'text/html;charset=utf-8'}));a.download='site_inspection_report.html';a.click();URL.revokeObjectURL(a.href);
+}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+
+$('photoBtn').onclick=startPhoto;$('noteBtn').onclick=startNote;$('saveBtn').onclick=save;
+$('cancelBtn').onclick=()=>{if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;$('editor').style.display='none';rawImage=null};
+$('exportBtn').onclick=exportCSV;$('reportBtn').onclick=exportReport;
+$('clearBtn').onclick=async()=>{if(confirm('مسح كل السجلات؟')){await clearAll();render()}};
+openDB().then(render);
+
+</script>
+</body></html>
