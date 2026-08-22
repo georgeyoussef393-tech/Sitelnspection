@@ -2,6 +2,7 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="utf-8">
 
 <meta name="viewport"
@@ -10,7 +11,27 @@
 <meta name="theme-color"
       content="#1565c0">
 
+<!-- PWA -->
+<link rel="manifest" href="./manifest.json">
+
+<link rel="icon"
+      href="./icon.svg"
+      type="image/svg+xml">
+
+<meta name="mobile-web-app-capable"
+      content="yes">
+
+<meta name="apple-mobile-web-app-capable"
+      content="yes">
+
+<meta name="apple-mobile-web-app-status-bar-style"
+      content="default">
+
+<meta name="apple-mobile-web-app-title"
+      content="Inspection">
+
 <title>Site Inspection</title>
+
 
 <style>
 
@@ -210,13 +231,6 @@ button{
   margin-bottom:12px;
   box-shadow:0 2px 10px #0002;
 }
-
-/*
-  مهم:
-  لا يوجد aspect-ratio هنا.
-  الفيديو سيأخذ Aspect Ratio الحقيقي
-  الذي ترجعه الكاميرا.
-*/
 
 #camera{
   width:100%;
@@ -615,8 +629,7 @@ id="cameraInfo"
 class="camera-info hidden"
 >
 
-📷
-الكاميرا الخلفية الرئيسية إن أمكن،
+📷 الكاميرا الخلفية الرئيسية إن أمكن،
 وبأعلى دقة حقيقية متاحة.
 
 <div
@@ -736,7 +749,6 @@ class="badge"
 
 
 <script>
-
 
 /* =====================================================
    DATABASE
@@ -2166,24 +2178,8 @@ await renderSessionRecords();
 
 
 /* =====================================================
-   CAMERA DEVICE DISCOVERY
+   CAMERA
 ===================================================== */
-
-/*
-  ملاحظة مهمة:
-
-  المتصفح لا يملك API قياسية تقول:
-  "هذه هي Main Camera" أو "هذه Ultra Wide".
-
-  لذلك نستخدم labels بعد أخذ إذن الكاميرا،
-  ونستبعد قدر الإمكان الكاميرات التي يظهر
-  في اسمها Wide / Ultra Wide / Macro / Front.
-
-  لو الهاتف لا يعطي أسماء العدسات،
-  نستخدم الكاميرا الخلفية الأولى التي يوفرها
-  المتصفح ونطلب منها أعلى دقة.
-*/
-
 
 function cameraScore(
 camera
@@ -2200,8 +2196,6 @@ camera.label ||
 let score = 0;
 
 
-/* الخلفية */
-
 if(
 /back|rear|environment|facing back|traseira|trasera|后置|后摄/
 .test(label)
@@ -2212,10 +2206,8 @@ score += 100;
 }
 
 
-/* Main / Primary */
-
 if(
-/main|primary|wide main|standard|normal|principal/
+/main|primary|standard|normal|principal/
 .test(label)
 ){
 
@@ -2223,20 +2215,6 @@ score += 80;
 
 }
 
-
-/* دقة / جودة */
-
-if(
-/camera 0|camera 1|camera 2/
-.test(label)
-){
-
-score += 5;
-
-}
-
-
-/* نعاقب العدسات التي لا نريدها */
 
 if(
 /ultra.?wide|ultrawide|super.?wide/
@@ -2301,13 +2279,6 @@ device.kind ===
 );
 
 
-if(!cameras.length){
-
-return [];
-
-}
-
-
 const ranked =
 cameras
 .map(
@@ -2329,11 +2300,9 @@ return ranked.map(
 item=>item.camera
 );
 
-
 }catch(error){
 
 console.error(
-"Camera discovery error:",
 error
 );
 
@@ -2345,16 +2314,7 @@ return [];
 
 
 
-/* =====================================================
-   GET CAMERA WITH BEST REAR OPTION
-===================================================== */
-
 async function getBestRearCamera(){
-
-/*
-  أول محاولة:
-  طلب الكاميرا الخلفية فقط.
-*/
 
 try{
 
@@ -2378,14 +2338,18 @@ temporaryStream
 .getVideoTracks();
 
 
-if(
-tracks.length
-){
+let currentDeviceId =
+null;
 
-const currentDeviceId =
+
+if(tracks.length){
+
+currentDeviceId =
 tracks[0]
 .getSettings()
 .deviceId;
+
+}
 
 
 temporaryStream
@@ -2395,21 +2359,11 @@ track=>track.stop()
 );
 
 
-/*
-  بعد إعطاء الإذن أصبحت أسماء الأجهزة
-  متاحة في أغلب المتصفحات.
-*/
-
 const cameras =
 await discoverRearCameras();
 
 
 if(cameras.length){
-
-/*
-  نحاول عدم إعادة استخدام
-  الـUltra Wide حسب اسم الجهاز.
-*/
 
 const preferred =
 cameras.find(
@@ -2426,10 +2380,6 @@ return preferred.deviceId;
 }
 
 
-/*
-  نستخدم أعلى Score.
-*/
-
 return cameras[0].deviceId;
 
 }
@@ -2437,34 +2387,20 @@ return cameras[0].deviceId;
 
 return currentDeviceId;
 
-}
-
-
-temporaryStream
-.getTracks()
-.forEach(
-track=>track.stop()
-);
-
 }catch(error){
 
 console.log(
-"Rear camera discovery fallback:",
+"Camera discovery fallback",
 error
 );
-
-}
-
 
 return null;
 
 }
 
+}
 
 
-/* =====================================================
-   START CAMERA - HIGH QUALITY
-===================================================== */
 
 async function startCamera(){
 
@@ -2473,11 +2409,6 @@ try{
 resetPhoto(false);
 
 
-/*
-  نكتشف الكاميرا الخلفية
-  المناسبة أولًا.
-*/
-
 selectedCameraId =
 await getBestRearCamera();
 
@@ -2485,24 +2416,13 @@ await getBestRearCamera();
 let videoConstraints;
 
 
-/*
-  إذا حصلنا على Device ID محدد،
-  نستخدمه مباشرة بدل facingMode فقط.
-*/
-
 if(selectedCameraId){
 
-videoConstraints = {
+videoConstraints={
 
 deviceId:{
 exact:selectedCameraId
 },
-
-/*
-  لا يوجد aspect-ratio.
-  لا يوجد 16:9.
-  لا يوجد crop مطلوب.
-*/
 
 width:{
 ideal:4096
@@ -2521,11 +2441,7 @@ max:60
 
 }else{
 
-/*
-  Fallback إذا المتصفح لم يعطِ Device ID.
-*/
-
-videoConstraints = {
+videoConstraints={
 
 facingMode:{
 ideal:"environment"
@@ -2562,14 +2478,8 @@ audio:false
 
 
 const track =
-stream
-.getVideoTracks()[0];
+stream.getVideoTracks()[0];
 
-
-/*
-  الآن نقرأ كل إمكانيات الكاميرا
-  التي اختارها الهاتف.
-*/
 
 try{
 
@@ -2579,10 +2489,6 @@ track.getCapabilities();
 
 const advanced={};
 
-
-/*
-  نطلب أقصى Width.
-*/
 
 if(
 capabilities.width &&
@@ -2595,10 +2501,6 @@ capabilities.width.max;
 }
 
 
-/*
-  نطلب أقصى Height.
-*/
-
 if(
 capabilities.height &&
 capabilities.height.max
@@ -2609,11 +2511,6 @@ capabilities.height.max;
 
 }
 
-
-/*
-  Frame rate جيد بدون التضحية
-  بالدقة.
-*/
 
 if(
 capabilities.frameRate &&
@@ -2628,11 +2525,6 @@ capabilities.frameRate.max,
 
 }
 
-
-/*
-  مهم:
-  لا نضيف aspectRatio هنا.
-*/
 
 if(
 Object.keys(advanced).length
@@ -2649,7 +2541,7 @@ advanced
 }catch(error){
 
 console.log(
-"Advanced constraints failed:",
+"Advanced camera constraints failed",
 error
 );
 
@@ -2660,25 +2552,18 @@ error
 }catch(error){
 
 console.log(
-"Capabilities unavailable:",
+"Capabilities unavailable",
 error
 );
 
 }
 
 
-/*
-  ربط Stream بالفيديو.
-*/
-
-$("camera")
-.srcObject =
+$("camera").srcObject =
 stream;
 
 
-$("camera")
-.style
-.display =
+$("camera").style.display =
 "block";
 
 
@@ -2692,62 +2577,20 @@ $("cameraControls")
 .remove("hidden");
 
 
-/*
-  عرض الدقة الحقيقية
-  التي فتح بها الهاتف.
-*/
-
-$("camera")
-.onloadedmetadata =
+$("camera").onloadedmetadata =
 ()=>{
 
 const width =
-$("camera")
-.videoWidth;
+$("camera").videoWidth;
 
 
 const height =
-$("camera")
-.videoHeight;
-
-
-const settings =
-track.getSettings();
-
-
-let text =
-`الدقة الحالية: ${width} × ${height}`;
-
-
-if(
-settings.deviceId
-){
-
-text +=
-" — Camera selected";
-
-}
+$("camera").videoHeight;
 
 
 $("cameraResolution")
 .textContent =
-text;
-
-
-console.log(
-"FINAL CAMERA:",
-{
-width,
-height,
-settings,
-capabilities:
-track.getCapabilities
-?
-track.getCapabilities()
-:
-null
-}
-);
+`الدقة الحالية: ${width} × ${height}`;
 
 };
 
@@ -2755,10 +2598,8 @@ null
 }catch(error){
 
 console.error(
-"Camera start error:",
 error
 );
-
 
 alert(
 "لم يتم فتح الكاميرا. اسمح للموقع باستخدام الكاميرا ثم حاول مرة أخرى."
@@ -2770,15 +2611,10 @@ alert(
 
 
 
-/* =====================================================
-   CAPTURE
-===================================================== */
-
 function capturePhoto(){
 
 const video =
 $("camera");
-
 
 const canvas =
 $("canvas");
@@ -2798,14 +2634,8 @@ return;
 }
 
 
-/*
-  نستخدم الدقة الفعلية
-  التي رجعتها الكاميرا.
-*/
-
 const width =
 video.videoWidth;
-
 
 const height =
 video.videoHeight;
@@ -2813,7 +2643,6 @@ video.videoHeight;
 
 canvas.width =
 width;
-
 
 canvas.height =
 height;
@@ -2845,10 +2674,6 @@ height
 );
 
 
-/*
-  أعلى جودة JPEG تقريبًا.
-*/
-
 rawImage =
 canvas.toDataURL(
 "image/jpeg",
@@ -2856,8 +2681,7 @@ canvas.toDataURL(
 );
 
 
-$("preview")
-.src =
+$("preview").src =
 rawImage;
 
 
@@ -2866,9 +2690,7 @@ $("preview")
 .remove("hidden");
 
 
-$("camera")
-.style
-.display =
+$("camera").style.display =
 "none";
 
 
@@ -2893,10 +2715,6 @@ $("photoControls")
 
 
 
-/* =====================================================
-   STOP CAMERA
-===================================================== */
-
 function stopStream(){
 
 if(stream){
@@ -2904,9 +2722,7 @@ if(stream){
 stream
 .getTracks()
 .forEach(
-track=>{
-track.stop();
-}
+track=>track.stop()
 );
 
 stream=null;
@@ -2916,10 +2732,6 @@ stream=null;
 }
 
 
-
-/* =====================================================
-   RESET CAMERA
-===================================================== */
 
 function resetPhoto(
 clearPreview=true
@@ -2932,9 +2744,7 @@ rawImage=null;
 selectedCameraId=null;
 
 
-$("camera")
-.style
-.display =
+$("camera").style.display =
 "none";
 
 
@@ -2953,17 +2763,9 @@ $("cameraInfo")
 .add("hidden");
 
 
-$("cameraResolution")
-.textContent =
-"";
-
-
 if(clearPreview){
 
-$("preview")
-.src =
-"";
-
+$("preview").src="";
 
 $("preview")
 .classList
@@ -2976,7 +2778,7 @@ $("preview")
 
 
 /* =====================================================
-   ANNOTATE IMAGE
+   ANNOTATION
 ===================================================== */
 
 async function createAnnotatedImage(
@@ -2986,7 +2788,6 @@ note
 
 const canvas =
 $("canvas");
-
 
 const image =
 new Image();
@@ -2998,17 +2799,13 @@ imageData;
 
 await new Promise(
 resolve=>{
-
-image.onload =
-resolve;
-
+image.onload=resolve;
 }
 );
 
 
 canvas.width =
 image.naturalWidth;
-
 
 canvas.height =
 image.naturalHeight;
@@ -3030,16 +2827,10 @@ image,
 );
 
 
-/*
-  ملاحظة:
-  لا نغير Aspect Ratio للصورة.
-  فقط نضيف مساحة في الأسفل.
-*/
-
 const boxHeight =
 Math.max(
 120,
-canvas.height * 0.20
+canvas.height*0.20
 );
 
 
@@ -3056,7 +2847,7 @@ boxHeight
 
 
 context.fillStyle =
-"#ffffff";
+"#fff";
 
 
 context.textAlign =
@@ -3071,7 +2862,7 @@ const fontSize =
 Math.max(
 28,
 Math.floor(
-canvas.width / 32
+canvas.width/32
 )
 );
 
@@ -3090,7 +2881,7 @@ let line="";
 
 
 const maxWidth =
-canvas.width - 70;
+canvas.width-70;
 
 
 for(
@@ -3108,37 +2899,26 @@ word;
 
 if(
 context.measureText(test)
-.width
->
-maxWidth
-&&
+.width >
+maxWidth &&
 line
 ){
 
-lines.push(
-line
-);
+lines.push(line);
 
-line =
-word;
+line=word;
 
 }else{
 
-line =
-test;
+line=test;
 
 }
 
 }
 
 
-if(line){
-
-lines.push(
-line
-);
-
-}
+if(line)
+lines.push(line);
 
 
 const lineHeight =
@@ -3151,11 +2931,10 @@ fontSize*1.35
 
 
 let startY =
-canvas.height -
-boxHeight/2 -
+canvas.height-
+boxHeight/2-
 (
-(lines.length-1)
-*
+(lines.length-1)*
 lineHeight
 )/2;
 
@@ -3186,7 +2965,7 @@ return canvas.toDataURL(
 
 
 /* =====================================================
-   SAVE RECORD
+   SAVE
 ===================================================== */
 
 async function saveRecord(
@@ -3267,9 +3046,7 @@ new Date().toISOString()
 );
 
 
-$("note")
-.value =
-"";
+$("note").value="";
 
 
 resetPhoto();
@@ -3280,10 +3057,6 @@ await renderSessionRecords();
 }
 
 
-
-/* =====================================================
-   SAVE PHOTO
-===================================================== */
 
 async function savePhoto(){
 
@@ -3364,8 +3137,7 @@ return;
 resetPhoto();
 
 
-currentUnitId =
-null;
+currentUnitId=null;
 
 
 await renderUnits();
@@ -3399,7 +3171,7 @@ value
 ){
 
 return String(
-value || ""
+value||""
 )
 .replace(
 /[\\/:*?"<>|]/g,
@@ -3449,16 +3221,11 @@ document.createElement(
 );
 
 
-link.href =
-url;
+link.href=url;
 
+link.download=fileName;
 
-link.download =
-fileName;
-
-
-link.style.display =
-"none";
+link.style.display="none";
 
 
 document.body.appendChild(
@@ -3474,11 +3241,7 @@ link.remove();
 
 setTimeout(
 ()=>{
-
-URL.revokeObjectURL(
-url
-);
-
+URL.revokeObjectURL(url);
 },
 3000
 );
@@ -3488,7 +3251,7 @@ url
 
 
 /* =====================================================
-   EXPORT ONE UNIT
+   EXPORT UNIT
 ===================================================== */
 
 async function exportUnitExcel(
@@ -3604,18 +3367,8 @@ width:22
 ];
 
 
-worksheet.getRow(
-1
-).font={
+worksheet.getRow(1).font={
 bold:true
-};
-
-
-worksheet.getRow(
-1
-).alignment={
-horizontal:"center",
-vertical:"middle"
 };
 
 
@@ -3632,13 +3385,13 @@ of records.sort(
 worksheet.addRow({
 
 project:
-project?.name || "",
+project?.name||"",
 
 unit:
-unit.number || "",
+unit.number||"",
 
 engineer:
-record.engineer || "",
+record.engineer||"",
 
 date:
 new Date(
@@ -3648,7 +3401,7 @@ record.date
 ),
 
 comment:
-record.note || "",
+record.note||"",
 
 photo:
 record.photo
@@ -3670,8 +3423,7 @@ workbook.addImage({
 base64:
 record.photo,
 
-extension:
-"jpeg"
+extension:"jpeg"
 
 });
 
@@ -3696,14 +3448,12 @@ height:165
 
 worksheet.getRow(
 rowNumber
-).height =
-125;
+).height=125;
 
 
 }catch(error){
 
 console.error(
-"Excel image error:",
 error
 );
 
@@ -3739,27 +3489,21 @@ type:
 );
 
 
-const fileName =
+downloadBlob(
+blob,
 `SiteInspection_${safeFileName(
 project?.name
 )}_Unit_${safeFileName(
 unit.number
-)}.xlsx`;
-
-
-downloadBlob(
-blob,
-fileName
+)}.xlsx`
 );
-
-
 
 }
 
 
 
 /* =====================================================
-   EXPORT FULL PROJECT
+   EXPORT PROJECT
 ===================================================== */
 
 async function exportProjectExcel(
@@ -3821,10 +3565,6 @@ workbook.created =
 new Date();
 
 
-/*
-  PROJECT SHEET
-*/
-
 const projectSheet =
 workbook.addWorksheet(
 "Project"
@@ -3854,9 +3594,7 @@ width:15
 ];
 
 
-projectSheet.getRow(
-1
-).font={
+projectSheet.getRow(1).font={
 bold:true
 };
 
@@ -3878,10 +3616,6 @@ units.length
 
 });
 
-
-/*
-  UNITS SHEET
-*/
 
 const unitsSheet =
 workbook.addWorksheet(
@@ -3912,9 +3646,7 @@ width:15
 ];
 
 
-unitsSheet.getRow(
-1
-).font={
+unitsSheet.getRow(1).font={
 bold:true
 };
 
@@ -3949,10 +3681,6 @@ record=>record.photo
 
 }
 
-
-/*
-  INSPECTIONS SHEET
-*/
 
 const sheet =
 workbook.addWorksheet(
@@ -4001,9 +3729,7 @@ width:22
 ];
 
 
-sheet.getRow(
-1
-).font={
+sheet.getRow(1).font={
 bold:true
 };
 
@@ -4043,7 +3769,7 @@ unit:
 unit.number,
 
 engineer:
-record.engineer || "",
+record.engineer||"",
 
 date:
 new Date(
@@ -4053,7 +3779,7 @@ record.date
 ),
 
 comment:
-record.note || "",
+record.note||"",
 
 photo:
 record.photo
@@ -4075,8 +3801,7 @@ workbook.addImage({
 base64:
 record.photo,
 
-extension:
-"jpeg"
+extension:"jpeg"
 
 });
 
@@ -4099,16 +3824,12 @@ height:165
 );
 
 
-sheet.getRow(
-row
-).height =
-125;
+sheet.getRow(row).height=125;
 
 
 }catch(error){
 
 console.error(
-"Excel image error:",
 error
 );
 
@@ -4146,15 +3867,11 @@ type:
 );
 
 
-const fileName =
-`SiteInspection_${safeFileName(
-project.name
-)}_FULL_PROJECT.xlsx`;
-
-
 downloadBlob(
 blob,
-fileName
+`SiteInspection_${safeFileName(
+project.name
+)}_FULL_PROJECT.xlsx`
 );
 
 }
@@ -4175,8 +3892,7 @@ $("projectName")
 event=>{
 
 if(
-event.key ===
-"Enter"
+event.key==="Enter"
 ){
 
 addProject();
@@ -4304,7 +4020,7 @@ $("saveNoteBtn").onclick =
 
 
 /* =====================================================
-   INSTALL
+   PWA INSTALL
 ===================================================== */
 
 window.addEventListener(
@@ -4338,8 +4054,7 @@ deferredPrompt.prompt();
 await deferredPrompt.userChoice;
 
 
-deferredPrompt =
-null;
+deferredPrompt=null;
 
 
 $("installBtn")
@@ -4347,6 +4062,49 @@ $("installBtn")
 .add("hidden");
 
 };
+
+
+
+/* =====================================================
+   SERVICE WORKER
+===================================================== */
+
+if(
+"serviceWorker"
+in navigator
+){
+
+window.addEventListener(
+"load",
+()=>{
+
+navigator.serviceWorker
+.register("./sw.js")
+.then(
+registration=>{
+
+console.log(
+"Site Inspection Service Worker registered:",
+registration.scope
+);
+
+}
+)
+.catch(
+error=>{
+
+console.error(
+"Service Worker registration failed:",
+error
+);
+
+}
+);
+
+}
+);
+
+}
 
 
 
@@ -4366,7 +4124,7 @@ stopStream();
 
 
 /* =====================================================
-   START APP
+   START
 ===================================================== */
 
 openDB()
@@ -4404,4 +4162,5 @@ src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js">
 
 
 </body>
+
       </html>
