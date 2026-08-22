@@ -1,0 +1,19 @@
+{
+  "name": "Site Inspection",
+  "short_name": "Inspection",
+  "description": "Site Inspection and Engineering Records",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f7fb",
+  "theme_color": "#1565c0",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
