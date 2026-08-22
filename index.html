@@ -2,7 +2,6 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
 <meta charset="utf-8">
 
 <meta name="viewport"
@@ -16,291 +15,289 @@
 <style>
 
 *{
- box-sizing:border-box
+  box-sizing:border-box;
 }
 
 body{
- margin:0;
- font-family:
- system-ui,
- -apple-system,
- "Segoe UI",
- Tahoma,
- Arial,
- sans-serif;
- background:#f4f7fb;
- color:#17202a;
+  margin:0;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Tahoma,
+    Arial,
+    sans-serif;
+  background:#f4f7fb;
+  color:#17202a;
 }
 
 header{
- background:#1565c0;
- color:#fff;
- padding:15px;
- position:sticky;
- top:0;
- z-index:50;
- box-shadow:0 2px 10px #0003;
+  background:#1565c0;
+  color:#fff;
+  padding:15px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 2px 10px #0003;
 }
 
 .wrap{
- max-width:900px;
- margin:auto;
- padding:14px;
+  max-width:900px;
+  margin:auto;
+  padding:14px;
 }
 
 h1{
- margin:0;
- font-size:23px;
+  margin:0;
+  font-size:23px;
 }
 
 h2{
- margin:0 0 12px;
-}
-
-h3{
- margin:0 0 5px;
+  margin:0 0 12px;
 }
 
 .card{
- background:#fff;
- border-radius:17px;
- padding:15px;
- margin-bottom:14px;
- box-shadow:0 2px 12px #00000010;
+  background:#fff;
+  border-radius:17px;
+  padding:15px;
+  margin-bottom:14px;
+  box-shadow:0 2px 12px #00000010;
 }
 
 label{
- display:block;
- font-weight:800;
- margin:10px 0 6px;
+  display:block;
+  font-weight:800;
+  margin:10px 0 6px;
 }
 
 input,
 textarea,
 button{
- font:inherit;
+  font:inherit;
 }
 
 input,
 textarea{
- width:100%;
- border:1px solid #ccd5df;
- border-radius:12px;
- padding:12px;
- background:#fff;
+  width:100%;
+  border:1px solid #ccd5df;
+  border-radius:12px;
+  padding:12px;
+  background:#fff;
 }
 
 textarea{
- min-height:110px;
- resize:vertical;
+  min-height:110px;
+  resize:vertical;
 }
 
 button{
- border:0;
- border-radius:12px;
- padding:13px 12px;
- font-weight:800;
- cursor:pointer;
+  border:0;
+  border-radius:12px;
+  padding:13px 12px;
+  font-weight:800;
+  cursor:pointer;
 }
 
 .primary{
- background:#1565c0;
- color:#fff;
+  background:#1565c0;
+  color:#fff;
 }
 
 .outline{
- background:#fff;
- border:1px solid #1565c0;
- color:#1565c0;
+  background:#fff;
+  border:1px solid #1565c0;
+  color:#1565c0;
 }
 
 .success{
- background:#16834b;
- color:#fff;
+  background:#16834b;
+  color:#fff;
 }
 
 .danger{
- background:#fff0f0;
- color:#b00020;
- border:1px solid #ffc7c7;
+  background:#fff0f0;
+  color:#b00020;
+  border:1px solid #ffc7c7;
 }
 
 .gray{
- background:#eef2f6;
- color:#263238;
+  background:#eef2f6;
+  color:#263238;
 }
 
 .muted{
- color:#667085;
- font-size:13px;
-}
-
-.small{
- font-size:12px;
+  color:#667085;
+  font-size:13px;
 }
 
 .row{
- display:flex;
- gap:9px;
+  display:flex;
+  gap:9px;
 }
 
 .row>*{
- flex:1;
+  flex:1;
 }
 
 .hidden{
- display:none!important;
+  display:none!important;
 }
 
 .badge{
- display:inline-block;
- background:#eaf2ff;
- color:#1565c0;
- border-radius:999px;
- padding:5px 9px;
- font-size:12px;
- font-weight:800;
+  display:inline-block;
+  background:#eaf2ff;
+  color:#1565c0;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:12px;
+  font-weight:800;
 }
 
 .empty{
- text-align:center;
- padding:28px;
- color:#777;
+  text-align:center;
+  padding:28px;
+  color:#777;
 }
 
 .project-item,
 .unit-item{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
- border:1px solid #e1e7ef;
- border-radius:14px;
- padding:12px;
- margin-top:9px;
- background:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  border:1px solid #e1e7ef;
+  border-radius:14px;
+  padding:12px;
+  margin-top:9px;
+  background:#fff;
 }
 
 .project-main,
 .unit-main{
- flex:1;
- min-width:0;
+  flex:1;
+  min-width:0;
 }
 
 .project-main button,
 .unit-main button{
- width:100%;
- padding:0;
- background:none;
- border:0;
- color:#1565c0;
- text-align:right;
+  width:100%;
+  padding:0;
+  background:none;
+  border:0;
+  color:#1565c0;
+  text-align:right;
 }
 
+.project-actions,
 .unit-actions{
- display:flex;
- gap:6px;
- flex-wrap:wrap;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
 }
 
+.project-actions button,
 .unit-actions button{
- padding:9px 10px;
+  padding:9px 10px;
 }
 
 .session-head{
- position:sticky;
- top:62px;
- z-index:40;
- background:#fff;
- border-radius:15px;
- padding:12px;
- margin-bottom:12px;
- box-shadow:0 2px 10px #0002;
+  position:sticky;
+  top:62px;
+  z-index:40;
+  background:#fff;
+  border-radius:15px;
+  padding:12px;
+  margin-bottom:12px;
+  box-shadow:0 2px 10px #0002;
 }
 
+/*
+  مهم:
+  لا يوجد aspect-ratio هنا.
+  الفيديو سيأخذ Aspect Ratio الحقيقي
+  الذي ترجعه الكاميرا.
+*/
+
 #camera{
- width:100%;
- min-height:300px;
- max-height:650px;
- object-fit:cover;
- border-radius:13px;
- background:#000;
- display:none;
+  width:100%;
+  min-height:300px;
+  max-height:700px;
+  object-fit:contain;
+  border-radius:13px;
+  background:#000;
+  display:none;
 }
 
 .preview{
- width:100%;
- max-height:650px;
- object-fit:contain;
- border-radius:13px;
- background:#111;
- margin-top:10px;
+  width:100%;
+  max-height:700px;
+  object-fit:contain;
+  border-radius:13px;
+  background:#111;
+  margin-top:10px;
 }
 
 #canvas{
- display:none;
+  display:none;
 }
 
 .camera-info{
- background:#eef6ff;
- color:#1557a6;
- border-radius:10px;
- padding:9px;
- margin-top:9px;
- font-size:12px;
+  background:#eef6ff;
+  color:#1557a6;
+  border-radius:10px;
+  padding:9px;
+  margin-top:9px;
+  font-size:12px;
+}
+
+.camera-resolution{
+  margin-top:6px;
+  font-weight:800;
 }
 
 .comment{
- border:1px solid #e1e7ef;
- border-radius:14px;
- padding:11px;
- margin-top:10px;
- background:#fafcff;
+  border:1px solid #e1e7ef;
+  border-radius:14px;
+  padding:11px;
+  margin-top:10px;
+  background:#fafcff;
 }
 
 .comment img{
- width:100%;
- max-height:500px;
- object-fit:contain;
- border-radius:10px;
- background:#111;
- margin-top:9px;
+  width:100%;
+  max-height:550px;
+  object-fit:contain;
+  border-radius:10px;
+  background:#111;
+  margin-top:9px;
 }
 
 .comment-head{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:8px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
 }
 
 .install{
- background:#0f9d58;
- color:#fff;
-}
-
-.export-box{
- background:#f4f9ff;
- border:1px solid #d8e8fa;
- border-radius:13px;
- padding:12px;
- margin-top:10px;
+  background:#0f9d58;
+  color:#fff;
 }
 
 @media(max-width:650px){
 
- .row{
-  flex-direction:column;
- }
+  .row{
+    flex-direction:column;
+  }
 
- .session-head{
-  top:58px;
- }
+  .session-head{
+    top:58px;
+  }
 
- .project-item,
- .unit-item{
-  align-items:flex-start;
- }
+  .project-item,
+  .unit-item{
+    align-items:flex-start;
+  }
 
 }
 
@@ -328,9 +325,9 @@ gap:10px
 </h1>
 
 <button
- id="installBtn"
- class="install hidden"
- style="padding:9px 11px"
+id="installBtn"
+class="install hidden"
+style="padding:9px 11px"
 >
 📲 تثبيت
 </button>
@@ -359,7 +356,7 @@ gap:10px
 </h2>
 
 <div class="muted">
-أنشئ المشروع مرة واحدة، وبعدها كل الوحدات الخاصة بالمشروع تكون تحته.
+كل مشروع له وحداته الخاصة وملاحظاته وصوره.
 </div>
 
 
@@ -368,26 +365,18 @@ gap:10px
 </label>
 
 <input
- id="projectName"
- placeholder="مثال: Villa 12 Project"
+id="projectName"
+placeholder="مثال: Villa 12 Project"
 >
 
 
 <div class="row" style="margin-top:10px">
 
 <button
- class="primary"
- id="addProjectBtn"
+class="primary"
+id="addProjectBtn"
 >
 ➕ إضافة مشروع
-</button>
-
-
-<button
- class="outline"
- id="exportAllBtn"
->
-📊 Export المشروع
 </button>
 
 </div>
@@ -411,8 +400,8 @@ gap:10px
 ===================================================== -->
 
 <section
- id="projectScreen"
- class="hidden"
+id="projectScreen"
+class="hidden"
 >
 
 
@@ -424,26 +413,35 @@ gap:10px
 </div>
 
 
-<h2 id="projectTitle">
-</h2>
+<h2 id="projectTitle"></h2>
 
 
 <div class="row">
 
+
 <button
- class="outline"
- id="backProjectsBtn"
+class="outline"
+id="backProjectsBtn"
 >
 ⬅️ المشاريع
 </button>
 
 
 <button
- class="success"
- id="newUnitBtn"
+class="success"
+id="exportProjectBtn"
+>
+📊 تصدير المشروع بالكامل
+</button>
+
+
+<button
+class="primary"
+id="newUnitBtn"
 >
 ➕ وحدة جديدة
 </button>
+
 
 </div>
 
@@ -460,8 +458,8 @@ gap:10px
 الوحدات
 
 <span
- id="unitCount"
- class="badge"
+id="unitCount"
+class="badge"
 >
 0
 </span>
@@ -471,17 +469,13 @@ gap:10px
 
 <div class="muted">
 
-افتح الوحدة مرة واحدة.
-
-بعدها أضف بداخلها كل الصور والكومنتات التي تريدها.
-
-وعند الانتهاء اضغط «إنهاء الوحدة».
+افتح الوحدة مرة واحدة وسجل بداخلها
+كل الصور والملاحظات.
 
 </div>
 
 
-<div id="unitsList">
-</div>
+<div id="unitsList"></div>
 
 
 </section>
@@ -496,8 +490,8 @@ gap:10px
 ===================================================== -->
 
 <section
- id="unitScreen"
- class="hidden"
+id="unitScreen"
+class="hidden"
 >
 
 
@@ -505,8 +499,8 @@ gap:10px
 
 
 <div
- id="sessionProject"
- class="muted"
+id="sessionProject"
+class="muted"
 >
 </div>
 
@@ -515,8 +509,7 @@ gap:10px
 
 الوحدة:
 
-<span id="sessionUnit">
-</span>
+<span id="sessionUnit"></span>
 
 </h2>
 
@@ -525,24 +518,24 @@ gap:10px
 
 
 <button
- class="outline"
- id="backUnitsBtn"
+class="outline"
+id="backUnitsBtn"
 >
 ⬅️ الوحدات
 </button>
 
 
 <button
- class="success"
- id="exportUnitBtn"
+class="success"
+id="exportUnitBtn"
 >
-📊 تصدير الوحدة Excel
+📊 تصدير هذه الوحدة فقط
 </button>
 
 
 <button
- class="danger"
- id="finishUnitBtn"
+class="danger"
+id="finishUnitBtn"
 >
 ✅ إنهاء الوحدة
 </button>
@@ -555,7 +548,9 @@ gap:10px
 
 
 
-<!-- INSPECTION ENTRY -->
+<!-- =====================================================
+     INSPECTION
+===================================================== -->
 
 <section class="card">
 
@@ -568,7 +563,7 @@ gap:10px
 <div class="muted">
 
 رقم الوحدة مربوط تلقائيًا بالوحدة المفتوحة.
-لن تحتاج لكتابته مع كل صورة.
+لن تحتاج إلى كتابته مع كل صورة.
 
 </div>
 
@@ -578,8 +573,8 @@ gap:10px
 </label>
 
 <input
- id="engineer"
- placeholder="Eng. George Youssef"
+id="engineer"
+placeholder="Eng. George Youssef"
 >
 
 
@@ -588,8 +583,8 @@ gap:10px
 </label>
 
 <textarea
- id="note"
- placeholder="اكتب الملاحظة هنا..."
+id="note"
+placeholder="اكتب الملاحظة هنا..."
 ></textarea>
 
 
@@ -597,16 +592,16 @@ gap:10px
 
 
 <button
- class="primary"
- id="photoBtn"
+class="primary"
+id="photoBtn"
 >
 📷 تصوير
 </button>
 
 
 <button
- class="outline"
- id="saveNoteBtn"
+class="outline"
+id="saveNoteBtn"
 >
 📝 حفظ كومنت بدون صورة
 </button>
@@ -616,49 +611,58 @@ gap:10px
 
 
 <div
- id="cameraInfo"
- class="camera-info hidden"
+id="cameraInfo"
+class="camera-info hidden"
 >
-📷 الكاميرا تعمل بأعلى دقة متاحة من الهاتف.
+
+📷
+الكاميرا الخلفية الرئيسية إن أمكن،
+وبأعلى دقة حقيقية متاحة.
+
+<div
+id="cameraResolution"
+class="camera-resolution"
+>
+</div>
+
 </div>
 
 
 <video
- id="camera"
- autoplay
- playsinline
+id="camera"
+autoplay
+playsinline
 ></video>
 
 
-<canvas id="canvas">
-</canvas>
+<canvas id="canvas"></canvas>
 
 
 <img
- id="preview"
- class="preview hidden"
- alt="Preview"
+id="preview"
+class="preview hidden"
+alt="Preview"
 >
 
 
 <div
- id="cameraControls"
- class="row hidden"
- style="margin-top:10px"
+id="cameraControls"
+class="row hidden"
+style="margin-top:10px"
 >
 
 
 <button
- class="primary"
- id="captureBtn"
+class="primary"
+id="captureBtn"
 >
 📸 التقاط الصورة
 </button>
 
 
 <button
- class="outline"
- id="stopCameraBtn"
+class="outline"
+id="stopCameraBtn"
 >
 إغلاق الكاميرا
 </button>
@@ -668,23 +672,23 @@ gap:10px
 
 
 <div
- id="photoControls"
- class="row hidden"
- style="margin-top:10px"
+id="photoControls"
+class="row hidden"
+style="margin-top:10px"
 >
 
 
 <button
- class="success"
- id="savePhotoBtn"
+class="success"
+id="savePhotoBtn"
 >
 💾 حفظ الصورة + الكومنت
 </button>
 
 
 <button
- class="outline"
- id="retakeBtn"
+class="outline"
+id="retakeBtn"
 >
 🔄 إعادة التصوير
 </button>
@@ -697,7 +701,9 @@ gap:10px
 
 
 
-<!-- UNIT RECORDS -->
+<!-- =====================================================
+     RECORDS
+===================================================== -->
 
 <section class="card">
 
@@ -707,8 +713,8 @@ gap:10px
 سجل الوحدة
 
 <span
- id="sessionCount"
- class="badge"
+id="sessionCount"
+class="badge"
 >
 0
 </span>
@@ -716,8 +722,7 @@ gap:10px
 </h2>
 
 
-<div id="sessionRecords">
-</div>
+<div id="sessionRecords"></div>
 
 
 </section>
@@ -732,12 +737,13 @@ gap:10px
 
 <script>
 
+
 /* =====================================================
    DATABASE
 ===================================================== */
 
 const DB_NAME =
-"siteInspectionDB_FINAL";
+"siteInspectionDB_CAMERA_FINAL";
 
 const DB_VERSION = 1;
 
@@ -763,6 +769,7 @@ let rawImage = null;
 
 let deferredPrompt = null;
 
+let selectedCameraId = null;
 
 
 const $ =
@@ -772,340 +779,349 @@ id => document.getElementById(id);
 
 function openDB(){
 
- return new Promise(
-  (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-   const request =
-   indexedDB.open(
-    DB_NAME,
-    DB_VERSION
-   );
-
-
-   request.onupgradeneeded =
-   ()=>{
-
-    const database =
-    request.result;
+const request =
+indexedDB.open(
+DB_NAME,
+DB_VERSION
+);
 
 
-    if(
-     !database.objectStoreNames
-     .contains(PROJECTS)
-    ){
+request.onupgradeneeded =
+()=>{
 
-     const store =
-     database.createObjectStore(
-      PROJECTS,
-      {
-       keyPath:"id",
-       autoIncrement:true
-      }
-     );
+const database =
+request.result;
 
 
-     store.createIndex(
-      "name",
-      "name"
-     );
+if(
+!database.objectStoreNames
+.contains(PROJECTS)
+){
 
-    }
+const store =
+database.createObjectStore(
+PROJECTS,
+{
+keyPath:"id",
+autoIncrement:true
+}
+);
 
+store.createIndex(
+"name",
+"name"
+);
 
-    if(
-     !database.objectStoreNames
-     .contains(UNITS)
-    ){
-
-     const store =
-     database.createObjectStore(
-      UNITS,
-      {
-       keyPath:"id",
-       autoIncrement:true
-      }
-     );
-
-
-     store.createIndex(
-      "projectId",
-      "projectId"
-     );
-
-    }
+}
 
 
-    if(
-     !database.objectStoreNames
-     .contains(RECORDS)
-    ){
+if(
+!database.objectStoreNames
+.contains(UNITS)
+){
 
-     const store =
-     database.createObjectStore(
-      RECORDS,
-      {
-       keyPath:"id",
-       autoIncrement:true
-      }
-     );
+const store =
+database.createObjectStore(
+UNITS,
+{
+keyPath:"id",
+autoIncrement:true
+}
+);
 
+store.createIndex(
+"projectId",
+"projectId"
+);
 
-     store.createIndex(
-      "unitId",
-      "unitId"
-     );
-
-
-     store.createIndex(
-      "projectId",
-      "projectId"
-     );
-
-    }
-
-   };
+}
 
 
-   request.onsuccess =
-   ()=>{
+if(
+!database.objectStoreNames
+.contains(RECORDS)
+){
 
-    db =
-    request.result;
+const store =
+database.createObjectStore(
+RECORDS,
+{
+keyPath:"id",
+autoIncrement:true
+}
+);
 
-    resolve();
+store.createIndex(
+"unitId",
+"unitId"
+);
 
-   };
+store.createIndex(
+"projectId",
+"projectId"
+);
+
+}
+
+};
 
 
-   request.onerror =
-   ()=>{
+request.onsuccess =
+()=>{
 
-    reject(
-     request.error
-    );
+db =
+request.result;
 
-   };
+resolve();
 
-  }
- );
+};
+
+
+request.onerror =
+()=>{
+
+reject(
+request.error
+);
+
+};
+
+});
 
 }
 
 
 
 function store(
- name,
- mode="readonly"
+name,
+mode="readonly"
 ){
 
- return db
- .transaction(
-  name,
-  mode
- )
- .objectStore(name);
+return db
+.transaction(
+name,
+mode
+)
+.objectStore(name);
 
 }
 
 
 
 function add(
- name,
- object
+name,
+object
 ){
 
- return new Promise(
-  (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-   const request =
-   store(
-    name,
-    "readwrite"
-   ).add(object);
-
-
-   request.onsuccess =
-   ()=>{
-    resolve(
-     request.result
-    );
-   };
+const request =
+store(
+name,
+"readwrite"
+).add(object);
 
 
-   request.onerror =
-   ()=>{
-    reject(
-     request.error
-    );
-   };
+request.onsuccess =
+()=>{
 
-  }
- );
+resolve(
+request.result
+);
+
+};
+
+
+request.onerror =
+()=>{
+
+reject(
+request.error
+);
+
+};
+
+});
 
 }
 
 
 
 function get(
- name,
- id
+name,
+id
 ){
 
- return new Promise(
-  (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-   const request =
-   store(name)
-   .get(id);
-
-
-   request.onsuccess =
-   ()=>{
-    resolve(
-     request.result
-    );
-   };
+const request =
+store(name)
+.get(id);
 
 
-   request.onerror =
-   ()=>{
-    reject(
-     request.error
-    );
-   };
+request.onsuccess =
+()=>{
 
-  }
- );
+resolve(
+request.result
+);
+
+};
+
+
+request.onerror =
+()=>{
+
+reject(
+request.error
+);
+
+};
+
+});
 
 }
 
 
 
-function getAll(
- name
-){
+function getAll(name){
 
- return new Promise(
-  (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-   const request =
-   store(name)
-   .getAll();
+const request =
+store(name)
+.getAll();
 
 
-   request.onsuccess =
-   ()=>{
-    resolve(
-     request.result
-    );
-   };
+request.onsuccess =
+()=>{
+
+resolve(
+request.result
+);
+
+};
 
 
-   request.onerror =
-   ()=>{
-    reject(
-     request.error
-    );
-   };
+request.onerror =
+()=>{
 
-  }
- );
+reject(
+request.error
+);
+
+};
+
+});
 
 }
 
 
 
 function deleteItem(
- name,
- id
+name,
+id
 ){
 
- return new Promise(
-  (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-   const request =
-   store(
-    name,
-    "readwrite"
-   ).delete(id);
-
-
-   request.onsuccess =
-   ()=>{
-    resolve();
-   };
+const request =
+store(
+name,
+"readwrite"
+)
+.delete(id);
 
 
-   request.onerror =
-   ()=>{
-    reject(
-     request.error
-    );
-   };
+request.onsuccess =
+()=>{
 
-  }
- );
+resolve();
+
+};
+
+
+request.onerror =
+()=>{
+
+reject(
+request.error
+);
+
+};
+
+});
 
 }
 
 
 
 function getByIndex(
- name,
- index,
- value
+name,
+index,
+value
 ){
 
- return new Promise(
-  (resolve,reject)=>{
+return new Promise(
+(resolve,reject)=>{
 
-   const request =
-   store(name)
-   .index(index)
-   .getAll(value);
-
-
-   request.onsuccess =
-   ()=>{
-    resolve(
-     request.result
-    );
-   };
+const request =
+store(name)
+.index(index)
+.getAll(value);
 
 
-   request.onerror =
-   ()=>{
-    reject(
-     request.error
-    );
-   };
+request.onsuccess =
+()=>{
 
-  }
- );
+resolve(
+request.result
+);
+
+};
+
+
+request.onerror =
+()=>{
+
+reject(
+request.error
+);
+
+};
+
+});
 
 }
 
 
 
 function escapeHtml(
- value
+value
 ){
 
- return String(
-  value ?? ""
- )
- .replace(
-  /[&<>"']/g,
-  character=>({
+return String(
+value ?? ""
+)
+.replace(
+/[&<>"']/g,
+character=>({
 
-   "&":"&amp;",
-   "<":"&lt;",
-   ">":"&gt;",
-   '"':"&quot;",
-   "'":"&#39;"
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
 
-  }[character])
- );
+}[character])
+);
 
 }
 
@@ -1117,149 +1133,204 @@ function escapeHtml(
 
 async function renderProjects(){
 
- const projects =
- await getAll(PROJECTS);
+const projects =
+await getAll(PROJECTS);
 
 
- projects.sort(
-  (a,b)=>b.id-a.id
- );
+projects.sort(
+(a,b)=>b.id-a.id
+);
 
 
- const box =
- $("projectsList");
+const box =
+$("projectsList");
 
 
- box.innerHTML="";
+box.innerHTML = "";
 
 
- if(!projects.length){
+if(!projects.length){
 
-  box.innerHTML = `
+box.innerHTML = `
 
-   <div class="empty">
+<div class="empty">
 
-    لا توجد مشاريع حتى الآن.
+لا توجد مشاريع حتى الآن.
 
-    <br>
+<br>
 
-    أضف أول مشروع من الأعلى.
+أضف أول مشروع من الأعلى.
 
-   </div>
+</div>
 
-  `;
+`;
 
-  return;
+return;
 
- }
-
-
- for(
-  const project
-  of projects
- ){
-
-  const units =
-  await getByIndex(
-   UNITS,
-   "projectId",
-   project.id
-  );
+}
 
 
-  const element =
-  document.createElement(
-   "div"
-  );
+for(
+const project
+of projects
+){
+
+const units =
+await getByIndex(
+UNITS,
+"projectId",
+project.id
+);
 
 
-  element.className =
-  "project-item";
+const records =
+await getByIndex(
+RECORDS,
+"projectId",
+project.id
+);
 
 
-  element.innerHTML = `
-
-   <div class="project-main">
-
-    <button
-     data-open-project="${project.id}"
-    >
-
-     <strong
-      style="font-size:17px"
-     >
-      🏗️
-      ${escapeHtml(
-       project.name
-      )}
-     </strong>
-
-     <br>
-
-     <span class="muted">
-
-      ${units.length}
-
-      وحدة
-
-     </span>
-
-    </button>
-
-   </div>
+const element =
+document.createElement(
+"div"
+);
 
 
-   <button
-    class="danger"
-    data-delete-project="${project.id}"
-   >
-    🗑️
-   </button>
-
-  `;
+element.className =
+"project-item";
 
 
-  box.appendChild(
-   element
-  );
+element.innerHTML = `
 
- }
+<div class="project-main">
+
+<button
+data-open-project="${project.id}"
+>
+
+<strong
+style="font-size:17px"
+>
+
+🏗️
+
+${escapeHtml(
+project.name
+)}
+
+</strong>
+
+<br>
+
+<span class="muted">
+
+${units.length}
+وحدة
+
+•
+
+${records.length}
+ملاحظة
+
+</span>
+
+</button>
+
+</div>
 
 
- box
- .querySelectorAll(
-  "[data-open-project]"
- )
- .forEach(
-  button=>{
-
-   button.onclick =
-   ()=>openProject(
-    Number(
-     button.dataset.openProject
-    )
-   );
-
-  }
- );
+<div class="project-actions">
 
 
- box
- .querySelectorAll(
-  "[data-delete-project]"
- )
- .forEach(
-  button=>{
+<button
+class="success"
+data-export-project="${project.id}"
+>
+📊 Excel
+</button>
 
-   button.onclick =
-   ()=>deleteProject(
-    Number(
-     button.dataset.deleteProject
-    )
-   );
 
-  }
- );
+<button
+class="outline"
+data-open-project="${project.id}"
+>
+فتح
+</button>
+
+
+<button
+class="danger"
+data-delete-project="${project.id}"
+>
+🗑️
+</button>
+
+
+</div>
+
+`;
+
+
+box.appendChild(
+element
+);
+
+}
+
+
+box
+.querySelectorAll(
+"[data-open-project]"
+)
+.forEach(
+button=>{
+
+button.onclick =
+()=>openProject(
+Number(
+button.dataset.openProject
+)
+);
+
+}
+);
+
+
+box
+.querySelectorAll(
+"[data-export-project]"
+)
+.forEach(
+button=>{
+
+button.onclick =
+()=>exportProjectExcel(
+Number(
+button.dataset.exportProject
+)
+);
+
+}
+);
+
+
+box
+.querySelectorAll(
+"[data-delete-project]"
+)
+.forEach(
+button=>{
+
+button.onclick =
+()=>deleteProject(
+Number(
+button.dataset.deleteProject
+)
+);
+
+}
+);
 
 }
 
@@ -1267,198 +1338,204 @@ async function renderProjects(){
 
 async function addProject(){
 
- const name =
- $("projectName")
- .value
- .trim();
+const name =
+$("projectName")
+.value
+.trim();
 
 
- if(!name){
+if(!name){
 
-  alert(
-   "اكتب اسم المشروع أولًا."
-  );
+alert(
+"اكتب اسم المشروع أولًا."
+);
 
-  return;
+return;
 
- }
-
-
- const projects =
- await getAll(PROJECTS);
+}
 
 
- const exists =
- projects.some(
-  project =>
-   project.name
-   .toLowerCase()
-   ===
-   name.toLowerCase()
- );
+const projects =
+await getAll(
+PROJECTS
+);
 
 
- if(exists){
-
-  alert(
-   "المشروع موجود بالفعل."
-  );
-
-  return;
-
- }
-
-
- const id =
- await add(
-  PROJECTS,
-  {
-   name:name,
-   createdAt:
-    new Date().toISOString()
-  }
- );
+const exists =
+projects.some(
+project=>
+project.name
+.toLowerCase()
+===
+name
+.toLowerCase()
+);
 
 
- $("projectName")
- .value="";
+if(exists){
+
+alert(
+"المشروع موجود بالفعل."
+);
+
+return;
+
+}
 
 
- await openProject(id);
+const id =
+await add(
+PROJECTS,
+{
+
+name:name,
+
+createdAt:
+new Date().toISOString()
+
+}
+);
+
+
+$("projectName")
+.value = "";
+
+
+await openProject(
+id
+);
 
 }
 
 
 
 async function deleteProject(
- id
+id
 ){
 
- const project =
- await get(
-  PROJECTS,
-  id
- );
+const project =
+await get(
+PROJECTS,
+id
+);
 
 
- if(!project)
- return;
+if(!project)
+return;
 
 
- const answer =
- confirm(
-  `حذف المشروع "${project.name}" وكل الوحدات والصور؟`
- );
+if(
+!confirm(
+`حذف المشروع "${project.name}" وكل الوحدات والصور؟`
+)
+)
+return;
 
 
- if(!answer)
- return;
+const units =
+await getByIndex(
+UNITS,
+"projectId",
+id
+);
 
 
- const units =
- await getByIndex(
-  UNITS,
-  "projectId",
-  id
- );
+for(
+const unit
+of units
+){
+
+const records =
+await getByIndex(
+RECORDS,
+"unitId",
+unit.id
+);
 
 
- for(
-  const unit
-  of units
- ){
+for(
+const record
+of records
+){
 
-  const records =
-  await getByIndex(
-   RECORDS,
-   "unitId",
-   unit.id
-  );
+await deleteItem(
+RECORDS,
+record.id
+);
 
-
-  for(
-   const record
-   of records
-  ){
-
-   await deleteItem(
-    RECORDS,
-    record.id
-   );
-
-  }
+}
 
 
-  await deleteItem(
-   UNITS,
-   unit.id
-  );
+await deleteItem(
+UNITS,
+unit.id
+);
 
- }
-
-
- await deleteItem(
-  PROJECTS,
-  id
- );
+}
 
 
- await renderProjects();
+await deleteItem(
+PROJECTS,
+id
+);
+
+
+await renderProjects();
 
 }
 
 
 
 /* =====================================================
-   OPEN PROJECT
+   PROJECT
 ===================================================== */
 
 async function openProject(
- id
+id
 ){
 
- currentProjectId =
- id;
+currentProjectId =
+id;
 
 
- const project =
- await get(
-  PROJECTS,
-  id
- );
+const project =
+await get(
+PROJECTS,
+id
+);
 
 
- if(!project)
- return;
+if(!project)
+return;
 
 
- $("projectsScreen")
- .classList
- .add("hidden");
+$("projectsScreen")
+.classList
+.add("hidden");
 
 
- $("unitScreen")
- .classList
- .add("hidden");
+$("unitScreen")
+.classList
+.add("hidden");
 
 
- $("projectScreen")
- .classList
- .remove("hidden");
+$("projectScreen")
+.classList
+.remove("hidden");
 
 
- $("projectTitle")
- .textContent =
- project.name;
+$("projectTitle")
+.textContent =
+project.name;
 
 
- await renderUnits();
+await renderUnits();
 
 
- window.scrollTo(
-  0,
-  0
- );
+window.scrollTo(
+0,
+0
+);
 
 }
 
@@ -1470,180 +1547,211 @@ async function openProject(
 
 async function renderUnits(){
 
- const units =
- await getByIndex(
-  UNITS,
-  "projectId",
-  currentProjectId
- );
+const units =
+await getByIndex(
+UNITS,
+"projectId",
+currentProjectId
+);
 
 
- units.sort(
-  (a,b)=>b.id-a.id
- );
+units.sort(
+(a,b)=>b.id-a.id
+);
 
 
- $("unitCount")
- .textContent =
- units.length;
+$("unitCount")
+.textContent =
+units.length;
 
 
- const box =
- $("unitsList");
+const box =
+$("unitsList");
 
 
- box.innerHTML="";
+box.innerHTML = "";
 
 
- if(!units.length){
+if(!units.length){
 
-  box.innerHTML = `
+box.innerHTML = `
 
-   <div class="empty">
+<div class="empty">
 
-    لا توجد وحدات.
+لا توجد وحدات.
 
-    <br>
+<br>
 
-    اضغط «وحدة جديدة».
+اضغط «وحدة جديدة».
 
-   </div>
+</div>
 
-  `;
+`;
 
-  return;
+return;
 
- }
-
-
- for(
-  const unit
-  of units
- ){
-
-  const records =
-  await getByIndex(
-   RECORDS,
-   "unitId",
-   unit.id
-  );
+}
 
 
-  const photoCount =
-  records.filter(
-   record=>record.photo
-  ).length;
+for(
+const unit
+of units
+){
+
+const records =
+await getByIndex(
+RECORDS,
+"unitId",
+unit.id
+);
 
 
-  const element =
-  document.createElement(
-   "div"
-  );
+const photos =
+records.filter(
+record=>record.photo
+).length;
 
 
-  element.className =
-  "unit-item";
+const element =
+document.createElement(
+"div"
+);
 
 
-  element.innerHTML = `
-
-   <div class="unit-main">
-
-    <button
-     data-open-unit="${unit.id}"
-    >
-
-     <strong
-      style="font-size:17px"
-     >
-      📍
-      ${escapeHtml(
-       unit.number
-      )}
-     </strong>
-
-     <br>
-
-     <span class="muted">
-
-      ${records.length}
-      كومنت
-
-      •
-
-      ${photoCount}
-      صورة
-
-     </span>
-
-    </button>
-
-   </div>
+element.className =
+"unit-item";
 
 
-   <div class="unit-actions">
+element.innerHTML = `
 
-    <button
-     class="outline"
-     data-open-unit="${unit.id}"
-    >
-     فتح
-    </button>
+<div class="unit-main">
 
+<button
+data-open-unit="${unit.id}"
+>
 
-    <button
-     class="danger"
-     data-delete-unit="${unit.id}"
-    >
-     🗑️
-    </button>
+<strong
+style="font-size:17px"
+>
 
-   </div>
+📍
 
-  `;
+${escapeHtml(
+unit.number
+)}
 
+</strong>
 
-  box.appendChild(
-   element
-  );
+<br>
 
- }
+<span class="muted">
 
+${records.length}
+كومنت
 
- box
- .querySelectorAll(
-  "[data-open-unit]"
- )
- .forEach(
-  button=>{
+•
 
-   button.onclick =
-   ()=>openUnit(
-    Number(
-     button.dataset.openUnit
-    )
-   );
+${photos}
+صورة
 
-  }
- );
+</span>
+
+</button>
+
+</div>
 
 
- box
- .querySelectorAll(
-  "[data-delete-unit]"
- )
- .forEach(
-  button=>{
+<div class="unit-actions">
 
-   button.onclick =
-   ()=>deleteUnit(
-    Number(
-     button.dataset.deleteUnit
-    )
-   );
 
-  }
- );
+<button
+class="success"
+data-export-unit="${unit.id}"
+>
+📊 Excel
+</button>
+
+
+<button
+class="outline"
+data-open-unit="${unit.id}"
+>
+فتح
+</button>
+
+
+<button
+class="danger"
+data-delete-unit="${unit.id}"
+>
+🗑️
+</button>
+
+
+</div>
+
+`;
+
+
+box.appendChild(
+element
+);
+
+}
+
+
+box
+.querySelectorAll(
+"[data-open-unit]"
+)
+.forEach(
+button=>{
+
+button.onclick =
+()=>openUnit(
+Number(
+button.dataset.openUnit
+)
+);
+
+}
+);
+
+
+box
+.querySelectorAll(
+"[data-export-unit]"
+)
+.forEach(
+button=>{
+
+button.onclick =
+()=>exportUnitExcel(
+Number(
+button.dataset.exportUnit
+)
+);
+
+}
+);
+
+
+box
+.querySelectorAll(
+"[data-delete-unit]"
+)
+.forEach(
+button=>{
+
+button.onclick =
+()=>deleteUnit(
+Number(
+button.dataset.deleteUnit
+)
+);
+
+}
+);
 
 }
 
@@ -1651,696 +1759,1135 @@ async function renderUnits(){
 
 async function createUnit(){
 
- const number =
- prompt(
-  "رقم / اسم الوحدة:",
-  "B-204"
- );
+const number =
+prompt(
+"رقم / اسم الوحدة:",
+"B-204"
+);
 
 
- if(number===null)
- return;
+if(number===null)
+return;
 
 
- const unitNumber =
- number.trim();
+const unitNumber =
+number.trim();
 
 
- if(!unitNumber){
+if(!unitNumber){
 
-  alert(
-   "اكتب رقم الوحدة."
-  );
+alert(
+"اكتب رقم الوحدة."
+);
 
-  return;
+return;
 
- }
-
-
- const units =
- await getByIndex(
-  UNITS,
-  "projectId",
-  currentProjectId
- );
+}
 
 
- const exists =
- units.some(
-  unit =>
-   unit.number
-   .toLowerCase()
-   ===
-   unitNumber.toLowerCase()
- );
+const units =
+await getByIndex(
+UNITS,
+"projectId",
+currentProjectId
+);
 
 
- if(exists){
-
-  alert(
-   "هذه الوحدة موجودة بالفعل."
-  );
-
-  return;
-
- }
-
-
- const id =
- await add(
-  UNITS,
-  {
-
-   projectId:
-    currentProjectId,
-
-   number:
-    unitNumber,
-
-   createdAt:
-    new Date().toISOString()
-
-  }
- );
+const exists =
+units.some(
+unit=>
+unit.number
+.toLowerCase()
+===
+unitNumber
+.toLowerCase()
+);
 
 
- await openUnit(id);
+if(exists){
+
+alert(
+"هذه الوحدة موجودة بالفعل."
+);
+
+return;
+
+}
+
+
+const id =
+await add(
+UNITS,
+{
+
+projectId:
+currentProjectId,
+
+number:
+unitNumber,
+
+createdAt:
+new Date().toISOString()
+
+}
+);
+
+
+await openUnit(
+id
+);
 
 }
 
 
 
 async function deleteUnit(
- id
+id
 ){
 
- const unit =
- await get(
-  UNITS,
-  id
- );
+const unit =
+await get(
+UNITS,
+id
+);
 
 
- if(!unit)
- return;
+if(!unit)
+return;
 
 
- const answer =
- confirm(
-  `حذف الوحدة ${unit.number} وكل الصور والكومنتات؟`
- );
+if(
+!confirm(
+`حذف الوحدة ${unit.number} وكل الصور والكومنتات؟`
+)
+)
+return;
 
 
- if(!answer)
- return;
+const records =
+await getByIndex(
+RECORDS,
+"unitId",
+id
+);
 
 
- const records =
- await getByIndex(
-  RECORDS,
-  "unitId",
-  id
- );
+for(
+const record
+of records
+){
+
+await deleteItem(
+RECORDS,
+record.id
+);
+
+}
 
 
- for(
-  const record
-  of records
- ){
-
-  await deleteItem(
-   RECORDS,
-   record.id
-  );
-
- }
+await deleteItem(
+UNITS,
+id
+);
 
 
- await deleteItem(
-  UNITS,
-  id
- );
-
-
- await renderUnits();
+await renderUnits();
 
 }
 
 
 
 /* =====================================================
-   OPEN UNIT
+   UNIT
 ===================================================== */
 
 async function openUnit(
- id
+id
 ){
 
- currentUnitId =
- id;
+currentUnitId =
+id;
 
 
- const unit =
- await get(
-  UNITS,
-  id
- );
+const unit =
+await get(
+UNITS,
+id
+);
 
 
- if(!unit)
- return;
+if(!unit)
+return;
 
 
- const project =
- await get(
-  PROJECTS,
-  unit.projectId
- );
+const project =
+await get(
+PROJECTS,
+unit.projectId
+);
 
 
- $("projectsScreen")
- .classList
- .add("hidden");
+$("projectsScreen")
+.classList
+.add("hidden");
 
 
- $("projectScreen")
- .classList
- .add("hidden");
+$("projectScreen")
+.classList
+.add("hidden");
 
 
- $("unitScreen")
- .classList
- .remove("hidden");
+$("unitScreen")
+.classList
+.remove("hidden");
 
 
- $("sessionProject")
- .textContent =
- project.name;
+$("sessionProject")
+.textContent =
+project.name;
 
 
- $("sessionUnit")
- .textContent =
- unit.number;
+$("sessionUnit")
+.textContent =
+unit.number;
 
 
- $("engineer")
- .value="";
+$("engineer")
+.value = "";
 
 
- $("note")
- .value="";
+$("note")
+.value = "";
 
 
- resetPhoto();
+resetPhoto();
 
 
- await renderSessionRecords();
+await renderSessionRecords();
 
 
- window.scrollTo(
-  0,
-  0
- );
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
-
-/* =====================================================
-   SESSION RECORDS
-===================================================== */
 
 async function renderSessionRecords(){
 
- const records =
- await getByIndex(
-  RECORDS,
-  "unitId",
-  currentUnitId
- );
+const records =
+await getByIndex(
+RECORDS,
+"unitId",
+currentUnitId
+);
 
 
- records.sort(
-  (a,b)=>b.id-a.id
- );
+records.sort(
+(a,b)=>b.id-a.id
+);
 
 
- $("sessionCount")
- .textContent =
- records.length;
+$("sessionCount")
+.textContent =
+records.length;
 
 
- const box =
- $("sessionRecords");
+const box =
+$("sessionRecords");
 
 
- box.innerHTML="";
+box.innerHTML = "";
 
 
- if(!records.length){
+if(!records.length){
 
-  box.innerHTML = `
+box.innerHTML = `
 
-   <div class="empty">
+<div class="empty">
 
-    الوحدة مفتوحة وجاهزة.
+الوحدة مفتوحة وجاهزة.
 
-    <br>
+<br>
 
-    أضف أول كومنت أو صورة.
+أضف أول كومنت أو صورة.
 
-   </div>
+</div>
 
-  `;
+`;
 
-  return;
+return;
 
- }
-
-
- records.forEach(
-  record=>{
-
-   const element =
-   document.createElement(
-    "div"
-   );
+}
 
 
-   element.className =
-   "comment";
+records.forEach(
+record=>{
+
+const element =
+document.createElement(
+"div"
+);
 
 
-   element.innerHTML = `
-
-    <div class="comment-head">
-
-     <div>
-
-      <span class="badge">
-
-       ${
-        record.photo
-        ? "📷 Photo"
-        : "📝 Comment"
-       }
-
-      </span>
-
-     </div>
-
-     <span class="muted">
-
-      ${escapeHtml(
-       record.engineer
-      )}
-
-      —
-
-      ${new Date(
-       record.date
-      ).toLocaleString(
-       "ar-EG"
-      )}
-
-     </span>
-
-    </div>
+element.className =
+"comment";
 
 
-    <p
-     style="
-     white-space:pre-wrap;
-     margin:10px 0
-     "
-    >
-     ${escapeHtml(
-      record.note
-     )}
-    </p>
+element.innerHTML = `
+
+<div class="comment-head">
+
+<div>
+
+<span class="badge">
+
+${
+record.photo
+?
+"📷 Photo"
+:
+"📝 Comment"
+}
+
+</span>
+
+</div>
 
 
-    ${
-     record.photo
-     ?
-     `
-     <img
-      src="${record.photo}"
-      alt="Inspection photo"
-     >
-     `
-     :
-     ""
-    }
+<span class="muted">
+
+${escapeHtml(
+record.engineer
+)}
+
+—
+
+${new Date(
+record.date
+).toLocaleString(
+"ar-EG"
+)}
+
+</span>
+
+</div>
 
 
-    <button
-     class="danger"
-     data-delete-record="${record.id}"
-     style="
-      margin-top:9px;
-      padding:8px 11px
-     "
-    >
-     🗑️ حذف
-    </button>
+<p
+style="
+white-space:pre-wrap;
+margin:10px 0
+"
+>
 
-   `;
+${escapeHtml(
+record.note
+)}
 
-
-   box.appendChild(
-    element
-   );
-
-  }
- );
+</p>
 
 
- box
- .querySelectorAll(
-  "[data-delete-record]"
- )
- .forEach(
-  button=>{
+${
+record.photo
+?
+`
 
-   button.onclick =
-   async()=>{
+<img
+src="${record.photo}"
+alt="Inspection photo"
+>
 
-    if(
-     !confirm(
-      "حذف هذا الكومنت والصورة؟"
-     )
-    )
-    return;
+`
+:
+""
+}
 
 
-    await deleteItem(
-     RECORDS,
-     Number(
-      button.dataset.deleteRecord
-     )
-    );
+<button
+class="danger"
+data-delete-record="${record.id}"
+style="
+margin-top:9px;
+padding:8px 11px
+"
+>
+🗑️ حذف
+</button>
+
+`;
 
 
-    await renderSessionRecords();
+box.appendChild(
+element
+);
 
-   };
+}
+);
 
-  }
- );
+
+box
+.querySelectorAll(
+"[data-delete-record]"
+)
+.forEach(
+button=>{
+
+button.onclick =
+async()=>{
+
+if(
+!confirm(
+"حذف هذا الكومنت والصورة؟"
+)
+)
+return;
+
+
+await deleteItem(
+RECORDS,
+Number(
+button.dataset.deleteRecord
+)
+);
+
+
+await renderSessionRecords();
+
+};
+
+}
+);
 
 }
 
 
 
 /* =====================================================
-   HIGH QUALITY CAMERA
+   CAMERA DEVICE DISCOVERY
+===================================================== */
+
+/*
+  ملاحظة مهمة:
+
+  المتصفح لا يملك API قياسية تقول:
+  "هذه هي Main Camera" أو "هذه Ultra Wide".
+
+  لذلك نستخدم labels بعد أخذ إذن الكاميرا،
+  ونستبعد قدر الإمكان الكاميرات التي يظهر
+  في اسمها Wide / Ultra Wide / Macro / Front.
+
+  لو الهاتف لا يعطي أسماء العدسات،
+  نستخدم الكاميرا الخلفية الأولى التي يوفرها
+  المتصفح ونطلب منها أعلى دقة.
+*/
+
+
+function cameraScore(
+camera
+){
+
+const label =
+(
+camera.label ||
+""
+)
+.toLowerCase();
+
+
+let score = 0;
+
+
+/* الخلفية */
+
+if(
+/back|rear|environment|facing back|traseira|trasera|后置|后摄/
+.test(label)
+){
+
+score += 100;
+
+}
+
+
+/* Main / Primary */
+
+if(
+/main|primary|wide main|standard|normal|principal/
+.test(label)
+){
+
+score += 80;
+
+}
+
+
+/* دقة / جودة */
+
+if(
+/camera 0|camera 1|camera 2/
+.test(label)
+){
+
+score += 5;
+
+}
+
+
+/* نعاقب العدسات التي لا نريدها */
+
+if(
+/ultra.?wide|ultrawide|super.?wide/
+.test(label)
+){
+
+score -= 100;
+
+}
+
+
+if(
+/wide.?angle/
+.test(label)
+){
+
+score -= 80;
+
+}
+
+
+if(
+/macro/
+.test(label)
+){
+
+score -= 100;
+
+}
+
+
+if(
+/front|user|facetime/
+.test(label)
+){
+
+score -= 200;
+
+}
+
+
+return score;
+
+}
+
+
+
+async function discoverRearCameras(){
+
+try{
+
+const devices =
+await navigator.mediaDevices
+.enumerateDevices();
+
+
+const cameras =
+devices.filter(
+device=>
+device.kind ===
+"videoinput"
+);
+
+
+if(!cameras.length){
+
+return [];
+
+}
+
+
+const ranked =
+cameras
+.map(
+camera=>({
+
+camera,
+score:
+cameraScore(camera)
+
+})
+)
+.sort(
+(a,b)=>
+b.score-a.score
+);
+
+
+return ranked.map(
+item=>item.camera
+);
+
+
+}catch(error){
+
+console.error(
+"Camera discovery error:",
+error
+);
+
+return [];
+
+}
+
+}
+
+
+
+/* =====================================================
+   GET CAMERA WITH BEST REAR OPTION
+===================================================== */
+
+async function getBestRearCamera(){
+
+/*
+  أول محاولة:
+  طلب الكاميرا الخلفية فقط.
+*/
+
+try{
+
+const temporaryStream =
+await navigator.mediaDevices
+.getUserMedia({
+
+video:{
+facingMode:{
+ideal:"environment"
+}
+},
+
+audio:false
+
+});
+
+
+const tracks =
+temporaryStream
+.getVideoTracks();
+
+
+if(
+tracks.length
+){
+
+const currentDeviceId =
+tracks[0]
+.getSettings()
+.deviceId;
+
+
+temporaryStream
+.getTracks()
+.forEach(
+track=>track.stop()
+);
+
+
+/*
+  بعد إعطاء الإذن أصبحت أسماء الأجهزة
+  متاحة في أغلب المتصفحات.
+*/
+
+const cameras =
+await discoverRearCameras();
+
+
+if(cameras.length){
+
+/*
+  نحاول عدم إعادة استخدام
+  الـUltra Wide حسب اسم الجهاز.
+*/
+
+const preferred =
+cameras.find(
+camera=>
+camera.deviceId ===
+currentDeviceId
+);
+
+
+if(preferred){
+
+return preferred.deviceId;
+
+}
+
+
+/*
+  نستخدم أعلى Score.
+*/
+
+return cameras[0].deviceId;
+
+}
+
+
+return currentDeviceId;
+
+}
+
+
+temporaryStream
+.getTracks()
+.forEach(
+track=>track.stop()
+);
+
+}catch(error){
+
+console.log(
+"Rear camera discovery fallback:",
+error
+);
+
+}
+
+
+return null;
+
+}
+
+
+
+/* =====================================================
+   START CAMERA - HIGH QUALITY
 ===================================================== */
 
 async function startCamera(){
 
- try{
+try{
 
-  resetPhoto(false);
-
-
-  stream =
-  await navigator.mediaDevices
-  .getUserMedia({
-
-   video:{
-
-    facingMode:{
-     ideal:"environment"
-    },
-
-    width:{
-     min:1280,
-     ideal:1920,
-     max:4096
-    },
-
-    height:{
-     min:720,
-     ideal:1080,
-     max:2160
-    },
-
-    frameRate:{
-     ideal:30,
-     max:60
-    },
-
-    resizeMode:"none"
-
-   },
-
-   audio:false
-
-  });
+resetPhoto(false);
 
 
-  const track =
-  stream.getVideoTracks()[0];
+/*
+  نكتشف الكاميرا الخلفية
+  المناسبة أولًا.
+*/
+
+selectedCameraId =
+await getBestRearCamera();
 
 
-  /*
-   نحاول إجبار الكاميرا على
-   أعلى دقة متاحة.
-  */
-
-  try{
-
-   const capabilities =
-   track.getCapabilities();
+let videoConstraints;
 
 
-   const advanced={};
+/*
+  إذا حصلنا على Device ID محدد،
+  نستخدمه مباشرة بدل facingMode فقط.
+*/
+
+if(selectedCameraId){
+
+videoConstraints = {
+
+deviceId:{
+exact:selectedCameraId
+},
+
+/*
+  لا يوجد aspect-ratio.
+  لا يوجد 16:9.
+  لا يوجد crop مطلوب.
+*/
+
+width:{
+ideal:4096
+},
+
+height:{
+ideal:3072
+},
+
+frameRate:{
+ideal:30,
+max:60
+}
+
+};
+
+}else{
+
+/*
+  Fallback إذا المتصفح لم يعطِ Device ID.
+*/
+
+videoConstraints = {
+
+facingMode:{
+ideal:"environment"
+},
+
+width:{
+ideal:4096
+},
+
+height:{
+ideal:3072
+},
+
+frameRate:{
+ideal:30,
+max:60
+}
+
+};
+
+}
 
 
-   if(
-    capabilities.width &&
-    capabilities.width.max
-   ){
+stream =
+await navigator.mediaDevices
+.getUserMedia({
 
-    advanced.width =
-    capabilities.width.max;
+video:
+videoConstraints,
 
-   }
+audio:false
 
-
-   if(
-    capabilities.height &&
-    capabilities.height.max
-   ){
-
-    advanced.height =
-    capabilities.height.max;
-
-   }
+});
 
 
-   if(
-    capabilities.frameRate &&
-    capabilities.frameRate.max
-   ){
-
-    advanced.frameRate =
-    Math.min(
-     capabilities.frameRate.max,
-     60
-    );
-
-   }
+const track =
+stream
+.getVideoTracks()[0];
 
 
-   if(
-    Object.keys(advanced).length
-   ){
+/*
+  الآن نقرأ كل إمكانيات الكاميرا
+  التي اختارها الهاتف.
+*/
 
-    await track.applyConstraints({
-     advanced:[
-      advanced
-     ]
-    });
+try{
 
-   }
-
-  }catch(error){
-
-   console.log(
-    "Advanced camera settings unavailable:",
-    error
-   );
-
-  }
+const capabilities =
+track.getCapabilities();
 
 
-  $("camera")
-  .srcObject =
-  stream;
+const advanced={};
 
 
-  $("camera")
-  .style
-  .display =
-  "block";
+/*
+  نطلب أقصى Width.
+*/
+
+if(
+capabilities.width &&
+capabilities.width.max
+){
+
+advanced.width =
+capabilities.width.max;
+
+}
 
 
-  $("cameraInfo")
-  .classList
-  .remove("hidden");
+/*
+  نطلب أقصى Height.
+*/
+
+if(
+capabilities.height &&
+capabilities.height.max
+){
+
+advanced.height =
+capabilities.height.max;
+
+}
 
 
-  $("cameraControls")
-  .classList
-  .remove("hidden");
+/*
+  Frame rate جيد بدون التضحية
+  بالدقة.
+*/
+
+if(
+capabilities.frameRate &&
+capabilities.frameRate.max
+){
+
+advanced.frameRate =
+Math.min(
+capabilities.frameRate.max,
+60
+);
+
+}
 
 
-  $("camera").onloadedmetadata =
-  ()=>{
+/*
+  مهم:
+  لا نضيف aspectRatio هنا.
+*/
 
-   console.log(
-    "Actual camera resolution:",
-    $("camera").videoWidth,
-    "x",
-    $("camera").videoHeight
-   );
+if(
+Object.keys(advanced).length
+){
 
-  };
+try{
+
+await track.applyConstraints({
+advanced:[
+advanced
+]
+});
+
+}catch(error){
+
+console.log(
+"Advanced constraints failed:",
+error
+);
+
+}
+
+}
+
+}catch(error){
+
+console.log(
+"Capabilities unavailable:",
+error
+);
+
+}
 
 
- }catch(error){
+/*
+  ربط Stream بالفيديو.
+*/
 
-  console.error(
-   "Camera error:",
-   error
-  );
+$("camera")
+.srcObject =
+stream;
 
 
-  alert(
-   "لم يتم فتح الكاميرا. اسمح للموقع باستخدام الكاميرا ثم حاول مرة أخرى."
-  );
+$("camera")
+.style
+.display =
+"block";
 
- }
+
+$("cameraInfo")
+.classList
+.remove("hidden");
+
+
+$("cameraControls")
+.classList
+.remove("hidden");
+
+
+/*
+  عرض الدقة الحقيقية
+  التي فتح بها الهاتف.
+*/
+
+$("camera")
+.onloadedmetadata =
+()=>{
+
+const width =
+$("camera")
+.videoWidth;
+
+
+const height =
+$("camera")
+.videoHeight;
+
+
+const settings =
+track.getSettings();
+
+
+let text =
+`الدقة الحالية: ${width} × ${height}`;
+
+
+if(
+settings.deviceId
+){
+
+text +=
+" — Camera selected";
+
+}
+
+
+$("cameraResolution")
+.textContent =
+text;
+
+
+console.log(
+"FINAL CAMERA:",
+{
+width,
+height,
+settings,
+capabilities:
+track.getCapabilities
+?
+track.getCapabilities()
+:
+null
+}
+);
+
+};
+
+
+}catch(error){
+
+console.error(
+"Camera start error:",
+error
+);
+
+
+alert(
+"لم يتم فتح الكاميرا. اسمح للموقع باستخدام الكاميرا ثم حاول مرة أخرى."
+);
+
+}
 
 }
 
 
 
 /* =====================================================
-   CAPTURE HIGH QUALITY IMAGE
+   CAPTURE
 ===================================================== */
 
 function capturePhoto(){
 
- const video =
- $("camera");
+const video =
+$("camera");
 
 
- const canvas =
- $("canvas");
+const canvas =
+$("canvas");
 
 
- if(
-  !video.videoWidth ||
-  !video.videoHeight
- ){
+if(
+!video.videoWidth ||
+!video.videoHeight
+){
 
-  alert(
-   "انتظر لحظة حتى تصبح الكاميرا جاهزة."
-  );
+alert(
+"انتظر لحظة حتى تصبح الكاميرا جاهزة."
+);
 
-  return;
+return;
 
- }
-
-
- const width =
- video.videoWidth;
+}
 
 
- const height =
- video.videoHeight;
+/*
+  نستخدم الدقة الفعلية
+  التي رجعتها الكاميرا.
+*/
+
+const width =
+video.videoWidth;
 
 
- canvas.width =
- width;
+const height =
+video.videoHeight;
 
 
- canvas.height =
- height;
+canvas.width =
+width;
 
 
- const context =
- canvas.getContext(
-  "2d",
-  {
-   alpha:false
-  }
- );
+canvas.height =
+height;
 
 
- context.imageSmoothingEnabled =
- true;
+const context =
+canvas.getContext(
+"2d",
+{
+alpha:false
+}
+);
 
 
- context.imageSmoothingQuality =
- "high";
+context.imageSmoothingEnabled =
+true;
 
 
- context.drawImage(
-  video,
-  0,
-  0,
-  width,
-  height
- );
+context.imageSmoothingQuality =
+"high";
 
 
- /*
-  جودة JPEG عالية جدًا.
- */
-
- rawImage =
- canvas.toDataURL(
-  "image/jpeg",
-  0.98
- );
+context.drawImage(
+video,
+0,
+0,
+width,
+height
+);
 
 
- $("preview")
- .src =
- rawImage;
+/*
+  أعلى جودة JPEG تقريبًا.
+*/
+
+rawImage =
+canvas.toDataURL(
+"image/jpeg",
+0.98
+);
 
 
- $("preview")
- .classList
- .remove("hidden");
+$("preview")
+.src =
+rawImage;
 
 
- $("camera")
- .style
- .display =
- "none";
+$("preview")
+.classList
+.remove("hidden");
 
 
- stopStream();
+$("camera")
+.style
+.display =
+"none";
 
 
- $("cameraControls")
- .classList
- .add("hidden");
+stopStream();
 
 
- $("cameraInfo")
- .classList
- .add("hidden");
+$("cameraControls")
+.classList
+.add("hidden");
 
 
- $("photoControls")
- .classList
- .remove("hidden");
+$("cameraInfo")
+.classList
+.add("hidden");
+
+
+$("photoControls")
+.classList
+.remove("hidden");
 
 }
 
@@ -2352,371 +2899,383 @@ function capturePhoto(){
 
 function stopStream(){
 
- if(stream){
+if(stream){
 
-  stream
-  .getTracks()
-  .forEach(
-   track=>{
-    track.stop();
-   }
-  );
+stream
+.getTracks()
+.forEach(
+track=>{
+track.stop();
+}
+);
 
+stream=null;
 
-  stream=null;
-
- }
+}
 
 }
 
 
 
 /* =====================================================
-   RESET PHOTO
+   RESET CAMERA
 ===================================================== */
 
 function resetPhoto(
- clearPreview=true
+clearPreview=true
 ){
 
- stopStream();
+stopStream();
+
+rawImage=null;
+
+selectedCameraId=null;
 
 
- rawImage=null;
+$("camera")
+.style
+.display =
+"none";
 
 
- $("camera")
- .style
- .display =
- "none";
+$("cameraControls")
+.classList
+.add("hidden");
 
 
- $("cameraControls")
- .classList
- .add("hidden");
+$("photoControls")
+.classList
+.add("hidden");
 
 
- $("photoControls")
- .classList
- .add("hidden");
+$("cameraInfo")
+.classList
+.add("hidden");
 
 
- $("cameraInfo")
- .classList
- .add("hidden");
+$("cameraResolution")
+.textContent =
+"";
 
 
- if(clearPreview){
+if(clearPreview){
 
-  $("preview")
-  .src="";
+$("preview")
+.src =
+"";
 
 
-  $("preview")
-  .classList
-  .add("hidden");
+$("preview")
+.classList
+.add("hidden");
 
- }
+}
 
 }
 
 
 
 /* =====================================================
-   DRAW NOTE ON PHOTO
+   ANNOTATE IMAGE
 ===================================================== */
 
 async function createAnnotatedImage(
- imageData,
- note
+imageData,
+note
 ){
 
- const canvas =
- $("canvas");
+const canvas =
+$("canvas");
 
 
- const image =
- new Image();
+const image =
+new Image();
 
 
- image.src =
- imageData;
+image.src =
+imageData;
 
 
- await new Promise(
-  resolve=>{
+await new Promise(
+resolve=>{
 
-   image.onload =
-   resolve;
+image.onload =
+resolve;
 
-  }
- );
+}
+);
 
 
- canvas.width =
- image.naturalWidth;
+canvas.width =
+image.naturalWidth;
 
 
- canvas.height =
- image.naturalHeight;
+canvas.height =
+image.naturalHeight;
 
 
- const context =
- canvas.getContext(
-  "2d",
-  {
-   alpha:false
-  }
- );
+const context =
+canvas.getContext(
+"2d",
+{
+alpha:false
+}
+);
 
 
- context.drawImage(
-  image,
-  0,
-  0
- );
+context.drawImage(
+image,
+0,
+0
+);
 
 
- /*
-  صندوق الملاحظة أسفل الصورة.
- */
+/*
+  ملاحظة:
+  لا نغير Aspect Ratio للصورة.
+  فقط نضيف مساحة في الأسفل.
+*/
 
- const boxHeight =
- Math.max(
-  120,
-  canvas.height * 0.20
- );
+const boxHeight =
+Math.max(
+120,
+canvas.height * 0.20
+);
 
 
- context.fillStyle =
- "rgba(0,0,0,0.70)";
+context.fillStyle =
+"rgba(0,0,0,0.70)";
 
 
- context.fillRect(
-  0,
-  canvas.height-boxHeight,
-  canvas.width,
-  boxHeight
- );
+context.fillRect(
+0,
+canvas.height-boxHeight,
+canvas.width,
+boxHeight
+);
 
 
- context.fillStyle =
- "#ffffff";
+context.fillStyle =
+"#ffffff";
 
 
- context.textAlign =
- "center";
+context.textAlign =
+"center";
 
 
- context.textBaseline =
- "middle";
+context.textBaseline =
+"middle";
 
 
- const fontSize =
- Math.max(
-  28,
-  Math.floor(
-   canvas.width / 32
-  )
- );
+const fontSize =
+Math.max(
+28,
+Math.floor(
+canvas.width / 32
+)
+);
 
 
- context.font =
- `bold ${fontSize}px Arial`;
+context.font =
+`bold ${fontSize}px Arial`;
 
 
- const words =
- note.split(/\s+/);
+const words =
+note.split(/\s+/);
 
 
- const lines=[];
+const lines=[];
 
+let line="";
 
- let line="";
 
+const maxWidth =
+canvas.width - 70;
 
- const maxWidth =
- canvas.width - 70;
 
+for(
+const word
+of words
+){
 
- for(
-  const word
-  of words
- ){
+const test =
+line
+?
+line+" "+word
+:
+word;
 
-  const test =
-  line
-  ?
-  line+" "+word
-  :
-  word;
 
+if(
+context.measureText(test)
+.width
+>
+maxWidth
+&&
+line
+){
 
-  if(
-   context.measureText(
-    test
-   ).width
-   >
-   maxWidth
-   &&
-   line
-  ){
+lines.push(
+line
+);
 
-   lines.push(
-    line
-   );
+line =
+word;
 
+}else{
 
-   line =
-   word;
+line =
+test;
 
-  }else{
+}
 
-   line =
-   test;
+}
 
-  }
 
- }
+if(line){
 
+lines.push(
+line
+);
 
- if(line)
- lines.push(
-  line
- );
+}
 
 
- const lineHeight =
- Math.max(
-  40,
-  Math.floor(
-   fontSize * 1.35
-  )
- );
+const lineHeight =
+Math.max(
+40,
+Math.floor(
+fontSize*1.35
+)
+);
 
 
- let startY =
- canvas.height -
- boxHeight/2 -
- ((lines.length-1)*lineHeight)/2;
+let startY =
+canvas.height -
+boxHeight/2 -
+(
+(lines.length-1)
+*
+lineHeight
+)/2;
 
 
- lines.forEach(
-  currentLine=>{
+lines.forEach(
+currentLine=>{
 
-   context.fillText(
-    currentLine,
-    canvas.width/2,
-    startY
-   );
+context.fillText(
+currentLine,
+canvas.width/2,
+startY
+);
 
+startY +=
+lineHeight;
 
-   startY +=
-   lineHeight;
+}
+);
 
-  }
- );
 
-
- return canvas.toDataURL(
-  "image/jpeg",
-  0.98
- );
+return canvas.toDataURL(
+"image/jpeg",
+0.98
+);
 
 }
 
 
 
 /* =====================================================
-   SAVE NOTE
+   SAVE RECORD
 ===================================================== */
 
 async function saveRecord(
- photo=""
+photo=""
 ){
 
- const engineer =
- $("engineer")
- .value
- .trim();
+const engineer =
+$("engineer")
+.value
+.trim();
 
 
- const note =
- $("note")
- .value
- .trim();
+const note =
+$("note")
+.value
+.trim();
 
 
- if(!engineer){
+if(!engineer){
 
-  alert(
-   "اكتب اسم المهندس."
-  );
+alert(
+"اكتب اسم المهندس."
+);
 
-  return;
+return;
 
- }
-
-
- if(!note){
-
-  alert(
-   "اكتب الكومنت / الملاحظة."
-  );
-
-  return;
-
- }
+}
 
 
- const unit =
- await get(
-  UNITS,
-  currentUnitId
- );
+if(!note){
+
+alert(
+"اكتب الكومنت / الملاحظة."
+);
+
+return;
+
+}
 
 
- if(!unit)
- return;
+const unit =
+await get(
+UNITS,
+currentUnitId
+);
 
 
- await add(
-  RECORDS,
-  {
-
-   projectId:
-   unit.projectId,
-
-   unitId:
-   currentUnitId,
-
-   unitNumber:
-   unit.number,
-
-   engineer:
-   engineer,
-
-   note:
-   note,
-
-   photo:
-   photo,
-
-   date:
-   new Date().toISOString()
-
-  }
- );
+if(!unit)
+return;
 
 
- $("note")
- .value="";
+await add(
+RECORDS,
+{
+
+projectId:
+unit.projectId,
+
+unitId:
+currentUnitId,
+
+unitNumber:
+unit.number,
+
+engineer:
+engineer,
+
+note:
+note,
+
+photo:
+photo,
+
+date:
+new Date().toISOString()
+
+}
+);
 
 
- resetPhoto();
+$("note")
+.value =
+"";
 
 
- await renderSessionRecords();
+resetPhoto();
+
+
+await renderSessionRecords();
 
 }
 
@@ -2728,65 +3287,61 @@ async function saveRecord(
 
 async function savePhoto(){
 
- if(!rawImage){
+if(!rawImage){
 
-  alert(
-   "التقط الصورة أولًا."
-  );
+alert(
+"التقط الصورة أولًا."
+);
 
-  return;
+return;
 
- }
-
-
- const note =
- $("note")
- .value
- .trim();
+}
 
 
- const engineer =
- $("engineer")
- .value
- .trim();
+const note =
+$("note")
+.value
+.trim();
 
 
- if(!engineer){
-
-  alert(
-   "اكتب اسم المهندس."
-  );
-
-  return;
-
- }
+const engineer =
+$("engineer")
+.value
+.trim();
 
 
- if(!note){
+if(!engineer){
 
-  alert(
-   "اكتب الملاحظة التي تريد ظهورها على الصورة."
-  );
+alert(
+"اكتب اسم المهندس."
+);
 
-  return;
+return;
 
- }
-
-
- /*
-  ندمج الملاحظة داخل الصورة.
- */
-
- const finalImage =
- await createAnnotatedImage(
-  rawImage,
-  note
- );
+}
 
 
- await saveRecord(
-  finalImage
- );
+if(!note){
+
+alert(
+"اكتب الملاحظة التي تريد ظهورها على الصورة."
+);
+
+return;
+
+}
+
+
+const finalImage =
+await createAnnotatedImage(
+rawImage,
+note
+);
+
+
+await saveRecord(
+finalImage
+);
 
 }
 
@@ -2798,382 +3353,406 @@ async function savePhoto(){
 
 async function finishUnit(){
 
- const answer =
- confirm(
-  "إنهاء هذه الوحدة والرجوع لقائمة الوحدات؟"
- );
+if(
+!confirm(
+"إنهاء هذه الوحدة والرجوع لقائمة الوحدات؟"
+)
+)
+return;
 
 
- if(!answer)
- return;
+resetPhoto();
 
 
- resetPhoto();
+currentUnitId =
+null;
 
 
- currentUnitId=null;
+await renderUnits();
 
 
- await renderUnits();
+$("unitScreen")
+.classList
+.add("hidden");
 
 
- $("unitScreen")
- .classList
- .add("hidden");
+$("projectScreen")
+.classList
+.remove("hidden");
 
 
- $("projectScreen")
- .classList
- .remove("hidden");
-
-
- window.scrollTo(
-  0,
-  0
- );
+window.scrollTo(
+0,
+0
+);
 
 }
 
 
 
 /* =====================================================
-   EXCEL EXPORT CURRENT UNIT
+   EXCEL
 ===================================================== */
 
-async function exportCurrentUnitExcel(){
+function safeFileName(
+value
+){
 
- if(!currentUnitId){
+return String(
+value || ""
+)
+.replace(
+/[\\/:*?"<>|]/g,
+"_"
+)
+.trim();
 
-  alert(
-   "لا توجد وحدة مفتوحة."
-  );
+}
 
-  return;
 
- }
 
+async function ensureExcel(){
 
- if(
-  typeof ExcelJS ===
-  "undefined"
- ){
+if(
+typeof ExcelJS ===
+"undefined"
+){
 
-  alert(
-   "مكتبة Excel لم تُحمّل. افتح الصفحة بالإنترنت ثم حاول مرة أخرى."
-  );
+alert(
+"مكتبة Excel لم تُحمّل. تأكد من وجود الإنترنت ثم حاول مرة أخرى."
+);
 
-  return;
+return false;
 
- }
+}
 
+return true;
 
- const unit =
- await get(
-  UNITS,
-  currentUnitId
- );
+}
 
 
- if(!unit){
 
-  alert(
-   "الوحدة غير موجودة."
-  );
+function downloadBlob(
+blob,
+fileName
+){
 
-  return;
+const url =
+URL.createObjectURL(
+blob
+);
 
- }
 
+const link =
+document.createElement(
+"a"
+);
 
- const project =
- await get(
-  PROJECTS,
-  unit.projectId
- );
 
+link.href =
+url;
 
- const records =
- await getByIndex(
-  RECORDS,
-  "unitId",
-  currentUnitId
- );
 
+link.download =
+fileName;
 
- if(!records.length){
 
-  alert(
-   "لا توجد كومنتات أو صور في هذه الوحدة."
-  );
+link.style.display =
+"none";
 
-  return;
 
- }
+document.body.appendChild(
+link
+);
 
 
- const workbook =
- new ExcelJS.Workbook();
+link.click();
 
 
- workbook.creator =
- "Site Inspection";
+link.remove();
 
 
- workbook.created =
- new Date();
+setTimeout(
+()=>{
 
+URL.revokeObjectURL(
+url
+);
 
- const worksheet =
- workbook.addWorksheet(
-  "Inspection"
- );
+},
+3000
+);
 
+}
 
- worksheet.columns=[
 
-  {
-   header:"Project",
-   key:"project",
-   width:32
-  },
 
-  {
-   header:"Unit",
-   key:"unit",
-   width:18
-  },
+/* =====================================================
+   EXPORT ONE UNIT
+===================================================== */
 
-  {
-   header:"Engineer",
-   key:"engineer",
-   width:25
-  },
+async function exportUnitExcel(
+unitId
+){
 
-  {
-   header:"Date",
-   key:"date",
-   width:24
-  },
+if(
+!(await ensureExcel())
+)
+return;
 
-  {
-   header:"Comment",
-   key:"comment",
-   width:60
-  },
 
-  {
-   header:"Photo",
-   key:"photo",
-   width:22
-  }
+const unit =
+await get(
+UNITS,
+unitId
+);
 
- ];
 
+if(!unit){
 
- worksheet.getRow(
-  1
- ).font={
-  bold:true
- };
+alert(
+"الوحدة غير موجودة."
+);
 
+return;
 
- worksheet.getRow(
-  1
- ).alignment={
-  horizontal:"center",
-  vertical:"middle"
- };
+}
 
 
- let rowNumber=2;
+const project =
+await get(
+PROJECTS,
+unit.projectId
+);
 
 
- for(
-  const record
-  of records.sort(
-   (a,b)=>a.id-b.id
-  )
- ){
+const records =
+await getByIndex(
+RECORDS,
+"unitId",
+unitId
+);
 
-  worksheet.addRow({
 
-   project:
-   project?.name || "",
+if(!records.length){
 
-   unit:
-   unit.number || "",
+alert(
+"لا توجد ملاحظات أو صور في هذه الوحدة."
+);
 
-   engineer:
-   record.engineer || "",
+return;
 
-   date:
-   new Date(
-    record.date
-   ).toLocaleString(
-    "en-GB"
-   ),
+}
 
-   comment:
-   record.note || "",
 
-   photo:
-   record.photo
-   ?
-   "Included"
-   :
-   ""
+const workbook =
+new ExcelJS.Workbook();
 
-  });
 
+workbook.creator =
+"Site Inspection";
 
-  if(record.photo){
 
-   try{
+workbook.created =
+new Date();
 
-    const imageId =
-    workbook.addImage({
 
-     base64:
-     record.photo,
+const worksheet =
+workbook.addWorksheet(
+"Inspection"
+);
 
-     extension:
-     "jpeg"
 
-    });
+worksheet.columns=[
 
+{
+header:"Project",
+key:"project",
+width:32
+},
 
-    worksheet.addImage(
-     imageId,
-     {
+{
+header:"Unit",
+key:"unit",
+width:18
+},
 
-      tl:{
-       col:5,
-       row:rowNumber-1
-      },
+{
+header:"Engineer",
+key:"engineer",
+width:25
+},
 
-      ext:{
-       width:220,
-       height:165
-      }
+{
+header:"Date",
+key:"date",
+width:24
+},
 
-     }
-    );
+{
+header:"Comment",
+key:"comment",
+width:60
+},
 
+{
+header:"Photo",
+key:"photo",
+width:22
+}
 
-    worksheet.getRow(
-     rowNumber
-    ).height =
-    125;
+];
 
-   }catch(error){
 
-    console.error(
-     "Excel image error:",
-     error
-    );
+worksheet.getRow(
+1
+).font={
+bold:true
+};
 
-   }
 
-  }
+worksheet.getRow(
+1
+).alignment={
+horizontal:"center",
+vertical:"middle"
+};
 
 
-  rowNumber++;
+let rowNumber=2;
 
- }
 
+for(
+const record
+of records.sort(
+(a,b)=>a.id-b.id
+)
+){
 
- worksheet.views=[
-  {
-   state:"frozen",
-   ySplit:1
-  }
- ];
+worksheet.addRow({
 
+project:
+project?.name || "",
 
- const buffer =
- await workbook.xlsx.writeBuffer();
+unit:
+unit.number || "",
 
+engineer:
+record.engineer || "",
 
- const blob =
- new Blob(
-  [buffer],
-  {
-   type:
-   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-  }
- );
+date:
+new Date(
+record.date
+).toLocaleString(
+"en-GB"
+),
 
+comment:
+record.note || "",
 
- const projectName =
- (
-  project?.name ||
-  "Project"
- )
- .replace(
-  /[\\/:*?"<>|]/g,
-  "_"
- );
+photo:
+record.photo
+?
+"Included"
+:
+""
 
+});
 
- const unitName =
- (
-  unit.number ||
-  "Unit"
- )
- .replace(
-  /[\\/:*?"<>|]/g,
-  "_"
- );
 
+if(record.photo){
 
- const fileName =
- `SiteInspection_${projectName}_Unit_${unitName}.xlsx`;
+try{
 
+const imageId =
+workbook.addImage({
 
- const url =
- URL.createObjectURL(
-  blob
- );
+base64:
+record.photo,
 
+extension:
+"jpeg"
 
- const link =
- document.createElement(
-  "a"
- );
+});
 
 
- link.href =
- url;
+worksheet.addImage(
+imageId,
+{
 
+tl:{
+col:5,
+row:rowNumber-1
+},
 
- link.download =
- fileName;
+ext:{
+width:220,
+height:165
+}
 
+}
+);
 
- document.body.appendChild(
-  link
- );
 
+worksheet.getRow(
+rowNumber
+).height =
+125;
 
- link.click();
 
+}catch(error){
 
- link.remove();
+console.error(
+"Excel image error:",
+error
+);
 
+}
 
- setTimeout(
-  ()=>{
-   URL.revokeObjectURL(
-    url
-   );
-  },
-  2000
- );
+}
 
 
- alert(
-  `تم تصدير الوحدة ${unit.number} إلى Excel بالصور والكومنتات ✅`
- );
+rowNumber++;
+
+}
+
+
+worksheet.views=[
+{
+state:"frozen",
+ySplit:1
+}
+];
+
+
+const buffer =
+await workbook.xlsx.writeBuffer();
+
+
+const blob =
+new Blob(
+[buffer],
+{
+type:
+"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+}
+);
+
+
+const fileName =
+`SiteInspection_${safeFileName(
+project?.name
+)}_Unit_${safeFileName(
+unit.number
+)}.xlsx`;
+
+
+downloadBlob(
+blob,
+fileName
+);
+
+
 
 }
 
@@ -3183,441 +3762,407 @@ async function exportCurrentUnitExcel(){
    EXPORT FULL PROJECT
 ===================================================== */
 
-async function exportProjectExcel(){
+async function exportProjectExcel(
+projectId
+){
 
- if(!currentProjectId){
+if(
+!(await ensureExcel())
+)
+return;
 
-  alert(
-   "افتح المشروع أولًا."
-  );
 
-  return;
+const project =
+await get(
+PROJECTS,
+projectId
+);
 
- }
 
+if(!project){
 
- if(
-  typeof ExcelJS ===
-  "undefined"
- ){
+alert(
+"المشروع غير موجود."
+);
 
-  alert(
-   "مكتبة Excel لم تُحمّل. افتح الصفحة بالإنترنت ثم حاول مرة أخرى."
-  );
+return;
 
-  return;
+}
 
- }
 
+const units =
+await getByIndex(
+UNITS,
+"projectId",
+projectId
+);
 
- const project =
- await get(
-  PROJECTS,
-  currentProjectId
- );
 
+if(!units.length){
 
- const units =
- await getByIndex(
-  UNITS,
-  "projectId",
-  currentProjectId
- );
+alert(
+"لا توجد وحدات في هذا المشروع."
+);
 
+return;
 
- if(!units.length){
+}
 
-  alert(
-   "لا توجد وحدات في هذا المشروع."
-  );
 
-  return;
+const workbook =
+new ExcelJS.Workbook();
 
- }
 
+workbook.creator =
+"Site Inspection";
 
- const workbook =
- new ExcelJS.Workbook();
 
+workbook.created =
+new Date();
 
- workbook.creator =
- "Site Inspection";
 
+/*
+  PROJECT SHEET
+*/
 
- workbook.created =
- new Date();
+const projectSheet =
+workbook.addWorksheet(
+"Project"
+);
 
 
- /*
-  Sheet 1
-  Project
- */
+projectSheet.columns=[
 
- const projectSheet =
- workbook.addWorksheet(
-  "Project"
- );
+{
+header:"Project",
+key:"project",
+width:40
+},
 
+{
+header:"Created",
+key:"created",
+width:25
+},
 
- projectSheet.columns=[
+{
+header:"Units",
+key:"units",
+width:15
+}
 
-  {
-   header:"Project",
-   key:"project",
-   width:40
-  },
+];
 
-  {
-   header:"Created",
-   key:"created",
-   width:25
-  }
 
- ];
+projectSheet.getRow(
+1
+).font={
+bold:true
+};
 
 
- projectSheet.addRow({
+projectSheet.addRow({
 
-  project:
-  project.name,
+project:
+project.name,
 
-  created:
-  new Date(
-   project.createdAt
-  ).toLocaleString(
-   "en-GB"
-  )
+created:
+new Date(
+project.createdAt
+).toLocaleString(
+"en-GB"
+),
 
- });
+units:
+units.length
 
+});
 
- projectSheet.getRow(
-  1
- ).font={
-  bold:true
- };
 
+/*
+  UNITS SHEET
+*/
 
- /*
-  Sheet 2
-  Units
- */
+const unitsSheet =
+workbook.addWorksheet(
+"Units"
+);
 
- const unitsSheet =
- workbook.addWorksheet(
-  "Units"
- );
 
+unitsSheet.columns=[
 
- unitsSheet.columns=[
+{
+header:"Unit",
+key:"unit",
+width:20
+},
 
-  {
-   header:"Unit",
-   key:"unit",
-   width:20
-  },
+{
+header:"Comments",
+key:"comments",
+width:15
+},
 
-  {
-   header:"Comments",
-   key:"comments",
-   width:15
-  },
+{
+header:"Photos",
+key:"photos",
+width:15
+}
 
-  {
-   header:"Photos",
-   key:"photos",
-   width:15
-  }
+];
 
- ];
 
+unitsSheet.getRow(
+1
+).font={
+bold:true
+};
 
- unitsSheet.getRow(
-  1
- ).font={
-  bold:true
- };
 
+for(
+const unit
+of units
+){
 
- for(
-  const unit
-  of units
- ){
+const records =
+await getByIndex(
+RECORDS,
+"unitId",
+unit.id
+);
 
-  const records =
-  await getByIndex(
-   RECORDS,
-   "unitId",
-   unit.id
-  );
 
+unitsSheet.addRow({
 
-  unitsSheet.addRow({
+unit:
+unit.number,
 
-   unit:
-   unit.number,
+comments:
+records.length,
 
-   comments:
-   records.length,
+photos:
+records.filter(
+record=>record.photo
+).length
 
-   photos:
-   records.filter(
-    r=>r.photo
-   ).length
+});
 
-  });
+}
 
- }
 
+/*
+  INSPECTIONS SHEET
+*/
 
- /*
-  Sheet 3
-  All inspections
- */
+const sheet =
+workbook.addWorksheet(
+"Inspections"
+);
 
- const sheet =
- workbook.addWorksheet(
-  "Inspections"
- );
 
+sheet.columns=[
 
- sheet.columns=[
+{
+header:"Project",
+key:"project",
+width:30
+},
 
-  {
-   header:"Unit",
-   key:"unit",
-   width:18
-  },
+{
+header:"Unit",
+key:"unit",
+width:18
+},
 
-  {
-   header:"Engineer",
-   key:"engineer",
-   width:25
-  },
+{
+header:"Engineer",
+key:"engineer",
+width:25
+},
 
-  {
-   header:"Date",
-   key:"date",
-   width:24
-  },
+{
+header:"Date",
+key:"date",
+width:24
+},
 
-  {
-   header:"Comment",
-   key:"comment",
-   width:60
-  },
+{
+header:"Comment",
+key:"comment",
+width:60
+},
 
-  {
-   header:"Photo",
-   key:"photo",
-   width:22
-  }
+{
+header:"Photo",
+key:"photo",
+width:22
+}
 
- ];
+];
 
 
- sheet.getRow(
-  1
- ).font={
-  bold:true
- };
+sheet.getRow(
+1
+).font={
+bold:true
+};
 
 
- let row=2;
+let row=2;
 
 
- for(
-  const unit
-  of units
- ){
+for(
+const unit
+of units
+){
 
-  const records =
-  await getByIndex(
-   RECORDS,
-   "unitId",
-   unit.id
-  );
+const records =
+await getByIndex(
+RECORDS,
+"unitId",
+unit.id
+);
 
 
-  records.sort(
-   (a,b)=>a.id-b.id
-  );
+records.sort(
+(a,b)=>a.id-b.id
+);
 
 
-  for(
-   const record
-   of records
-  ){
+for(
+const record
+of records
+){
 
-   sheet.addRow({
+sheet.addRow({
 
-    unit:
-    unit.number,
+project:
+project.name,
 
-    engineer:
-    record.engineer || "",
+unit:
+unit.number,
 
-    date:
-    new Date(
-     record.date
-    ).toLocaleString(
-     "en-GB"
-    ),
+engineer:
+record.engineer || "",
 
-    comment:
-    record.note || "",
+date:
+new Date(
+record.date
+).toLocaleString(
+"en-GB"
+),
 
-    photo:
-    record.photo
-    ?
-    "Included"
-    :
-    ""
+comment:
+record.note || "",
 
-   });
+photo:
+record.photo
+?
+"Included"
+:
+""
 
+});
 
-   if(record.photo){
 
-    try{
+if(record.photo){
 
-     const imageId =
-     workbook.addImage({
+try{
 
-      base64:
-      record.photo,
+const imageId =
+workbook.addImage({
 
-      extension:
-      "jpeg"
+base64:
+record.photo,
 
-     });
+extension:
+"jpeg"
 
+});
 
-     sheet.addImage(
-      imageId,
-      {
 
-       tl:{
-        col:4,
-        row:row-1
-       },
+sheet.addImage(
+imageId,
+{
 
-       ext:{
-        width:220,
-        height:165
-       }
+tl:{
+col:5,
+row:row-1
+},
 
-      }
-     );
+ext:{
+width:220,
+height:165
+}
 
+}
+);
 
-     sheet.getRow(
-      row
-     ).height=125;
 
-    }catch(error){
+sheet.getRow(
+row
+).height =
+125;
 
-     console.error(
-      error
-     );
 
-    }
+}catch(error){
 
-   }
+console.error(
+"Excel image error:",
+error
+);
 
+}
 
-   row++;
+}
 
-  }
 
- }
+row++;
 
+}
 
- sheet.views=[
-  {
-   state:"frozen",
-   ySplit:1
-  }
- ];
+}
 
 
- const buffer =
- await workbook.xlsx.writeBuffer();
+sheet.views=[
+{
+state:"frozen",
+ySplit:1
+}
+];
 
 
- const blob =
- new Blob(
-  [buffer],
-  {
-   type:
-   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-  }
- );
+const buffer =
+await workbook.xlsx.writeBuffer();
 
 
- const fileName =
- (
-  project.name ||
-  "SiteInspection"
- )
- .replace(
-  /[\\/:*?"<>|]/g,
-  "_"
- )+
- "_Full_Project.xlsx";
+const blob =
+new Blob(
+[buffer],
+{
+type:
+"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+}
+);
 
 
- const url =
- URL.createObjectURL(
-  blob
- );
+const fileName =
+`SiteInspection_${safeFileName(
+project.name
+)}_FULL_PROJECT.xlsx`;
 
 
- const link =
- document.createElement(
-  "a"
- );
-
-
- link.href =
- url;
-
-
- link.download =
- fileName;
-
-
- document.body.appendChild(
-  link
- );
-
-
- link.click();
-
-
- link.remove();
-
-
- setTimeout(
-  ()=>{
-   URL.revokeObjectURL(
-    url
-   );
-  },
-  2000
- );
-
-
- alert(
-  "تم تصدير المشروع بالكامل إلى Excel بالصور والكومنتات ✅"
- );
+downloadBlob(
+blob,
+fileName
+);
 
 }
 
 
 
 /* =====================================================
-   BUTTON EVENTS
+   NAVIGATION
 ===================================================== */
 
 $("addProjectBtn").onclick =
@@ -3626,41 +4171,42 @@ addProject;
 
 $("projectName")
 .addEventListener(
- "keydown",
- event=>{
+"keydown",
+event=>{
 
-  if(
-   event.key==="Enter"
-  ){
+if(
+event.key ===
+"Enter"
+){
 
-   addProject();
+addProject();
 
-  }
+}
 
- }
+}
 );
 
 
 $("backProjectsBtn").onclick =
 ()=>{
 
- $("projectScreen")
- .classList
- .add("hidden");
+$("projectScreen")
+.classList
+.add("hidden");
 
 
- $("projectsScreen")
- .classList
- .remove("hidden");
+$("projectsScreen")
+.classList
+.remove("hidden");
 
 
- renderProjects();
+renderProjects();
 
 
- window.scrollTo(
-  0,
-  0
- );
+window.scrollTo(
+0,
+0
+);
 
 };
 
@@ -3672,26 +4218,26 @@ createUnit;
 $("backUnitsBtn").onclick =
 ()=>{
 
- resetPhoto();
+resetPhoto();
 
 
- $("unitScreen")
- .classList
- .add("hidden");
+$("unitScreen")
+.classList
+.add("hidden");
 
 
- $("projectScreen")
- .classList
- .remove("hidden");
+$("projectScreen")
+.classList
+.remove("hidden");
 
 
- renderUnits();
+renderUnits();
 
 
- window.scrollTo(
-  0,
-  0
- );
+window.scrollTo(
+0,
+0
+);
 
 };
 
@@ -3701,11 +4247,31 @@ finishUnit;
 
 
 $("exportUnitBtn").onclick =
-exportCurrentUnitExcel;
+()=>{
+
+if(currentUnitId){
+
+exportUnitExcel(
+currentUnitId
+);
+
+}
+
+};
 
 
-$("exportAllBtn").onclick =
-exportProjectExcel;
+$("exportProjectBtn").onclick =
+()=>{
+
+if(currentProjectId){
+
+exportProjectExcel(
+currentProjectId
+);
+
+}
+
+};
 
 
 $("photoBtn").onclick =
@@ -3719,7 +4285,7 @@ capturePhoto;
 $("stopCameraBtn").onclick =
 ()=>{
 
- resetPhoto(false);
+resetPhoto(false);
 
 };
 
@@ -3738,59 +4304,63 @@ $("saveNoteBtn").onclick =
 
 
 /* =====================================================
-   PWA INSTALL
+   INSTALL
 ===================================================== */
 
 window.addEventListener(
- "beforeinstallprompt",
- event=>{
+"beforeinstallprompt",
+event=>{
 
-  event.preventDefault();
+event.preventDefault();
 
-  deferredPrompt =
-  event;
+deferredPrompt =
+event;
 
-  $("installBtn")
-  .classList
-  .remove("hidden");
 
- }
+$("installBtn")
+.classList
+.remove("hidden");
+
+}
 );
 
 
 $("installBtn").onclick =
 async()=>{
 
- if(!deferredPrompt)
- return;
+if(!deferredPrompt)
+return;
 
 
- deferredPrompt.prompt();
+deferredPrompt.prompt();
 
 
- await deferredPrompt.userChoice;
+await deferredPrompt.userChoice;
 
 
- deferredPrompt=null;
+deferredPrompt =
+null;
 
 
- $("installBtn")
- .classList
- .add("hidden");
+$("installBtn")
+.classList
+.add("hidden");
 
 };
 
 
 
 /* =====================================================
-   STOP CAMERA WHEN LEAVING
+   PAGE EXIT
 ===================================================== */
 
 window.addEventListener(
- "pagehide",
- ()=>{
-  stopStream();
- }
+"pagehide",
+()=>{
+
+stopStream();
+
+}
 );
 
 
@@ -3801,22 +4371,24 @@ window.addEventListener(
 
 openDB()
 .then(
- ()=>{
-  renderProjects();
- }
+()=>{
+
+renderProjects();
+
+}
 )
 .catch(
- error=>{
+error=>{
 
-  console.error(
-   error
-  );
+console.error(
+error
+);
 
-  alert(
-   "تعذر فتح قاعدة البيانات المحلية."
-  );
+alert(
+"تعذر فتح قاعدة البيانات المحلية."
+);
 
- }
+}
 );
 
 </script>
@@ -3824,13 +4396,12 @@ openDB()
 
 <!-- =====================================================
      EXCELJS
-     مطلوب لتكوين XLSX وإدخال الصور داخل Excel
 ===================================================== -->
 
 <script
- src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js">
+src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js">
 </script>
 
 
 </body>
-</html>
+      </html>
