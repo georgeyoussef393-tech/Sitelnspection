@@ -1,2106 +1,3836 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#1565c0">
+
+<meta name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta name="theme-color"
+      content="#1565c0">
+
 <title>Site Inspection</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Tahoma,sans-serif;background:#f4f7fb;color:#17202a}
-header{background:#1565c0;color:#fff;padding:16px;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px #0002}
-.wrap{max-width:820px;margin:auto;padding:14px}
-h1{margin:0;font-size:23px}
-h2{margin:0 0 12px}
-h3{margin:0 0 5px}
-.card{background:#fff;border-radius:16px;padding:15px;margin-bottom:14px;box-shadow:0 2px 10px #00000010}
-label{display:block;font-weight:800;margin:10px 0 6px}
-input,textarea,button{font:inherit}
-input,textarea{width:100%;border:1px solid #ccd5df;border-radius:11px;padding:12px;background:#fff}
-textarea{min-height:110px;resize:vertical}
-button{border:0;border-radius:12px;padding:13px 12px;font-weight:800;cursor:pointer}
-.primary{background:#1565c0;color:#fff}
-.outline{background:#fff;border:1px solid #1565c0;color:#1565c0}
-.danger{background:#fff0f0;color:#b00020;border:1px solid #ffc7c7}
-.success{background:#16834b;color:#fff}
-.muted{color:#667085;font-size:13px}
-.small{font-size:12px}
-.row{display:flex;gap:9px}
-.row>*{flex:1}
-.hidden{display:none!important}
-.badge{display:inline-block;background:#eaf2ff;color:#1565c0;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800}
-.project-item,.unit-item{display:flex;justify-content:space-between;gap:10px;align-items:center;border:1px solid #e1e7ef;border-radius:13px;padding:12px;margin-top:9px;background:#fff}
-.project-main,.unit-main{flex:1;min-width:0}
-.project-main button,.unit-main button{padding:0;border:0;background:none;color:#1565c0;text-align:right;width:100%}
-.unit-item.active{border:2px solid #1565c0;background:#f7fbff}
-.unit-actions{display:flex;gap:6px}
-.unit-actions button{padding:9px 10px}
-.session-head{position:sticky;top:64px;z-index:10;background:#fff;border-radius:14px;padding:12px;margin-bottom:12px;box-shadow:0 2px 10px #0002}
-#camera{width:100%;border-radius:12px;background:#111;display:none}
-.preview{width:100%;max-height:430px;object-fit:contain;border-radius:12px;background:#111;margin-top:10px}
-#canvas{display:none}
-.comment{border:1px solid #e1e7ef;border-radius:13px;padding:10px;margin-top:10px;background:#fafcff}
-.comment img{width:100%;max-height:360px;object-fit:contain;border-radius:10px;background:#111;margin-top:8px}
-.empty{text-align:center;padding:25px;color:#777}
-hr{border:0;border-top:1px solid #e6eaf0;margin:15px 0}
-.install{background:#0f9d58;color:#fff}
+
+*{
+ box-sizing:border-box
+}
+
+body{
+ margin:0;
+ font-family:
+ system-ui,
+ -apple-system,
+ "Segoe UI",
+ Tahoma,
+ Arial,
+ sans-serif;
+ background:#f4f7fb;
+ color:#17202a;
+}
+
+header{
+ background:#1565c0;
+ color:#fff;
+ padding:15px;
+ position:sticky;
+ top:0;
+ z-index:50;
+ box-shadow:0 2px 10px #0003;
+}
+
+.wrap{
+ max-width:900px;
+ margin:auto;
+ padding:14px;
+}
+
+h1{
+ margin:0;
+ font-size:23px;
+}
+
+h2{
+ margin:0 0 12px;
+}
+
+h3{
+ margin:0 0 5px;
+}
+
+.card{
+ background:#fff;
+ border-radius:17px;
+ padding:15px;
+ margin-bottom:14px;
+ box-shadow:0 2px 12px #00000010;
+}
+
+label{
+ display:block;
+ font-weight:800;
+ margin:10px 0 6px;
+}
+
+input,
+textarea,
+button{
+ font:inherit;
+}
+
+input,
+textarea{
+ width:100%;
+ border:1px solid #ccd5df;
+ border-radius:12px;
+ padding:12px;
+ background:#fff;
+}
+
+textarea{
+ min-height:110px;
+ resize:vertical;
+}
+
+button{
+ border:0;
+ border-radius:12px;
+ padding:13px 12px;
+ font-weight:800;
+ cursor:pointer;
+}
+
+.primary{
+ background:#1565c0;
+ color:#fff;
+}
+
+.outline{
+ background:#fff;
+ border:1px solid #1565c0;
+ color:#1565c0;
+}
+
+.success{
+ background:#16834b;
+ color:#fff;
+}
+
+.danger{
+ background:#fff0f0;
+ color:#b00020;
+ border:1px solid #ffc7c7;
+}
+
+.gray{
+ background:#eef2f6;
+ color:#263238;
+}
+
+.muted{
+ color:#667085;
+ font-size:13px;
+}
+
+.small{
+ font-size:12px;
+}
+
+.row{
+ display:flex;
+ gap:9px;
+}
+
+.row>*{
+ flex:1;
+}
+
+.hidden{
+ display:none!important;
+}
+
+.badge{
+ display:inline-block;
+ background:#eaf2ff;
+ color:#1565c0;
+ border-radius:999px;
+ padding:5px 9px;
+ font-size:12px;
+ font-weight:800;
+}
+
+.empty{
+ text-align:center;
+ padding:28px;
+ color:#777;
+}
+
+.project-item,
+.unit-item{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ border:1px solid #e1e7ef;
+ border-radius:14px;
+ padding:12px;
+ margin-top:9px;
+ background:#fff;
+}
+
+.project-main,
+.unit-main{
+ flex:1;
+ min-width:0;
+}
+
+.project-main button,
+.unit-main button{
+ width:100%;
+ padding:0;
+ background:none;
+ border:0;
+ color:#1565c0;
+ text-align:right;
+}
+
+.unit-actions{
+ display:flex;
+ gap:6px;
+ flex-wrap:wrap;
+}
+
+.unit-actions button{
+ padding:9px 10px;
+}
+
+.session-head{
+ position:sticky;
+ top:62px;
+ z-index:40;
+ background:#fff;
+ border-radius:15px;
+ padding:12px;
+ margin-bottom:12px;
+ box-shadow:0 2px 10px #0002;
+}
+
+#camera{
+ width:100%;
+ min-height:300px;
+ max-height:650px;
+ object-fit:cover;
+ border-radius:13px;
+ background:#000;
+ display:none;
+}
+
+.preview{
+ width:100%;
+ max-height:650px;
+ object-fit:contain;
+ border-radius:13px;
+ background:#111;
+ margin-top:10px;
+}
+
+#canvas{
+ display:none;
+}
+
+.camera-info{
+ background:#eef6ff;
+ color:#1557a6;
+ border-radius:10px;
+ padding:9px;
+ margin-top:9px;
+ font-size:12px;
+}
+
+.comment{
+ border:1px solid #e1e7ef;
+ border-radius:14px;
+ padding:11px;
+ margin-top:10px;
+ background:#fafcff;
+}
+
+.comment img{
+ width:100%;
+ max-height:500px;
+ object-fit:contain;
+ border-radius:10px;
+ background:#111;
+ margin-top:9px;
+}
+
+.comment-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:8px;
+}
+
+.install{
+ background:#0f9d58;
+ color:#fff;
+}
+
+.export-box{
+ background:#f4f9ff;
+ border:1px solid #d8e8fa;
+ border-radius:13px;
+ padding:12px;
+ margin-top:10px;
+}
+
+@media(max-width:650px){
+
+ .row{
+  flex-direction:column;
+ }
+
+ .session-head{
+  top:58px;
+ }
+
+ .project-item,
+ .unit-item{
+  align-items:flex-start;
+ }
+
+}
+
 </style>
+
 </head>
+
+
 <body>
 
+
 <header>
-  <div class="wrap" style="padding:0">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
-      <h1>📋 Site Inspection</h1>
-      <button id="installBtn" class="install hidden" style="padding:9px 11px">📲 تثبيت</button>
-    </div>
-  </div>
+
+<div class="wrap" style="padding:0">
+
+<div style="
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px
+">
+
+<h1>
+📋 Site Inspection
+</h1>
+
+<button
+ id="installBtn"
+ class="install hidden"
+ style="padding:9px 11px"
+>
+📲 تثبيت
+</button>
+
+</div>
+
+</div>
+
 </header>
+
 
 <main class="wrap">
 
-<!-- PROJECTS -->
+
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
+
 <section id="projectsScreen">
 
-  <section class="card">
-    <h2>المشاريع</h2>
 
-    <div class="muted">
-      أنشئ المشروع مرة واحدة، وبعدها كل الوحدات الخاصة به تكون تحته.
-    </div>
+<section class="card">
 
-    <label>اسم المشروع</label>
-    <input id="projectName" placeholder="مثال: Villa 12 Project">
+<h2>
+🏗️ المشاريع
+</h2>
 
-    <div class="row" style="margin-top:10px">
-      <button class="primary" id="addProjectBtn">
-        ➕ إضافة مشروع
-      </button>
-
-      <button class="outline" id="exportAllBtn">
-        📊 Export Excel
-      </button>
-    </div>
-  </section>
-
-  <section class="card">
-    <div id="projectsList"></div>
-  </section>
-
-</section>
+<div class="muted">
+أنشئ المشروع مرة واحدة، وبعدها كل الوحدات الخاصة بالمشروع تكون تحته.
+</div>
 
 
-<!-- PROJECT DETAIL -->
-<section id="projectScreen" class="hidden">
+<label>
+اسم المشروع
+</label>
 
-  <div class="session-head">
-
-    <div class="muted">المشروع</div>
-
-    <h2 id="projectTitle"></h2>
-
-    <div class="row">
-
-      <button class="outline" id="backProjectsBtn">
-        ⬅️ المشاريع
-      </button>
-
-      <button class="success" id="newUnitBtn">
-        ➕ وحدة جديدة
-      </button>
-
-    </div>
-
-  </div>
+<input
+ id="projectName"
+ placeholder="مثال: Villa 12 Project"
+>
 
 
-  <section class="card">
+<div class="row" style="margin-top:10px">
 
-    <h2>
-      الوحدات
-      <span id="unitCount" class="badge">0</span>
-    </h2>
+<button
+ class="primary"
+ id="addProjectBtn"
+>
+➕ إضافة مشروع
+</button>
 
-    <div class="muted">
-      افتح الوحدة مرة واحدة، وسجّل بداخلها كل التعليقات والصور.
-      عند الانتهاء اضغط «إنهاء الوحدة» ثم افتح وحدة أخرى.
-    </div>
 
-    <div id="unitsList"></div>
+<button
+ class="outline"
+ id="exportAllBtn"
+>
+📊 Export المشروع
+</button>
 
-  </section>
+</div>
 
 </section>
 
 
-<!-- UNIT SESSION -->
-<section id="unitScreen" class="hidden">
+<section class="card">
 
-  <div class="session-head">
-
-    <div class="muted" id="sessionProject"></div>
-
-    <h2>
-      الوحدة:
-      <span id="sessionUnit"></span>
-    </h2>
-
-    <div class="row">
-
-      <button class="outline" id="backUnitsBtn">
-        ⬅️ الوحدات
-      </button>
-
-      <button class="danger" id="finishUnitBtn">
-        ✅ إنهاء الوحدة
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <section class="card">
-
-    <h2>إضافة Inspection</h2>
-
-    <div class="muted">
-      رقم الوحدة لا يُكتب كل مرة.
-      هو مربوط تلقائيًا بالوحدة المفتوحة.
-    </div>
-
-
-    <label>المهندس</label>
-
-    <input
-      id="engineer"
-      placeholder="Eng. George Youssef"
-    >
-
-
-    <label>الكومنت / الملاحظة</label>
-
-    <textarea
-      id="note"
-      placeholder="اكتب الملاحظة هنا..."
-    ></textarea>
-
-
-    <div class="row" style="margin-top:10px">
-
-      <button class="primary" id="photoBtn">
-        📷 تصوير
-      </button>
-
-      <button class="outline" id="saveNoteBtn">
-        📝 حفظ كومنت
-      </button>
-
-    </div>
-
-
-    <video
-      id="camera"
-      autoplay
-      playsinline
-    ></video>
-
-    <canvas id="canvas"></canvas>
-
-    <img
-      id="preview"
-      class="preview hidden"
-      alt="preview"
-    >
-
-
-    <div
-      id="cameraControls"
-      class="row hidden"
-      style="margin-top:10px"
-    >
-
-      <button class="primary" id="captureBtn">
-        📸 التقاط
-      </button>
-
-      <button class="outline" id="stopCameraBtn">
-        إغلاق الكاميرا
-      </button>
-
-    </div>
-
-
-    <div
-      id="photoControls"
-      class="row hidden"
-      style="margin-top:10px"
-    >
-
-      <button class="success" id="savePhotoBtn">
-        💾 حفظ الصورة + الكومنت
-      </button>
-
-      <button class="outline" id="retakeBtn">
-        🔄 إعادة التصوير
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <section class="card">
-
-    <h2>
-      سجل الوحدة
-      <span id="sessionCount" class="badge">0</span>
-    </h2>
-
-    <div id="sessionRecords"></div>
-
-  </section>
+<div id="projectsList"></div>
 
 </section>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     PROJECT SCREEN
+===================================================== -->
+
+<section
+ id="projectScreen"
+ class="hidden"
+>
+
+
+<div class="session-head">
+
+
+<div class="muted">
+المشروع
+</div>
+
+
+<h2 id="projectTitle">
+</h2>
+
+
+<div class="row">
+
+<button
+ class="outline"
+ id="backProjectsBtn"
+>
+⬅️ المشاريع
+</button>
+
+
+<button
+ class="success"
+ id="newUnitBtn"
+>
+➕ وحدة جديدة
+</button>
+
+</div>
+
+
+</div>
+
+
+
+<section class="card">
+
+
+<h2>
+
+الوحدات
+
+<span
+ id="unitCount"
+ class="badge"
+>
+0
+</span>
+
+</h2>
+
+
+<div class="muted">
+
+افتح الوحدة مرة واحدة.
+
+بعدها أضف بداخلها كل الصور والكومنتات التي تريدها.
+
+وعند الانتهاء اضغط «إنهاء الوحدة».
+
+</div>
+
+
+<div id="unitsList">
+</div>
+
+
+</section>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     UNIT SCREEN
+===================================================== -->
+
+<section
+ id="unitScreen"
+ class="hidden"
+>
+
+
+<div class="session-head">
+
+
+<div
+ id="sessionProject"
+ class="muted"
+>
+</div>
+
+
+<h2>
+
+الوحدة:
+
+<span id="sessionUnit">
+</span>
+
+</h2>
+
+
+<div class="row">
+
+
+<button
+ class="outline"
+ id="backUnitsBtn"
+>
+⬅️ الوحدات
+</button>
+
+
+<button
+ class="success"
+ id="exportUnitBtn"
+>
+📊 تصدير الوحدة Excel
+</button>
+
+
+<button
+ class="danger"
+ id="finishUnitBtn"
+>
+✅ إنهاء الوحدة
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- INSPECTION ENTRY -->
+
+<section class="card">
+
+
+<h2>
+🔍 إضافة Inspection
+</h2>
+
+
+<div class="muted">
+
+رقم الوحدة مربوط تلقائيًا بالوحدة المفتوحة.
+لن تحتاج لكتابته مع كل صورة.
+
+</div>
+
+
+<label>
+المهندس
+</label>
+
+<input
+ id="engineer"
+ placeholder="Eng. George Youssef"
+>
+
+
+<label>
+الكومنت / الملاحظة
+</label>
+
+<textarea
+ id="note"
+ placeholder="اكتب الملاحظة هنا..."
+></textarea>
+
+
+<div class="row" style="margin-top:10px">
+
+
+<button
+ class="primary"
+ id="photoBtn"
+>
+📷 تصوير
+</button>
+
+
+<button
+ class="outline"
+ id="saveNoteBtn"
+>
+📝 حفظ كومنت بدون صورة
+</button>
+
+
+</div>
+
+
+<div
+ id="cameraInfo"
+ class="camera-info hidden"
+>
+📷 الكاميرا تعمل بأعلى دقة متاحة من الهاتف.
+</div>
+
+
+<video
+ id="camera"
+ autoplay
+ playsinline
+></video>
+
+
+<canvas id="canvas">
+</canvas>
+
+
+<img
+ id="preview"
+ class="preview hidden"
+ alt="Preview"
+>
+
+
+<div
+ id="cameraControls"
+ class="row hidden"
+ style="margin-top:10px"
+>
+
+
+<button
+ class="primary"
+ id="captureBtn"
+>
+📸 التقاط الصورة
+</button>
+
+
+<button
+ class="outline"
+ id="stopCameraBtn"
+>
+إغلاق الكاميرا
+</button>
+
+
+</div>
+
+
+<div
+ id="photoControls"
+ class="row hidden"
+ style="margin-top:10px"
+>
+
+
+<button
+ class="success"
+ id="savePhotoBtn"
+>
+💾 حفظ الصورة + الكومنت
+</button>
+
+
+<button
+ class="outline"
+ id="retakeBtn"
+>
+🔄 إعادة التصوير
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- UNIT RECORDS -->
+
+<section class="card">
+
+
+<h2>
+
+سجل الوحدة
+
+<span
+ id="sessionCount"
+ class="badge"
+>
+0
+</span>
+
+</h2>
+
+
+<div id="sessionRecords">
+</div>
+
+
+</section>
+
+
+</section>
+
 
 </main>
 
 
+
 <script>
 
-const DB_NAME='siteInspectionDB_v3';
+/* =====================================================
+   DATABASE
+===================================================== */
 
-const DB_VERSION=1;
+const DB_NAME =
+"siteInspectionDB_FINAL";
 
-const PROJECTS='projects';
+const DB_VERSION = 1;
 
-const UNITS='units';
+const PROJECTS =
+"projects";
 
-const RECORDS='records';
+const UNITS =
+"units";
 
-
-let db=null;
-
-let currentProjectId=null;
-
-let currentUnitId=null;
-
-let stream=null;
-
-let rawImage=null;
-
-let deferredPrompt=null;
+const RECORDS =
+"records";
 
 
-const $=id=>document.getElementById(id);
+let db = null;
+
+let currentProjectId = null;
+
+let currentUnitId = null;
+
+let stream = null;
+
+let rawImage = null;
+
+let deferredPrompt = null;
+
+
+
+const $ =
+id => document.getElementById(id);
+
 
 
 function openDB(){
 
-  return new Promise((resolve,reject)=>{
+ return new Promise(
+  (resolve,reject)=>{
 
-    const req=indexedDB.open(
-      DB_NAME,
-      DB_VERSION
+   const request =
+   indexedDB.open(
+    DB_NAME,
+    DB_VERSION
+   );
+
+
+   request.onupgradeneeded =
+   ()=>{
+
+    const database =
+    request.result;
+
+
+    if(
+     !database.objectStoreNames
+     .contains(PROJECTS)
+    ){
+
+     const store =
+     database.createObjectStore(
+      PROJECTS,
+      {
+       keyPath:"id",
+       autoIncrement:true
+      }
+     );
+
+
+     store.createIndex(
+      "name",
+      "name"
+     );
+
+    }
+
+
+    if(
+     !database.objectStoreNames
+     .contains(UNITS)
+    ){
+
+     const store =
+     database.createObjectStore(
+      UNITS,
+      {
+       keyPath:"id",
+       autoIncrement:true
+      }
+     );
+
+
+     store.createIndex(
+      "projectId",
+      "projectId"
+     );
+
+    }
+
+
+    if(
+     !database.objectStoreNames
+     .contains(RECORDS)
+    ){
+
+     const store =
+     database.createObjectStore(
+      RECORDS,
+      {
+       keyPath:"id",
+       autoIncrement:true
+      }
+     );
+
+
+     store.createIndex(
+      "unitId",
+      "unitId"
+     );
+
+
+     store.createIndex(
+      "projectId",
+      "projectId"
+     );
+
+    }
+
+   };
+
+
+   request.onsuccess =
+   ()=>{
+
+    db =
+    request.result;
+
+    resolve();
+
+   };
+
+
+   request.onerror =
+   ()=>{
+
+    reject(
+     request.error
     );
 
-    req.onupgradeneeded=()=>{
+   };
 
-      const d=req.result;
-
-
-      if(!d.objectStoreNames.contains(PROJECTS)){
-
-        const s=d.createObjectStore(
-          PROJECTS,
-          {
-            keyPath:'id',
-            autoIncrement:true
-          }
-        );
-
-        s.createIndex(
-          'name',
-          'name'
-        );
-
-      }
-
-
-      if(!d.objectStoreNames.contains(UNITS)){
-
-        const s=d.createObjectStore(
-          UNITS,
-          {
-            keyPath:'id',
-            autoIncrement:true
-          }
-        );
-
-        s.createIndex(
-          'projectId',
-          'projectId'
-        );
-
-      }
-
-
-      if(!d.objectStoreNames.contains(RECORDS)){
-
-        const s=d.createObjectStore(
-          RECORDS,
-          {
-            keyPath:'id',
-            autoIncrement:true
-          }
-        );
-
-        s.createIndex(
-          'unitId',
-          'unitId'
-        );
-
-        s.createIndex(
-          'projectId',
-          'projectId'
-        );
-
-      }
-
-    };
-
-
-    req.onsuccess=()=>{
-      db=req.result;
-      resolve();
-    };
-
-
-    req.onerror=()=>{
-      reject(req.error);
-    };
-
-  });
+  }
+ );
 
 }
+
 
 
 function store(
-  name,
-  mode='readonly'
+ name,
+ mode="readonly"
 ){
 
-  return db
-    .transaction(name,mode)
-    .objectStore(name);
+ return db
+ .transaction(
+  name,
+  mode
+ )
+ .objectStore(name);
 
 }
 
 
-function put(name,obj){
 
-  return new Promise((res,rej)=>{
+function add(
+ name,
+ object
+){
 
-    const r=store(
-      name,
-      'readwrite'
-    ).put(obj);
+ return new Promise(
+  (resolve,reject)=>{
 
-    r.onsuccess=()=>{
-      res(r.result);
-    };
-
-    r.onerror=()=>{
-      rej(r.error);
-    };
-
-  });
-
-}
+   const request =
+   store(
+    name,
+    "readwrite"
+   ).add(object);
 
 
-function add(name,obj){
+   request.onsuccess =
+   ()=>{
+    resolve(
+     request.result
+    );
+   };
 
-  return new Promise((res,rej)=>{
 
-    const r=store(
-      name,
-      'readwrite'
-    ).add(obj);
+   request.onerror =
+   ()=>{
+    reject(
+     request.error
+    );
+   };
 
-    r.onsuccess=()=>{
-      res(r.result);
-    };
-
-    r.onerror=()=>{
-      rej(r.error);
-    };
-
-  });
+  }
+ );
 
 }
 
 
-function get(name,id){
 
-  return new Promise((res,rej)=>{
+function get(
+ name,
+ id
+){
 
-    const r=store(name).get(id);
+ return new Promise(
+  (resolve,reject)=>{
 
-    r.onsuccess=()=>{
-      res(r.result);
-    };
-
-    r.onerror=()=>{
-      rej(r.error);
-    };
-
-  });
-
-}
+   const request =
+   store(name)
+   .get(id);
 
 
-function getAll(name){
+   request.onsuccess =
+   ()=>{
+    resolve(
+     request.result
+    );
+   };
 
-  return new Promise((res,rej)=>{
 
-    const r=store(name).getAll();
+   request.onerror =
+   ()=>{
+    reject(
+     request.error
+    );
+   };
 
-    r.onsuccess=()=>{
-      res(r.result);
-    };
-
-    r.onerror=()=>{
-      rej(r.error);
-    };
-
-  });
+  }
+ );
 
 }
 
 
-function deleteItem(name,id){
 
-  return new Promise((res,rej)=>{
+function getAll(
+ name
+){
 
-    const r=store(
-      name,
-      'readwrite'
-    ).delete(id);
+ return new Promise(
+  (resolve,reject)=>{
 
-    r.onsuccess=()=>{
-      res();
-    };
+   const request =
+   store(name)
+   .getAll();
 
-    r.onerror=()=>{
-      rej(r.error);
-    };
 
-  });
+   request.onsuccess =
+   ()=>{
+    resolve(
+     request.result
+    );
+   };
+
+
+   request.onerror =
+   ()=>{
+    reject(
+     request.error
+    );
+   };
+
+  }
+ );
 
 }
+
+
+
+function deleteItem(
+ name,
+ id
+){
+
+ return new Promise(
+  (resolve,reject)=>{
+
+   const request =
+   store(
+    name,
+    "readwrite"
+   ).delete(id);
+
+
+   request.onsuccess =
+   ()=>{
+    resolve();
+   };
+
+
+   request.onerror =
+   ()=>{
+    reject(
+     request.error
+    );
+   };
+
+  }
+ );
+
+}
+
 
 
 function getByIndex(
-  name,
-  index,
-  value
+ name,
+ index,
+ value
 ){
 
-  return new Promise((res,rej)=>{
+ return new Promise(
+  (resolve,reject)=>{
 
-    const r=store(name)
-      .index(index)
-      .getAll(value);
-
-    r.onsuccess=()=>{
-      res(r.result);
-    };
-
-    r.onerror=()=>{
-      rej(r.error);
-    };
-
-  });
-
-}
+   const request =
+   store(name)
+   .index(index)
+   .getAll(value);
 
 
-function escapeHtml(s){
-
-  return String(s??'')
-    .replace(
-      /[&<>"']/g,
-      m=>({
-        '&':'&amp;',
-        '<':'&lt;',
-        '>':'&gt;',
-        '"':'&quot;',
-        "'":'&#39;'
-      }[m])
+   request.onsuccess =
+   ()=>{
+    resolve(
+     request.result
     );
+   };
+
+
+   request.onerror =
+   ()=>{
+    reject(
+     request.error
+    );
+   };
+
+  }
+ );
 
 }
 
+
+
+function escapeHtml(
+ value
+){
+
+ return String(
+  value ?? ""
+ )
+ .replace(
+  /[&<>"']/g,
+  character=>({
+
+   "&":"&amp;",
+   "<":"&lt;",
+   ">":"&gt;",
+   '"':"&quot;",
+   "'":"&#39;"
+
+  }[character])
+ );
+
+}
+
+
+
+/* =====================================================
+   PROJECTS
+===================================================== */
 
 async function renderProjects(){
 
-  const projects=await getAll(PROJECTS);
+ const projects =
+ await getAll(PROJECTS);
 
-  projects.sort(
-    (a,b)=>b.id-a.id
+
+ projects.sort(
+  (a,b)=>b.id-a.id
+ );
+
+
+ const box =
+ $("projectsList");
+
+
+ box.innerHTML="";
+
+
+ if(!projects.length){
+
+  box.innerHTML = `
+
+   <div class="empty">
+
+    لا توجد مشاريع حتى الآن.
+
+    <br>
+
+    أضف أول مشروع من الأعلى.
+
+   </div>
+
+  `;
+
+  return;
+
+ }
+
+
+ for(
+  const project
+  of projects
+ ){
+
+  const units =
+  await getByIndex(
+   UNITS,
+   "projectId",
+   project.id
   );
 
-  const box=$('projectsList');
 
-  box.innerHTML='';
+  const element =
+  document.createElement(
+   "div"
+  );
 
 
-  if(!projects.length){
+  element.className =
+  "project-item";
 
-    box.innerHTML=
-      '<div class="empty">لا توجد مشاريع بعد. أضف أول مشروع من الأعلى.</div>';
 
-    return;
+  element.innerHTML = `
+
+   <div class="project-main">
+
+    <button
+     data-open-project="${project.id}"
+    >
+
+     <strong
+      style="font-size:17px"
+     >
+      🏗️
+      ${escapeHtml(
+       project.name
+      )}
+     </strong>
+
+     <br>
+
+     <span class="muted">
+
+      ${units.length}
+
+      وحدة
+
+     </span>
+
+    </button>
+
+   </div>
+
+
+   <button
+    class="danger"
+    data-delete-project="${project.id}"
+   >
+    🗑️
+   </button>
+
+  `;
+
+
+  box.appendChild(
+   element
+  );
+
+ }
+
+
+ box
+ .querySelectorAll(
+  "[data-open-project]"
+ )
+ .forEach(
+  button=>{
+
+   button.onclick =
+   ()=>openProject(
+    Number(
+     button.dataset.openProject
+    )
+   );
 
   }
+ );
 
 
-  for(const p of projects){
+ box
+ .querySelectorAll(
+  "[data-delete-project]"
+ )
+ .forEach(
+  button=>{
 
-    const units=
-      await getByIndex(
-        UNITS,
-        'projectId',
-        p.id
-      );
-
-
-    const el=
-      document.createElement('div');
-
-    el.className='project-item';
-
-
-    el.innerHTML=`
-
-      <div class="project-main">
-
-        <button data-open="${p.id}">
-
-          <strong style="font-size:17px">
-            🏗️ ${escapeHtml(p.name)}
-          </strong>
-
-          <br>
-
-          <span class="muted">
-            ${units.length} وحدة
-          </span>
-
-        </button>
-
-      </div>
-
-      <button
-        class="danger"
-        data-delete="${p.id}"
-        style="flex:0 0 auto"
-      >
-        🗑️
-      </button>
-
-    `;
-
-
-    box.appendChild(el);
+   button.onclick =
+   ()=>deleteProject(
+    Number(
+     button.dataset.deleteProject
+    )
+   );
 
   }
-
-
-  box
-    .querySelectorAll('[data-open]')
-    .forEach(
-      b=>b.onclick=
-        ()=>openProject(
-          Number(b.dataset.open)
-        )
-    );
-
-
-  box
-    .querySelectorAll('[data-delete]')
-    .forEach(
-      b=>b.onclick=
-        ()=>deleteProject(
-          Number(b.dataset.delete)
-        )
-    );
+ );
 
 }
+
 
 
 async function addProject(){
 
-  const name=
-    $('projectName')
-      .value
-      .trim();
+ const name =
+ $("projectName")
+ .value
+ .trim();
 
 
-  if(!name){
+ if(!name){
 
-    alert(
-      'اكتب اسم المشروع أولاً.'
-    );
+  alert(
+   "اكتب اسم المشروع أولًا."
+  );
 
-    return;
+  return;
 
+ }
+
+
+ const projects =
+ await getAll(PROJECTS);
+
+
+ const exists =
+ projects.some(
+  project =>
+   project.name
+   .toLowerCase()
+   ===
+   name.toLowerCase()
+ );
+
+
+ if(exists){
+
+  alert(
+   "المشروع موجود بالفعل."
+  );
+
+  return;
+
+ }
+
+
+ const id =
+ await add(
+  PROJECTS,
+  {
+   name:name,
+   createdAt:
+    new Date().toISOString()
   }
+ );
 
 
-  const exists=
-    (await getAll(PROJECTS))
-      .some(
-        p=>
-          p.name
-            .trim()
-            .toLowerCase()
-          ===
-          name
-            .toLowerCase()
-      );
+ $("projectName")
+ .value="";
 
 
-  if(exists){
-
-    alert(
-      'المشروع موجود بالفعل.'
-    );
-
-    return;
-
-  }
-
-
-  const id=
-    await add(
-      PROJECTS,
-      {
-        name,
-        createdAt:
-          new Date().toISOString()
-      }
-    );
-
-
-  $('projectName').value='';
-
-
-  await openProject(id);
+ await openProject(id);
 
 }
 
 
-async function deleteProject(id){
 
-  const p=
-    await get(
-      PROJECTS,
-      id
-    );
+async function deleteProject(
+ id
+){
 
-
-  if(!p)return;
-
-
-  if(
-    !confirm(
-      `حذف المشروع "${p.name}" وكل وحداته وصوره؟`
-    )
-  )return;
+ const project =
+ await get(
+  PROJECTS,
+  id
+ );
 
 
-  const units=
-    await getByIndex(
-      UNITS,
-      'projectId',
-      id
-    );
+ if(!project)
+ return;
 
 
-  for(const u of units){
-
-    const records=
-      await getByIndex(
-        RECORDS,
-        'unitId',
-        u.id
-      );
+ const answer =
+ confirm(
+  `حذف المشروع "${project.name}" وكل الوحدات والصور؟`
+ );
 
 
-    for(const r of records){
-
-      await deleteItem(
-        RECORDS,
-        r.id
-      );
-
-    }
+ if(!answer)
+ return;
 
 
-    await deleteItem(
-      UNITS,
-      u.id
-    );
+ const units =
+ await getByIndex(
+  UNITS,
+  "projectId",
+  id
+ );
+
+
+ for(
+  const unit
+  of units
+ ){
+
+  const records =
+  await getByIndex(
+   RECORDS,
+   "unitId",
+   unit.id
+  );
+
+
+  for(
+   const record
+   of records
+  ){
+
+   await deleteItem(
+    RECORDS,
+    record.id
+   );
 
   }
 
 
   await deleteItem(
-    PROJECTS,
-    id
+   UNITS,
+   unit.id
   );
 
+ }
 
-  await renderProjects();
+
+ await deleteItem(
+  PROJECTS,
+  id
+ );
+
+
+ await renderProjects();
+
+}
+
+
+
+/* =====================================================
+   OPEN PROJECT
+===================================================== */
+
+async function openProject(
+ id
+){
+
+ currentProjectId =
+ id;
+
+
+ const project =
+ await get(
+  PROJECTS,
+  id
+ );
+
+
+ if(!project)
+ return;
+
+
+ $("projectsScreen")
+ .classList
+ .add("hidden");
+
+
+ $("unitScreen")
+ .classList
+ .add("hidden");
+
+
+ $("projectScreen")
+ .classList
+ .remove("hidden");
+
+
+ $("projectTitle")
+ .textContent =
+ project.name;
+
+
+ await renderUnits();
+
+
+ window.scrollTo(
+  0,
+  0
+ );
 
 }
 
 
-async function openProject(id){
 
-  currentProjectId=id;
-
-
-  const p=
-    await get(
-      PROJECTS,
-      id
-    );
-
-
-  if(!p)return;
-
-
-  $('projectsScreen')
-    .classList
-    .add('hidden');
-
-
-  $('unitScreen')
-    .classList
-    .add('hidden');
-
-
-  $('projectScreen')
-    .classList
-    .remove('hidden');
-
-
-  $('projectTitle')
-    .textContent=p.name;
-
-
-  await renderUnits();
-
-
-  window.scrollTo(0,0);
-
-}
-
+/* =====================================================
+   UNITS
+===================================================== */
 
 async function renderUnits(){
 
-  const units=
-    await getByIndex(
-      UNITS,
-      'projectId',
-      currentProjectId
-    );
+ const units =
+ await getByIndex(
+  UNITS,
+  "projectId",
+  currentProjectId
+ );
 
 
-  units.sort(
-    (a,b)=>b.id-a.id
+ units.sort(
+  (a,b)=>b.id-a.id
+ );
+
+
+ $("unitCount")
+ .textContent =
+ units.length;
+
+
+ const box =
+ $("unitsList");
+
+
+ box.innerHTML="";
+
+
+ if(!units.length){
+
+  box.innerHTML = `
+
+   <div class="empty">
+
+    لا توجد وحدات.
+
+    <br>
+
+    اضغط «وحدة جديدة».
+
+   </div>
+
+  `;
+
+  return;
+
+ }
+
+
+ for(
+  const unit
+  of units
+ ){
+
+  const records =
+  await getByIndex(
+   RECORDS,
+   "unitId",
+   unit.id
   );
 
 
-  $('unitCount')
-    .textContent=units.length;
+  const photoCount =
+  records.filter(
+   record=>record.photo
+  ).length;
 
 
-  const box=$('unitsList');
+  const element =
+  document.createElement(
+   "div"
+  );
 
-  box.innerHTML='';
+
+  element.className =
+  "unit-item";
 
 
-  if(!units.length){
+  element.innerHTML = `
 
-    box.innerHTML=
-      '<div class="empty">لا توجد وحدات. اضغط «وحدة جديدة» وابدأ.</div>';
+   <div class="unit-main">
 
-    return;
+    <button
+     data-open-unit="${unit.id}"
+    >
+
+     <strong
+      style="font-size:17px"
+     >
+      📍
+      ${escapeHtml(
+       unit.number
+      )}
+     </strong>
+
+     <br>
+
+     <span class="muted">
+
+      ${records.length}
+      كومنت
+
+      •
+
+      ${photoCount}
+      صورة
+
+     </span>
+
+    </button>
+
+   </div>
+
+
+   <div class="unit-actions">
+
+    <button
+     class="outline"
+     data-open-unit="${unit.id}"
+    >
+     فتح
+    </button>
+
+
+    <button
+     class="danger"
+     data-delete-unit="${unit.id}"
+    >
+     🗑️
+    </button>
+
+   </div>
+
+  `;
+
+
+  box.appendChild(
+   element
+  );
+
+ }
+
+
+ box
+ .querySelectorAll(
+  "[data-open-unit]"
+ )
+ .forEach(
+  button=>{
+
+   button.onclick =
+   ()=>openUnit(
+    Number(
+     button.dataset.openUnit
+    )
+   );
 
   }
+ );
 
 
-  for(const u of units){
+ box
+ .querySelectorAll(
+  "[data-delete-unit]"
+ )
+ .forEach(
+  button=>{
 
-    const records=
-      await getByIndex(
-        RECORDS,
-        'unitId',
-        u.id
-      );
-
-
-    const photos=
-      records.filter(
-        r=>r.photo
-      ).length;
-
-
-    const el=
-      document.createElement('div');
-
-    el.className='unit-item';
-
-
-    el.innerHTML=`
-
-      <div class="unit-main">
-
-        <button data-open-unit="${u.id}">
-
-          <strong style="font-size:17px">
-            📍 ${escapeHtml(u.number)}
-          </strong>
-
-          <br>
-
-          <span class="muted">
-            ${records.length} كومنت • ${photos} صورة
-          </span>
-
-        </button>
-
-      </div>
-
-
-      <div class="unit-actions">
-
-        <button
-          class="outline"
-          data-open-unit="${u.id}"
-        >
-          فتح
-        </button>
-
-        <button
-          class="danger"
-          data-delete-unit="${u.id}"
-        >
-          🗑️
-        </button>
-
-      </div>
-
-    `;
-
-
-    box.appendChild(el);
+   button.onclick =
+   ()=>deleteUnit(
+    Number(
+     button.dataset.deleteUnit
+    )
+   );
 
   }
-
-
-  box
-    .querySelectorAll('[data-open-unit]')
-    .forEach(
-      b=>b.onclick=
-        ()=>openUnit(
-          Number(
-            b.dataset.openUnit
-          )
-        )
-    );
-
-
-  box
-    .querySelectorAll('[data-delete-unit]')
-    .forEach(
-      b=>b.onclick=
-        ()=>deleteUnit(
-          Number(
-            b.dataset.deleteUnit
-          )
-        )
-    );
+ );
 
 }
+
 
 
 async function createUnit(){
 
-  const number=
-    prompt(
-      'رقم / اسم الوحدة:',
-      'B-204'
-    );
+ const number =
+ prompt(
+  "رقم / اسم الوحدة:",
+  "B-204"
+ );
 
 
-  if(number===null)return;
+ if(number===null)
+ return;
 
 
-  const n=number.trim();
+ const unitNumber =
+ number.trim();
 
 
-  if(!n){
+ if(!unitNumber){
 
-    alert(
-      'اكتب رقم الوحدة.'
-    );
-
-    return;
-
-  }
-
-
-  const units=
-    await getByIndex(
-      UNITS,
-      'projectId',
-      currentProjectId
-    );
-
-
-  if(
-    units.some(
-      u=>
-        u.number
-          .toLowerCase()
-        ===
-        n.toLowerCase()
-    )
-  ){
-
-    alert(
-      'رقم الوحدة موجود بالفعل داخل هذا المشروع.'
-    );
-
-    return;
-
-  }
-
-
-  const id=
-    await add(
-      UNITS,
-      {
-        projectId:
-          currentProjectId,
-
-        number:n,
-
-        createdAt:
-          new Date().toISOString()
-      }
-    );
-
-
-  await openUnit(id);
-
-}
-
-
-async function deleteUnit(id){
-
-  const u=
-    await get(
-      UNITS,
-      id
-    );
-
-
-  if(!u)return;
-
-
-  if(
-    !confirm(
-      `حذف الوحدة ${u.number} وكل التعليقات والصور الخاصة بها؟`
-    )
-  )return;
-
-
-  const records=
-    await getByIndex(
-      RECORDS,
-      'unitId',
-      id
-    );
-
-
-  for(const r of records){
-
-    await deleteItem(
-      RECORDS,
-      r.id
-    );
-
-  }
-
-
-  await deleteItem(
-    UNITS,
-    id
+  alert(
+   "اكتب رقم الوحدة."
   );
 
+  return;
 
-  await renderUnits();
+ }
+
+
+ const units =
+ await getByIndex(
+  UNITS,
+  "projectId",
+  currentProjectId
+ );
+
+
+ const exists =
+ units.some(
+  unit =>
+   unit.number
+   .toLowerCase()
+   ===
+   unitNumber.toLowerCase()
+ );
+
+
+ if(exists){
+
+  alert(
+   "هذه الوحدة موجودة بالفعل."
+  );
+
+  return;
+
+ }
+
+
+ const id =
+ await add(
+  UNITS,
+  {
+
+   projectId:
+    currentProjectId,
+
+   number:
+    unitNumber,
+
+   createdAt:
+    new Date().toISOString()
+
+  }
+ );
+
+
+ await openUnit(id);
+
+}
+
+
+
+async function deleteUnit(
+ id
+){
+
+ const unit =
+ await get(
+  UNITS,
+  id
+ );
+
+
+ if(!unit)
+ return;
+
+
+ const answer =
+ confirm(
+  `حذف الوحدة ${unit.number} وكل الصور والكومنتات؟`
+ );
+
+
+ if(!answer)
+ return;
+
+
+ const records =
+ await getByIndex(
+  RECORDS,
+  "unitId",
+  id
+ );
+
+
+ for(
+  const record
+  of records
+ ){
+
+  await deleteItem(
+   RECORDS,
+   record.id
+  );
+
+ }
+
+
+ await deleteItem(
+  UNITS,
+  id
+ );
+
+
+ await renderUnits();
 
 }
 
 
-async function openUnit(id){
 
-  currentUnitId=id;
+/* =====================================================
+   OPEN UNIT
+===================================================== */
 
+async function openUnit(
+ id
+){
 
-  const u=
-    await get(
-      UNITS,
-      id
-    );
-
-
-  const p=
-    await get(
-      PROJECTS,
-      u.projectId
-    );
+ currentUnitId =
+ id;
 
 
-  $('projectScreen')
-    .classList
-    .add('hidden');
+ const unit =
+ await get(
+  UNITS,
+  id
+ );
 
 
-  $('projectsScreen')
-    .classList
-    .add('hidden');
+ if(!unit)
+ return;
 
 
-  $('unitScreen')
-    .classList
-    .remove('hidden');
+ const project =
+ await get(
+  PROJECTS,
+  unit.projectId
+ );
 
 
-  $('sessionProject')
-    .textContent=p.name;
+ $("projectsScreen")
+ .classList
+ .add("hidden");
 
 
-  $('sessionUnit')
-    .textContent=u.number;
+ $("projectScreen")
+ .classList
+ .add("hidden");
 
 
-  $('engineer').value='';
-
-  $('note').value='';
-
-
-  resetPhoto();
+ $("unitScreen")
+ .classList
+ .remove("hidden");
 
 
-  await renderSessionRecords();
+ $("sessionProject")
+ .textContent =
+ project.name;
 
 
-  window.scrollTo(0,0);
+ $("sessionUnit")
+ .textContent =
+ unit.number;
+
+
+ $("engineer")
+ .value="";
+
+
+ $("note")
+ .value="";
+
+
+ resetPhoto();
+
+
+ await renderSessionRecords();
+
+
+ window.scrollTo(
+  0,
+  0
+ );
 
 }
 
+
+
+/* =====================================================
+   SESSION RECORDS
+===================================================== */
 
 async function renderSessionRecords(){
 
-  const records=
-    await getByIndex(
-      RECORDS,
-      'unitId',
-      currentUnitId
+ const records =
+ await getByIndex(
+  RECORDS,
+  "unitId",
+  currentUnitId
+ );
+
+
+ records.sort(
+  (a,b)=>b.id-a.id
+ );
+
+
+ $("sessionCount")
+ .textContent =
+ records.length;
+
+
+ const box =
+ $("sessionRecords");
+
+
+ box.innerHTML="";
+
+
+ if(!records.length){
+
+  box.innerHTML = `
+
+   <div class="empty">
+
+    الوحدة مفتوحة وجاهزة.
+
+    <br>
+
+    أضف أول كومنت أو صورة.
+
+   </div>
+
+  `;
+
+  return;
+
+ }
+
+
+ records.forEach(
+  record=>{
+
+   const element =
+   document.createElement(
+    "div"
+   );
+
+
+   element.className =
+   "comment";
+
+
+   element.innerHTML = `
+
+    <div class="comment-head">
+
+     <div>
+
+      <span class="badge">
+
+       ${
+        record.photo
+        ? "📷 Photo"
+        : "📝 Comment"
+       }
+
+      </span>
+
+     </div>
+
+     <span class="muted">
+
+      ${escapeHtml(
+       record.engineer
+      )}
+
+      —
+
+      ${new Date(
+       record.date
+      ).toLocaleString(
+       "ar-EG"
+      )}
+
+     </span>
+
+    </div>
+
+
+    <p
+     style="
+     white-space:pre-wrap;
+     margin:10px 0
+     "
+    >
+     ${escapeHtml(
+      record.note
+     )}
+    </p>
+
+
+    ${
+     record.photo
+     ?
+     `
+     <img
+      src="${record.photo}"
+      alt="Inspection photo"
+     >
+     `
+     :
+     ""
+    }
+
+
+    <button
+     class="danger"
+     data-delete-record="${record.id}"
+     style="
+      margin-top:9px;
+      padding:8px 11px
+     "
+    >
+     🗑️ حذف
+    </button>
+
+   `;
+
+
+   box.appendChild(
+    element
+   );
+
+  }
+ );
+
+
+ box
+ .querySelectorAll(
+  "[data-delete-record]"
+ )
+ .forEach(
+  button=>{
+
+   button.onclick =
+   async()=>{
+
+    if(
+     !confirm(
+      "حذف هذا الكومنت والصورة؟"
+     )
+    )
+    return;
+
+
+    await deleteItem(
+     RECORDS,
+     Number(
+      button.dataset.deleteRecord
+     )
     );
 
 
-  records.sort(
-    (a,b)=>b.id-a.id
-  );
+    await renderSessionRecords();
 
-
-  $('sessionCount')
-    .textContent=records.length;
-
-
-  const box=
-    $('sessionRecords');
-
-
-  box.innerHTML='';
-
-
-  if(!records.length){
-
-    box.innerHTML=
-      '<div class="empty">الوحدة مفتوحة وجاهزة. أضف أول كومنت أو صورة.</div>';
-
-    return;
+   };
 
   }
+ );
+
+}
 
 
-  records.forEach(r=>{
 
-    const el=
-      document.createElement('div');
+/* =====================================================
+   HIGH QUALITY CAMERA
+===================================================== */
 
-    el.className='comment';
+async function startCamera(){
 
+ try{
 
-    el.innerHTML=`
-
-      <div>
-
-        <span class="badge">
-          ${r.photo?'📷 Photo':'📝 Comment'}
-        </span>
-
-        <span class="muted">
-          ${escapeHtml(r.engineer||'')}
-          —
-          ${new Date(r.date).toLocaleString('ar-EG')}
-        </span>
-
-      </div>
+  resetPhoto(false);
 
 
-      <p
-        style="white-space:pre-wrap;margin:9px 0"
-      >
-        ${escapeHtml(r.note)}
-      </p>
+  stream =
+  await navigator.mediaDevices
+  .getUserMedia({
 
+   video:{
 
-      ${
-        r.photo
-        ?
-        `<img
-          src="${r.photo}"
-          alt="inspection photo"
-        >`
-        :
-        ''
-      }
+    facingMode:{
+     ideal:"environment"
+    },
 
+    width:{
+     min:1280,
+     ideal:1920,
+     max:4096
+    },
 
-      <button
-        class="danger"
-        data-delete-record="${r.id}"
-        style="margin-top:8px;padding:8px 10px"
-      >
-        حذف
-      </button>
+    height:{
+     min:720,
+     ideal:1080,
+     max:2160
+    },
 
-    `;
+    frameRate:{
+     ideal:30,
+     max:60
+    },
 
+    resizeMode:"none"
 
-    box.appendChild(el);
+   },
+
+   audio:false
 
   });
 
 
-  box
-    .querySelectorAll(
-      '[data-delete-record]'
-    )
-    .forEach(
-      b=>
-        b.onclick=
-        async()=>{
-
-          if(
-            confirm(
-              'حذف هذا الكومنت؟'
-            )
-          ){
-
-            await deleteItem(
-              RECORDS,
-              Number(
-                b.dataset.deleteRecord
-              )
-            );
+  const track =
+  stream.getVideoTracks()[0];
 
 
-            await renderSessionRecords();
-
-          }
-
-        }
-    );
-
-}
-
-
-async function saveRecord(photo=''){
-
-  const engineer=
-    $('engineer')
-      .value
-      .trim();
-
-
-  const note=
-    $('note')
-      .value
-      .trim();
-
-
-  if(!engineer){
-
-    alert(
-      'اكتب اسم المهندس.'
-    );
-
-    return;
-
-  }
-
-
-  if(!note){
-
-    alert(
-      'اكتب الكومنت / الملاحظة.'
-    );
-
-    return;
-
-  }
-
-
-  const u=
-    await get(
-      UNITS,
-      currentUnitId
-    );
-
-
-  await add(
-    RECORDS,
-    {
-      projectId:
-        u.projectId,
-
-      unitId:
-        currentUnitId,
-
-      unitNumber:
-        u.number,
-
-      engineer,
-
-      note,
-
-      photo,
-
-      date:
-        new Date().toISOString()
-    }
-  );
-
-
-  $('note').value='';
-
-
-  resetPhoto();
-
-
-  await renderSessionRecords();
-
-}
-
-
-async function startCamera(){
+  /*
+   نحاول إجبار الكاميرا على
+   أعلى دقة متاحة.
+  */
 
   try{
 
-    resetPhoto(false);
+   const capabilities =
+   track.getCapabilities();
 
 
-    stream=
-      await navigator.mediaDevices
-        .getUserMedia({
-
-          video:{
-            facingMode:{
-              ideal:'environment'
-            }
-          },
-
-          audio:false
-
-        });
+   const advanced={};
 
 
-    $('camera')
-      .srcObject=stream;
+   if(
+    capabilities.width &&
+    capabilities.width.max
+   ){
+
+    advanced.width =
+    capabilities.width.max;
+
+   }
 
 
-    $('camera')
-      .style
-      .display='block';
+   if(
+    capabilities.height &&
+    capabilities.height.max
+   ){
+
+    advanced.height =
+    capabilities.height.max;
+
+   }
 
 
-    $('cameraControls')
-      .classList
-      .remove('hidden');
+   if(
+    capabilities.frameRate &&
+    capabilities.frameRate.max
+   ){
 
-
-  }catch(e){
-
-    alert(
-      'لم يتم فتح الكاميرا. اسمح للموقع باستخدام الكاميرا ثم جرّب مرة أخرى.'
+    advanced.frameRate =
+    Math.min(
+     capabilities.frameRate.max,
+     60
     );
+
+   }
+
+
+   if(
+    Object.keys(advanced).length
+   ){
+
+    await track.applyConstraints({
+     advanced:[
+      advanced
+     ]
+    });
+
+   }
+
+  }catch(error){
+
+   console.log(
+    "Advanced camera settings unavailable:",
+    error
+   );
 
   }
 
+
+  $("camera")
+  .srcObject =
+  stream;
+
+
+  $("camera")
+  .style
+  .display =
+  "block";
+
+
+  $("cameraInfo")
+  .classList
+  .remove("hidden");
+
+
+  $("cameraControls")
+  .classList
+  .remove("hidden");
+
+
+  $("camera").onloadedmetadata =
+  ()=>{
+
+   console.log(
+    "Actual camera resolution:",
+    $("camera").videoWidth,
+    "x",
+    $("camera").videoHeight
+   );
+
+  };
+
+
+ }catch(error){
+
+  console.error(
+   "Camera error:",
+   error
+  );
+
+
+  alert(
+   "لم يتم فتح الكاميرا. اسمح للموقع باستخدام الكاميرا ثم حاول مرة أخرى."
+  );
+
+ }
+
 }
 
+
+
+/* =====================================================
+   CAPTURE HIGH QUALITY IMAGE
+===================================================== */
 
 function capturePhoto(){
 
-  const v=$('camera');
+ const video =
+ $("camera");
 
-  const c=$('canvas');
+
+ const canvas =
+ $("canvas");
 
 
-  if(!v.videoWidth){
+ if(
+  !video.videoWidth ||
+  !video.videoHeight
+ ){
 
-    alert(
-      'انتظر لحظة حتى تفتح الكاميرا.'
-    );
+  alert(
+   "انتظر لحظة حتى تصبح الكاميرا جاهزة."
+  );
 
-    return;
+  return;
 
+ }
+
+
+ const width =
+ video.videoWidth;
+
+
+ const height =
+ video.videoHeight;
+
+
+ canvas.width =
+ width;
+
+
+ canvas.height =
+ height;
+
+
+ const context =
+ canvas.getContext(
+  "2d",
+  {
+   alpha:false
   }
+ );
 
 
-  c.width=v.videoWidth;
-
-  c.height=v.videoHeight;
-
-
-  c.getContext('2d')
-    .drawImage(
-      v,
-      0,
-      0,
-      c.width,
-      c.height
-    );
+ context.imageSmoothingEnabled =
+ true;
 
 
-  rawImage=
-    c.toDataURL(
-      'image/jpeg',
-      .9
-    );
+ context.imageSmoothingQuality =
+ "high";
 
 
-  $('preview').src=rawImage;
+ context.drawImage(
+  video,
+  0,
+  0,
+  width,
+  height
+ );
 
 
-  $('preview')
-    .classList
-    .remove('hidden');
+ /*
+  جودة JPEG عالية جدًا.
+ */
+
+ rawImage =
+ canvas.toDataURL(
+  "image/jpeg",
+  0.98
+ );
 
 
-  $('camera')
-    .style
-    .display='none';
+ $("preview")
+ .src =
+ rawImage;
 
 
-  stopStream();
+ $("preview")
+ .classList
+ .remove("hidden");
 
 
-  $('cameraControls')
-    .classList
-    .add('hidden');
+ $("camera")
+ .style
+ .display =
+ "none";
 
 
-  $('photoControls')
-    .classList
-    .remove('hidden');
+ stopStream();
+
+
+ $("cameraControls")
+ .classList
+ .add("hidden");
+
+
+ $("cameraInfo")
+ .classList
+ .add("hidden");
+
+
+ $("photoControls")
+ .classList
+ .remove("hidden");
 
 }
 
+
+
+/* =====================================================
+   STOP CAMERA
+===================================================== */
 
 function stopStream(){
 
-  if(stream){
+ if(stream){
 
-    stream
-      .getTracks()
-      .forEach(
-        t=>t.stop()
-      );
+  stream
+  .getTracks()
+  .forEach(
+   track=>{
+    track.stop();
+   }
+  );
 
-    stream=null;
 
-  }
+  stream=null;
+
+ }
 
 }
 
+
+
+/* =====================================================
+   RESET PHOTO
+===================================================== */
 
 function resetPhoto(
-  clearPreview=true
+ clearPreview=true
 ){
 
-  stopStream();
-
-  rawImage=null;
+ stopStream();
 
 
-  $('camera')
-    .style
-    .display='none';
+ rawImage=null;
 
 
-  $('cameraControls')
-    .classList
-    .add('hidden');
+ $("camera")
+ .style
+ .display =
+ "none";
 
 
-  $('photoControls')
-    .classList
-    .add('hidden');
+ $("cameraControls")
+ .classList
+ .add("hidden");
 
 
-  if(clearPreview){
+ $("photoControls")
+ .classList
+ .add("hidden");
 
-    $('preview').src='';
 
-    $('preview')
-      .classList
-      .add('hidden');
+ $("cameraInfo")
+ .classList
+ .add("hidden");
 
-  }
+
+ if(clearPreview){
+
+  $("preview")
+  .src="";
+
+
+  $("preview")
+  .classList
+  .add("hidden");
+
+ }
 
 }
 
+
+
+/* =====================================================
+   DRAW NOTE ON PHOTO
+===================================================== */
+
+async function createAnnotatedImage(
+ imageData,
+ note
+){
+
+ const canvas =
+ $("canvas");
+
+
+ const image =
+ new Image();
+
+
+ image.src =
+ imageData;
+
+
+ await new Promise(
+  resolve=>{
+
+   image.onload =
+   resolve;
+
+  }
+ );
+
+
+ canvas.width =
+ image.naturalWidth;
+
+
+ canvas.height =
+ image.naturalHeight;
+
+
+ const context =
+ canvas.getContext(
+  "2d",
+  {
+   alpha:false
+  }
+ );
+
+
+ context.drawImage(
+  image,
+  0,
+  0
+ );
+
+
+ /*
+  صندوق الملاحظة أسفل الصورة.
+ */
+
+ const boxHeight =
+ Math.max(
+  120,
+  canvas.height * 0.20
+ );
+
+
+ context.fillStyle =
+ "rgba(0,0,0,0.70)";
+
+
+ context.fillRect(
+  0,
+  canvas.height-boxHeight,
+  canvas.width,
+  boxHeight
+ );
+
+
+ context.fillStyle =
+ "#ffffff";
+
+
+ context.textAlign =
+ "center";
+
+
+ context.textBaseline =
+ "middle";
+
+
+ const fontSize =
+ Math.max(
+  28,
+  Math.floor(
+   canvas.width / 32
+  )
+ );
+
+
+ context.font =
+ `bold ${fontSize}px Arial`;
+
+
+ const words =
+ note.split(/\s+/);
+
+
+ const lines=[];
+
+
+ let line="";
+
+
+ const maxWidth =
+ canvas.width - 70;
+
+
+ for(
+  const word
+  of words
+ ){
+
+  const test =
+  line
+  ?
+  line+" "+word
+  :
+  word;
+
+
+  if(
+   context.measureText(
+    test
+   ).width
+   >
+   maxWidth
+   &&
+   line
+  ){
+
+   lines.push(
+    line
+   );
+
+
+   line =
+   word;
+
+  }else{
+
+   line =
+   test;
+
+  }
+
+ }
+
+
+ if(line)
+ lines.push(
+  line
+ );
+
+
+ const lineHeight =
+ Math.max(
+  40,
+  Math.floor(
+   fontSize * 1.35
+  )
+ );
+
+
+ let startY =
+ canvas.height -
+ boxHeight/2 -
+ ((lines.length-1)*lineHeight)/2;
+
+
+ lines.forEach(
+  currentLine=>{
+
+   context.fillText(
+    currentLine,
+    canvas.width/2,
+    startY
+   );
+
+
+   startY +=
+   lineHeight;
+
+  }
+ );
+
+
+ return canvas.toDataURL(
+  "image/jpeg",
+  0.98
+ );
+
+}
+
+
+
+/* =====================================================
+   SAVE NOTE
+===================================================== */
+
+async function saveRecord(
+ photo=""
+){
+
+ const engineer =
+ $("engineer")
+ .value
+ .trim();
+
+
+ const note =
+ $("note")
+ .value
+ .trim();
+
+
+ if(!engineer){
+
+  alert(
+   "اكتب اسم المهندس."
+  );
+
+  return;
+
+ }
+
+
+ if(!note){
+
+  alert(
+   "اكتب الكومنت / الملاحظة."
+  );
+
+  return;
+
+ }
+
+
+ const unit =
+ await get(
+  UNITS,
+  currentUnitId
+ );
+
+
+ if(!unit)
+ return;
+
+
+ await add(
+  RECORDS,
+  {
+
+   projectId:
+   unit.projectId,
+
+   unitId:
+   currentUnitId,
+
+   unitNumber:
+   unit.number,
+
+   engineer:
+   engineer,
+
+   note:
+   note,
+
+   photo:
+   photo,
+
+   date:
+   new Date().toISOString()
+
+  }
+ );
+
+
+ $("note")
+ .value="";
+
+
+ resetPhoto();
+
+
+ await renderSessionRecords();
+
+}
+
+
+
+/* =====================================================
+   SAVE PHOTO
+===================================================== */
 
 async function savePhoto(){
 
-  if(!rawImage){
+ if(!rawImage){
 
-    alert(
-      'التقط الصورة أولاً.'
-    );
-
-    return;
-
-  }
-
-
-  await saveRecord(
-    rawImage
+  alert(
+   "التقط الصورة أولًا."
   );
+
+  return;
+
+ }
+
+
+ const note =
+ $("note")
+ .value
+ .trim();
+
+
+ const engineer =
+ $("engineer")
+ .value
+ .trim();
+
+
+ if(!engineer){
+
+  alert(
+   "اكتب اسم المهندس."
+  );
+
+  return;
+
+ }
+
+
+ if(!note){
+
+  alert(
+   "اكتب الملاحظة التي تريد ظهورها على الصورة."
+  );
+
+  return;
+
+ }
+
+
+ /*
+  ندمج الملاحظة داخل الصورة.
+ */
+
+ const finalImage =
+ await createAnnotatedImage(
+  rawImage,
+  note
+ );
+
+
+ await saveRecord(
+  finalImage
+ );
 
 }
 
+
+
+/* =====================================================
+   FINISH UNIT
+===================================================== */
 
 async function finishUnit(){
 
-  if(
-    !confirm(
-      'إنهاء هذه الوحدة والرجوع لقائمة الوحدات؟'
-    )
-  )return;
+ const answer =
+ confirm(
+  "إنهاء هذه الوحدة والرجوع لقائمة الوحدات؟"
+ );
 
 
-  resetPhoto();
-
-  currentUnitId=null;
-
-
-  await renderUnits();
+ if(!answer)
+ return;
 
 
-  $('unitScreen')
-    .classList
-    .add('hidden');
+ resetPhoto();
 
 
-  $('projectScreen')
-    .classList
-    .remove('hidden');
+ currentUnitId=null;
 
 
-  window.scrollTo(0,0);
+ await renderUnits();
+
+
+ $("unitScreen")
+ .classList
+ .add("hidden");
+
+
+ $("projectScreen")
+ .classList
+ .remove("hidden");
+
+
+ window.scrollTo(
+  0,
+  0
+ );
 
 }
 
 
-async function exportExcel(){
 
-  const projects=
-    await getAll(PROJECTS);
+/* =====================================================
+   EXCEL EXPORT CURRENT UNIT
+===================================================== */
 
-  const units=
-    await getAll(UNITS);
+async function exportCurrentUnitExcel(){
 
-  const records=
-    await getAll(RECORDS);
+ if(!currentUnitId){
 
-
-  if(!projects.length){
-
-    alert(
-      'لا توجد بيانات للتصدير.'
-    );
-
-    return;
-
-  }
-
-
-  if(
-    typeof ExcelJS==='undefined'
-  ){
-
-    alert(
-      'مكتبة Excel لم تُحمّل بعد. تأكد من وجود الإنترنت ثم جرّب مرة أخرى.'
-    );
-
-    return;
-
-  }
-
-
-  const wb=
-    new ExcelJS.Workbook();
-
-
-  wb.creator=
-    'Site Inspection';
-
-  wb.created=
-    new Date();
-
-
-  const wsP=
-    wb.addWorksheet(
-      'Projects'
-    );
-
-
-  wsP.columns=[
-
-    {
-      header:'Project ID',
-      key:'id',
-      width:14
-    },
-
-    {
-      header:'Project',
-      key:'name',
-      width:35
-    },
-
-    {
-      header:'Created',
-      key:'created',
-      width:24
-    }
-
-  ];
-
-
-  projects.forEach(
-    p=>
-      wsP.addRow({
-
-        id:p.id,
-
-        name:p.name,
-
-        created:
-          new Date(
-            p.createdAt
-          ).toLocaleString(
-            'en-GB'
-          )
-
-      })
+  alert(
+   "لا توجد وحدة مفتوحة."
   );
 
+  return;
 
-  wsP.getRow(1).font={
-    bold:true
-  };
-
-
-  const wsU=
-    wb.addWorksheet(
-      'Units'
-    );
+ }
 
 
-  wsU.columns=[
+ if(
+  typeof ExcelJS ===
+  "undefined"
+ ){
 
-    {
-      header:'Unit ID',
-      key:'id',
-      width:14
-    },
+  alert(
+   "مكتبة Excel لم تُحمّل. افتح الصفحة بالإنترنت ثم حاول مرة أخرى."
+  );
 
-    {
-      header:'Project',
-      key:'project',
-      width:35
-    },
+  return;
 
-    {
-      header:'Unit',
-      key:'unit',
-      width:20
-    },
-
-    {
-      header:'Created',
-      key:'created',
-      width:24
-    },
-
-    {
-      header:'Comments',
-      key:'comments',
-      width:12
-    },
-
-    {
-      header:'Photos',
-      key:'photos',
-      width:12
-    }
-
-  ];
+ }
 
 
-  for(
-    const u of units
-  ){
-
-    const p=
-      projects.find(
-        x=>x.id===u.projectId
-      );
+ const unit =
+ await get(
+  UNITS,
+  currentUnitId
+ );
 
 
-    const rs=
-      records.filter(
-        r=>r.unitId===u.id
-      );
+ if(!unit){
+
+  alert(
+   "الوحدة غير موجودة."
+  );
+
+  return;
+
+ }
 
 
-    wsU.addRow({
+ const project =
+ await get(
+  PROJECTS,
+  unit.projectId
+ );
 
-      id:u.id,
 
-      project:
-        p?.name||'',
+ const records =
+ await getByIndex(
+  RECORDS,
+  "unitId",
+  currentUnitId
+ );
 
-      unit:u.number,
 
-      created:
-        new Date(
-          u.createdAt
-        ).toLocaleString(
-          'en-GB'
-        ),
+ if(!records.length){
 
-      comments:
-        rs.length,
+  alert(
+   "لا توجد كومنتات أو صور في هذه الوحدة."
+  );
 
-      photos:
-        rs.filter(
-          r=>r.photo
-        ).length
+  return;
+
+ }
+
+
+ const workbook =
+ new ExcelJS.Workbook();
+
+
+ workbook.creator =
+ "Site Inspection";
+
+
+ workbook.created =
+ new Date();
+
+
+ const worksheet =
+ workbook.addWorksheet(
+  "Inspection"
+ );
+
+
+ worksheet.columns=[
+
+  {
+   header:"Project",
+   key:"project",
+   width:32
+  },
+
+  {
+   header:"Unit",
+   key:"unit",
+   width:18
+  },
+
+  {
+   header:"Engineer",
+   key:"engineer",
+   width:25
+  },
+
+  {
+   header:"Date",
+   key:"date",
+   width:24
+  },
+
+  {
+   header:"Comment",
+   key:"comment",
+   width:60
+  },
+
+  {
+   header:"Photo",
+   key:"photo",
+   width:22
+  }
+
+ ];
+
+
+ worksheet.getRow(
+  1
+ ).font={
+  bold:true
+ };
+
+
+ worksheet.getRow(
+  1
+ ).alignment={
+  horizontal:"center",
+  vertical:"middle"
+ };
+
+
+ let rowNumber=2;
+
+
+ for(
+  const record
+  of records.sort(
+   (a,b)=>a.id-b.id
+  )
+ ){
+
+  worksheet.addRow({
+
+   project:
+   project?.name || "",
+
+   unit:
+   unit.number || "",
+
+   engineer:
+   record.engineer || "",
+
+   date:
+   new Date(
+    record.date
+   ).toLocaleString(
+    "en-GB"
+   ),
+
+   comment:
+   record.note || "",
+
+   photo:
+   record.photo
+   ?
+   "Included"
+   :
+   ""
+
+  });
+
+
+  if(record.photo){
+
+   try{
+
+    const imageId =
+    workbook.addImage({
+
+     base64:
+     record.photo,
+
+     extension:
+     "jpeg"
 
     });
 
-  }
 
+    worksheet.addImage(
+     imageId,
+     {
 
-  wsU.getRow(1).font={
-    bold:true
-  };
+      tl:{
+       col:5,
+       row:rowNumber-1
+      },
 
-
-  const wsR=
-    wb.addWorksheet(
-      'Inspections'
-    );
-
-
-  wsR.columns=[
-
-    {
-      header:'Project',
-      key:'project',
-      width:32
-    },
-
-    {
-      header:'Unit',
-      key:'unit',
-      width:18
-    },
-
-    {
-      header:'Engineer',
-      key:'engineer',
-      width:25
-    },
-
-    {
-      header:'Date',
-      key:'date',
-      width:23
-    },
-
-    {
-      header:'Comment',
-      key:'note',
-      width:55
-    },
-
-    {
-      header:'Photo',
-      key:'photo',
-      width:18
-    }
-
-  ];
-
-
-  let rowNo=2;
-
-
-  for(
-    const r of records.sort(
-      (a,b)=>a.id-b.id
-    )
-  ){
-
-    const p=
-      projects.find(
-        x=>x.id===r.projectId
-      );
-
-
-    wsR.addRow({
-
-      project:
-        p?.name||'',
-
-      unit:
-        r.unitNumber||'',
-
-      engineer:
-        r.engineer||'',
-
-      date:
-        new Date(
-          r.date
-        ).toLocaleString(
-          'en-GB'
-        ),
-
-      note:
-        r.note||'',
-
-      photo:
-        r.photo
-        ?
-        'Included'
-        :
-        ''
-
-    });
-
-
-    if(r.photo){
-
-      try{
-
-        const imageId=
-          wb.addImage({
-
-            base64:r.photo,
-
-            extension:'jpeg'
-
-          });
-
-
-        wsR.addImage(
-          imageId,
-          {
-
-            tl:{
-              col:5,
-              row:rowNo-1
-            },
-
-            ext:{
-              width:180,
-              height:135
-            }
-
-          }
-        );
-
-
-        wsR.getRow(
-          rowNo
-        ).height=105;
-
-
-      }catch(e){}
-
-    }
-
-
-    rowNo++;
-
-  }
-
-
-  wsR.getRow(1).font={
-    bold:true
-  };
-
-
-  wsR.views=[
-    {
-      state:'frozen',
-      ySplit:1
-    }
-  ];
-
-
-  const buffer=
-    await wb.xlsx.writeBuffer();
-
-
-  const blob=
-    new Blob(
-      [buffer],
-      {
-        type:
-          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      ext:{
+       width:220,
+       height:165
       }
+
+     }
     );
 
 
-  const a=
-    document.createElement(
-      'a'
+    worksheet.getRow(
+     rowNumber
+    ).height =
+    125;
+
+   }catch(error){
+
+    console.error(
+     "Excel image error:",
+     error
     );
 
+   }
 
-  a.href=
-    URL.createObjectURL(
-      blob
-    );
+  }
 
 
-  a.download=
-    'site_inspection_with_photos.xlsx';
+  rowNumber++;
+
+ }
 
 
-  document.body.appendChild(a);
+ worksheet.views=[
+  {
+   state:"frozen",
+   ySplit:1
+  }
+ ];
 
 
-  a.click();
+ const buffer =
+ await workbook.xlsx.writeBuffer();
 
 
-  setTimeout(
-    ()=>{
-      URL.revokeObjectURL(
-        a.href
-      );
+ const blob =
+ new Blob(
+  [buffer],
+  {
+   type:
+   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  }
+ );
 
-      a.remove();
 
-    },
-    1000
-  );
+ const projectName =
+ (
+  project?.name ||
+  "Project"
+ )
+ .replace(
+  /[\\/:*?"<>|]/g,
+  "_"
+ );
+
+
+ const unitName =
+ (
+  unit.number ||
+  "Unit"
+ )
+ .replace(
+  /[\\/:*?"<>|]/g,
+  "_"
+ );
+
+
+ const fileName =
+ `SiteInspection_${projectName}_Unit_${unitName}.xlsx`;
+
+
+ const url =
+ URL.createObjectURL(
+  blob
+ );
+
+
+ const link =
+ document.createElement(
+  "a"
+ );
+
+
+ link.href =
+ url;
+
+
+ link.download =
+ fileName;
+
+
+ document.body.appendChild(
+  link
+ );
+
+
+ link.click();
+
+
+ link.remove();
+
+
+ setTimeout(
+  ()=>{
+   URL.revokeObjectURL(
+    url
+   );
+  },
+  2000
+ );
+
+
+ alert(
+  `تم تصدير الوحدة ${unit.number} إلى Excel بالصور والكومنتات ✅`
+ );
 
 }
 
 
-$('addProjectBtn').onclick=
-  addProject;
+
+/* =====================================================
+   EXPORT FULL PROJECT
+===================================================== */
+
+async function exportProjectExcel(){
+
+ if(!currentProjectId){
+
+  alert(
+   "افتح المشروع أولًا."
+  );
+
+  return;
+
+ }
 
 
-$('projectName')
-  .addEventListener(
-    'keydown',
-    e=>{
-      if(e.key==='Enter')
-        addProject();
-    }
+ if(
+  typeof ExcelJS ===
+  "undefined"
+ ){
+
+  alert(
+   "مكتبة Excel لم تُحمّل. افتح الصفحة بالإنترنت ثم حاول مرة أخرى."
+  );
+
+  return;
+
+ }
+
+
+ const project =
+ await get(
+  PROJECTS,
+  currentProjectId
+ );
+
+
+ const units =
+ await getByIndex(
+  UNITS,
+  "projectId",
+  currentProjectId
+ );
+
+
+ if(!units.length){
+
+  alert(
+   "لا توجد وحدات في هذا المشروع."
+  );
+
+  return;
+
+ }
+
+
+ const workbook =
+ new ExcelJS.Workbook();
+
+
+ workbook.creator =
+ "Site Inspection";
+
+
+ workbook.created =
+ new Date();
+
+
+ /*
+  Sheet 1
+  Project
+ */
+
+ const projectSheet =
+ workbook.addWorksheet(
+  "Project"
+ );
+
+
+ projectSheet.columns=[
+
+  {
+   header:"Project",
+   key:"project",
+   width:40
+  },
+
+  {
+   header:"Created",
+   key:"created",
+   width:25
+  }
+
+ ];
+
+
+ projectSheet.addRow({
+
+  project:
+  project.name,
+
+  created:
+  new Date(
+   project.createdAt
+  ).toLocaleString(
+   "en-GB"
+  )
+
+ });
+
+
+ projectSheet.getRow(
+  1
+ ).font={
+  bold:true
+ };
+
+
+ /*
+  Sheet 2
+  Units
+ */
+
+ const unitsSheet =
+ workbook.addWorksheet(
+  "Units"
+ );
+
+
+ unitsSheet.columns=[
+
+  {
+   header:"Unit",
+   key:"unit",
+   width:20
+  },
+
+  {
+   header:"Comments",
+   key:"comments",
+   width:15
+  },
+
+  {
+   header:"Photos",
+   key:"photos",
+   width:15
+  }
+
+ ];
+
+
+ unitsSheet.getRow(
+  1
+ ).font={
+  bold:true
+ };
+
+
+ for(
+  const unit
+  of units
+ ){
+
+  const records =
+  await getByIndex(
+   RECORDS,
+   "unitId",
+   unit.id
   );
 
 
-$('backProjectsBtn').onclick=()=>{
+  unitsSheet.addRow({
 
-  $('projectScreen')
-    .classList
-    .add('hidden');
+   unit:
+   unit.number,
 
+   comments:
+   records.length,
 
-  $('projectsScreen')
-    .classList
-    .remove('hidden');
+   photos:
+   records.filter(
+    r=>r.photo
+   ).length
 
+  });
 
-  renderProjects();
-
-
-  window.scrollTo(0,0);
-
-};
+ }
 
 
-$('newUnitBtn').onclick=
-  createUnit;
+ /*
+  Sheet 3
+  All inspections
+ */
+
+ const sheet =
+ workbook.addWorksheet(
+  "Inspections"
+ );
 
 
-$('backUnitsBtn').onclick=()=>{
+ sheet.columns=[
 
-  resetPhoto();
+  {
+   header:"Unit",
+   key:"unit",
+   width:18
+  },
 
+  {
+   header:"Engineer",
+   key:"engineer",
+   width:25
+  },
 
-  $('unitScreen')
-    .classList
-    .add('hidden');
+  {
+   header:"Date",
+   key:"date",
+   width:24
+  },
 
+  {
+   header:"Comment",
+   key:"comment",
+   width:60
+  },
 
-  $('projectScreen')
-    .classList
-    .remove('hidden');
+  {
+   header:"Photo",
+   key:"photo",
+   width:22
+  }
 
-
-  renderUnits();
-
-
-  window.scrollTo(0,0);
-
-};
-
-
-$('finishUnitBtn').onclick=
-  finishUnit;
-
-
-$('photoBtn').onclick=
-  startCamera;
-
-
-$('captureBtn').onclick=
-  capturePhoto;
-
-
-$('stopCameraBtn').onclick=
-  ()=>resetPhoto(false);
+ ];
 
 
-$('savePhotoBtn').onclick=
-  savePhoto;
+ sheet.getRow(
+  1
+ ).font={
+  bold:true
+ };
 
 
-$('retakeBtn').onclick=
-  startCamera;
+ let row=2;
 
 
-$('saveNoteBtn').onclick=
-  ()=>saveRecord('');
+ for(
+  const unit
+  of units
+ ){
+
+  const records =
+  await getByIndex(
+   RECORDS,
+   "unitId",
+   unit.id
+  );
 
 
-$('exportAllBtn').onclick=
-  exportExcel;
+  records.sort(
+   (a,b)=>a.id-b.id
+  );
 
 
-window.addEventListener(
-  'beforeinstallprompt',
-  e=>{
+  for(
+   const record
+   of records
+  ){
 
-    e.preventDefault();
+   sheet.addRow({
 
-    deferredPrompt=e;
+    unit:
+    unit.number,
 
-    $('installBtn')
-      .classList
-      .remove('hidden');
+    engineer:
+    record.engineer || "",
+
+    date:
+    new Date(
+     record.date
+    ).toLocaleString(
+     "en-GB"
+    ),
+
+    comment:
+    record.note || "",
+
+    photo:
+    record.photo
+    ?
+    "Included"
+    :
+    ""
+
+   });
+
+
+   if(record.photo){
+
+    try{
+
+     const imageId =
+     workbook.addImage({
+
+      base64:
+      record.photo,
+
+      extension:
+      "jpeg"
+
+     });
+
+
+     sheet.addImage(
+      imageId,
+      {
+
+       tl:{
+        col:4,
+        row:row-1
+       },
+
+       ext:{
+        width:220,
+        height:165
+       }
+
+      }
+     );
+
+
+     sheet.getRow(
+      row
+     ).height=125;
+
+    }catch(error){
+
+     console.error(
+      error
+     );
+
+    }
+
+   }
+
+
+   row++;
 
   }
+
+ }
+
+
+ sheet.views=[
+  {
+   state:"frozen",
+   ySplit:1
+  }
+ ];
+
+
+ const buffer =
+ await workbook.xlsx.writeBuffer();
+
+
+ const blob =
+ new Blob(
+  [buffer],
+  {
+   type:
+   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  }
+ );
+
+
+ const fileName =
+ (
+  project.name ||
+  "SiteInspection"
+ )
+ .replace(
+  /[\\/:*?"<>|]/g,
+  "_"
+ )+
+ "_Full_Project.xlsx";
+
+
+ const url =
+ URL.createObjectURL(
+  blob
+ );
+
+
+ const link =
+ document.createElement(
+  "a"
+ );
+
+
+ link.href =
+ url;
+
+
+ link.download =
+ fileName;
+
+
+ document.body.appendChild(
+  link
+ );
+
+
+ link.click();
+
+
+ link.remove();
+
+
+ setTimeout(
+  ()=>{
+   URL.revokeObjectURL(
+    url
+   );
+  },
+  2000
+ );
+
+
+ alert(
+  "تم تصدير المشروع بالكامل إلى Excel بالصور والكومنتات ✅"
+ );
+
+}
+
+
+
+/* =====================================================
+   BUTTON EVENTS
+===================================================== */
+
+$("addProjectBtn").onclick =
+addProject;
+
+
+$("projectName")
+.addEventListener(
+ "keydown",
+ event=>{
+
+  if(
+   event.key==="Enter"
+  ){
+
+   addProject();
+
+  }
+
+ }
 );
 
 
-$('installBtn').onclick=
-  async()=>{
+$("backProjectsBtn").onclick =
+()=>{
 
-    if(!deferredPrompt)
-      return;
-
-
-    deferredPrompt.prompt();
+ $("projectScreen")
+ .classList
+ .add("hidden");
 
 
-    await deferredPrompt.userChoice;
+ $("projectsScreen")
+ .classList
+ .remove("hidden");
 
 
-    deferredPrompt=null;
+ renderProjects();
 
 
-    $('installBtn')
-      .classList
-      .add('hidden');
+ window.scrollTo(
+  0,
+  0
+ );
 
-  };
+};
 
+
+$("newUnitBtn").onclick =
+createUnit;
+
+
+$("backUnitsBtn").onclick =
+()=>{
+
+ resetPhoto();
+
+
+ $("unitScreen")
+ .classList
+ .add("hidden");
+
+
+ $("projectScreen")
+ .classList
+ .remove("hidden");
+
+
+ renderUnits();
+
+
+ window.scrollTo(
+  0,
+  0
+ );
+
+};
+
+
+$("finishUnitBtn").onclick =
+finishUnit;
+
+
+$("exportUnitBtn").onclick =
+exportCurrentUnitExcel;
+
+
+$("exportAllBtn").onclick =
+exportProjectExcel;
+
+
+$("photoBtn").onclick =
+startCamera;
+
+
+$("captureBtn").onclick =
+capturePhoto;
+
+
+$("stopCameraBtn").onclick =
+()=>{
+
+ resetPhoto(false);
+
+};
+
+
+$("savePhotoBtn").onclick =
+savePhoto;
+
+
+$("retakeBtn").onclick =
+startCamera;
+
+
+$("saveNoteBtn").onclick =
+()=>saveRecord("");
+
+
+
+/* =====================================================
+   PWA INSTALL
+===================================================== */
 
 window.addEventListener(
-  'pagehide',
-  stopStream
+ "beforeinstallprompt",
+ event=>{
+
+  event.preventDefault();
+
+  deferredPrompt =
+  event;
+
+  $("installBtn")
+  .classList
+  .remove("hidden");
+
+ }
 );
 
+
+$("installBtn").onclick =
+async()=>{
+
+ if(!deferredPrompt)
+ return;
+
+
+ deferredPrompt.prompt();
+
+
+ await deferredPrompt.userChoice;
+
+
+ deferredPrompt=null;
+
+
+ $("installBtn")
+ .classList
+ .add("hidden");
+
+};
+
+
+
+/* =====================================================
+   STOP CAMERA WHEN LEAVING
+===================================================== */
+
+window.addEventListener(
+ "pagehide",
+ ()=>{
+  stopStream();
+ }
+);
+
+
+
+/* =====================================================
+   START APP
+===================================================== */
 
 openDB()
-  .then(
-    renderProjects
-  )
-  .catch(
-    e=>
-      alert(
-        'تعذر فتح قاعدة البيانات المحلية.'
-      )
+.then(
+ ()=>{
+  renderProjects();
+ }
+)
+.catch(
+ error=>{
+
+  console.error(
+   error
   );
+
+  alert(
+   "تعذر فتح قاعدة البيانات المحلية."
+  );
+
+ }
+);
 
 </script>
 
 
-<!-- ExcelJS -->
-<script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+<!-- =====================================================
+     EXCELJS
+     مطلوب لتكوين XLSX وإدخال الصور داخل Excel
+===================================================== -->
+
+<script
+ src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js">
+</script>
+
 
 </body>
 </html>
